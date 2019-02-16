@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./registro-proveedor.page.scss'],
 })
 export class RegistroProveedorPage implements OnInit {
-
+  proveedor = [{nombre: 'Cubanas'}, {nombre: 'hola'}];
+  hero = 'Windstorm';
   constructor() { }
 
   ngOnInit() {
