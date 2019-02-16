@@ -8,6 +8,15 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
+        path: 'registro-proveedor',
+        children: [
+          {
+            path: '',
+            loadChildren: '../registro-proveedor/registro-proveedor.module#RegistroProveedorPageModule'
+          }
+        ]
+      },
+      {
         path: 'tab1',
         children: [
           {
@@ -17,33 +26,15 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'tab2',
-        children: [
-          {
-            path: '',
-            loadChildren: '../tab2/tab2.module#Tab2PageModule'
-          }
-        ]
-      },
-      {
-        path: 'tab3',
-        children: [
-          {
-            path: '',
-            loadChildren: '../tab3/tab3.module#Tab3PageModule'
-          }
-        ]
-      },
-      {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/tabs/registro-proveedor',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/registro-proveedor',
     pathMatch: 'full'
   }
 ];
