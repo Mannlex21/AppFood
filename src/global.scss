@@ -9,3 +9,12 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
+
+.ion-color-noColor {
+  --ion-color-base: var(--ion-color-noColor) !important;
+  --ion-color-base-rgb: var(--ion-color-noColor-rgb) !important;
+  --ion-color-contrast: var(--ion-color-noColor-contrast) !important;
+  --ion-color-contrast-rgb: var(--ion-color-noColor-contrast-rgb) !important;
+  --ion-color-shade: var(--ion-color-noColor-shade) !important;
+  --ion-color-tint: var(--ion-color-noColor-tint) !important;
+  }

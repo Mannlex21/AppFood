@@ -1,0 +1,24 @@
+<ion-grid>
+  <ion-row>
+    <ion-col size-md="3" size-sm="2" *ngFor ="let item of proveedor">
+      <ion-card >
+        <ion-card-header>
+          <div class="divImgRestaurante">
+            <img *ngIf="item.src !=undefined" [src]="item.src" class="imageRestaurant">
+            <ion-button mode="ios" size="small" color="noColor" class="btnEditRestaurante">
+              <ion-icon slot="icon-only" name="create"></ion-icon>
+            </ion-button>
+          </div>
+          
+          <ion-card-subtitle>{{item.nombre}}</ion-card-subtitle>
+          <ion-card-title>{{item.nombre}}</ion-card-title>
+        </ion-card-header>
+  
+        <ion-card-content>
+          Keep close to Nature's heart... and break clear away, once in awhile,
+          and climb a mountain or spend a week in the woods. Wash your spirit clean.
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>

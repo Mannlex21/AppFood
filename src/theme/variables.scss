@@ -3,6 +3,14 @@
 
 /** Ionic CSS Variables **/
 :root {
+  /** noIcon **/
+  --ion-color-noColor: transparent;
+  --ion-color-noColor-rgb: transparent;
+  --ion-color-noColor-contrast: #000000;
+  --ion-color-noColor-contrast-rgb: 0, 0, 0;
+  --ion-color-noColor-shade: transparent;
+  --ion-color-noColor-tint: transparent;
+
   /** primary **/
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;

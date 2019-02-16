@@ -5,12 +5,14 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { RegistroProveedorPage } from './registro-proveedor.page';
+import { ProveedorPage } from './proveedor.page';
+import { ListComponent } from './list/list.component';
+import { FormComponent } from './form/form.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: RegistroProveedorPage
+    component: ProveedorPage
   }
 ];
 
@@ -21,6 +23,9 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [RegistroProveedorPage]
+  declarations: [
+    ProveedorPage,
+    ListComponent,
+    FormComponent]
 })
-export class RegistroProveedorPageModule {}
+export class ProveedorPageModule {}

@@ -8,11 +8,11 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'registro-proveedor',
+        path: 'proveedor',
         children: [
           {
             path: '',
-            loadChildren: '../registro-proveedor/registro-proveedor.module#RegistroProveedorPageModule'
+            loadChildren: '../proveedor/proveedor.module#ProveedorPageModule'
           }
         ]
       },
@@ -27,14 +27,14 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/tabs/registro-proveedor',
+        redirectTo: '/tabs/proveedor',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/registro-proveedor',
+    redirectTo: '/tabs/proveedor',
     pathMatch: 'full'
   }
 ];
