@@ -7,6 +7,6 @@
 
 <!--Este tag se utiliza para mostrar el contenido de la pagina-->
 <ion-content padding>
-  <list-proveedor></list-proveedor>
-  <form-proveedor></form-proveedor>
+  <list-proveedor *ngIf="!showForm"></list-proveedor>
+  <form-proveedor *ngIf="showForm"></form-proveedor>
 </ion-content>

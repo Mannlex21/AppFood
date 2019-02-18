@@ -1,11 +1,11 @@
 <ion-grid>
   <ion-row>
-    <ion-col size-md="3" size-sm="2" *ngFor ="let item of proveedor">
+    <ion-col size-xs="12" size-sm="6" size-md="4" size-lg="4" size-xl="3"  *ngFor ="let item of proveedor">
       <ion-card >
         <ion-card-header>
           <div class="divImgRestaurante">
             <img *ngIf="item.src !=undefined" [src]="item.src" class="imageRestaurant">
-            <ion-button mode="ios" size="small" color="noColor" class="btnEditRestaurante">
+            <ion-button (click)="clickHandler(item.nombre)"  mode="ios" size="small" color="noColor" class="btnEditRestaurante">
               <ion-icon slot="icon-only" name="create"></ion-icon>
             </ion-button>
           </div>
