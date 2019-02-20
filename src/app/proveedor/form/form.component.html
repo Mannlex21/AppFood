@@ -1,29 +1,33 @@
 <ion-grid>
   <ion-row>
+    <alert-component *ngIf="confirmDialogCancel"></alert-component>
     <!-- Informacion principal proveedor -->
     <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12" >
       <legend><span class="number">1</span> Información</legend>
     </ion-col>
     <ion-col size-xs="12" size-sm="12" size-md="6" size-lg="6" size-xl="6" >
-      <ion-input class="inputForm" placeholder="Nombre"></ion-input>
+      <ion-input [(ngModel)]='form.nombre' class="inputForm" placeholder="Nombre" ></ion-input>
     </ion-col>
     <ion-col size-xs="12" size-sm="12" size-md="6" size-lg="6" size-xl="6" >
-      <ion-input class="inputForm" placeholder="Telefono"></ion-input>
+      <ion-input [(ngModel)]='form.telefono' class="inputForm" placeholder="Telefono"></ion-input>
     </ion-col>
     <ion-col size-xs="12" size-sm="12" size-md="6" size-lg="6" size-xl="6" >
-      <ion-input class="inputForm" placeholder="Dirección"></ion-input>
+      <ion-input [(ngModel)]='form.direccion' class="inputForm" placeholder="Dirección"></ion-input>
     </ion-col>
     <ion-col size-xs="12" size-sm="12" size-md="3" size-lg="3" size-xl="3" >
-      <ion-input class="inputForm" placeholder="Ciudad"></ion-input>
+      <ion-input [(ngModel)]='form.ciudad' class="inputForm" placeholder="Ciudad"></ion-input>
     </ion-col>
     <ion-col size-xs="12" size-sm="12" size-md="3" size-lg="3" size-xl="3" >
-      <ion-input class="inputForm" placeholder="Estado"></ion-input>
+      <ion-input [(ngModel)]='form.estado' class="inputForm" placeholder="Estado"></ion-input>
     </ion-col>
     <ion-col size-xs="12" size-sm="12" size-md="3" size-lg="3" size-xl="3" >
-      <ion-input class="inputForm" placeholder="Codigo postal"></ion-input>
+      <ion-input [(ngModel)]='form.cp' class="inputForm" placeholder="Codigo postal"></ion-input>
     </ion-col>
     <ion-col size-xs="12" size-sm="12" size-md="3" size-lg="3" size-xl="3" >
-      <ion-input class="inputForm" placeholder="Pagina web"></ion-input>
+      <ion-input [(ngModel)]='form.pagina' class="inputForm" placeholder="Pagina web"></ion-input>
+    </ion-col>
+    <ion-col size-xs="12" size-sm="12" size-md="6" size-lg="6" size-xl="6" >
+      <ion-input [(ngModel)]='form.descripcion' class="inputForm" maxlength="150" placeholder="Descripción" ></ion-input>
     </ion-col>
 
     <!-- Informacion principal proveedor -->
@@ -118,10 +122,10 @@
     <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12" class="btns">
       <ion-row>
         <ion-col size-xs="6" size-sm="6" size-md="6" size-lg="6" size-xl="6">
-          <button class="btnFormCancelar" (click)="atras()">Cancelar</button>  
+          <button class="btnFormCancelar" (click)="cancel()">Cancelar</button>  
         </ion-col>
         <ion-col size-xs="6" size-sm="6" size-md="6" size-lg="6" size-xl="6">
-          <button class="btnForm" (click)="atras()">Guardar</button>  
+          <button class="btnForm" (click)="clickSaveEdit()">Guardar</button>  
         </ion-col>
       </ion-row>
     </ion-col>

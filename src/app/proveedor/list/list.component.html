@@ -1,22 +1,37 @@
 <ion-grid>
   <ion-row>
-    <ion-col size-xs="12" size-sm="6" size-md="4" size-lg="4" size-xl="3"  *ngFor ="let item of proveedor">
-      <ion-card >
+    <ion-col size-xs="12" size-sm="6" size-md="4" size-lg="4" size-xl="3" >
+      <ion-card style="max-height:335px;height:335px;">
+        <div style="height: 100%;display: table;width: 100%;"(click)="nuevo()">
+          <div style="display: table-cell;vertical-align: middle;text-align: center;">
+              <ion-icon slot="icon-only" name="add-circle" style="height: 50%;width: 30%;"></ion-icon>
+          </div>
+        </div>
+      </ion-card>
+    </ion-col>
+     
+    <ion-col size-xs="12" size-sm="6" size-md="4" size-lg="4" size-xl="3" *ngFor ="let item of proveedor">
+      <ion-card style="max-height:335px;height:335px;">
         <ion-card-header>
           <div class="divImgRestaurante">
             <img *ngIf="item.src !=undefined" [src]="item.src" class="imageRestaurant">
-            <ion-button (click)="clickHandler(item.nombre)"  mode="ios" size="small" color="noColor" class="btnEditRestaurante">
-              <ion-icon slot="icon-only" name="create"></ion-icon>
-            </ion-button>
+            <div class="btnsRestaurante">
+              <!-- <button (click)="clickHandler(item.nombre)"  mode="ios" size="small" color="noColor" class="btnEditRestaurante"><ion-icon  name="create"></ion-icon></button> -->
+              <ion-button (click)="edit(item.id)"  mode="ios" size="small" color="noColor" class="btnEditRestaurante">
+                <ion-icon slot="icon-only" name="create"></ion-icon>
+              </ion-button>
+              <ion-button (click)="delete(item.id)"  mode="ios" size="small" color="noColor" class="btnRemoveRestaurante">
+                <ion-icon slot="icon-only" name="trash"></ion-icon>
+              </ion-button>
+            </div>
           </div>
           
           <ion-card-subtitle>{{item.nombre}}</ion-card-subtitle>
           <ion-card-title>{{item.nombre}}</ion-card-title>
         </ion-card-header>
   
-        <ion-card-content>
-          Keep close to Nature's heart... and break clear away, once in awhile,
-          and climb a mountain or spend a week in the woods. Wash your spirit clean.
+        <ion-card-content class="descripcionProveedor">
+         {{item.descripcion}}
         </ion-card-content>
       </ion-card>
     </ion-col>

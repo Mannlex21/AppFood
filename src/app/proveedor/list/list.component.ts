@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { SetUsername, SetShowForm } from 'src/app/store/app.actions';
+import { SetIdProveedor, SetShowForm, SetAccion } from 'src/app/store/app.actions';
 import { Navigate } from 'src/app/store/router.state';
 import { Observable, Subscription } from 'rxjs';
 import { AppState } from 'src/app/store/app.state';
@@ -25,7 +25,7 @@ export class ListComponent implements OnInit {
     {nombre: 'Tacos de Smog'},
     {nombre: 'DonJoJo'}
   ];*/
-  items: Array<any>;
+  
 
   constructor(private store: Store, private db: AngularFireDatabase,private sanitizer: DomSanitizer) {
     this.state$ = this.store.select(state => state);
@@ -38,28 +38,40 @@ export class ListComponent implements OnInit {
     //   }
     // });
     // AQUI SE HACE LA CONSULTA A LA BD FIREBASE PARA OBTENER DATOS
+    // let key = this.db.list('myFirebasePath').push({key:val}).key;
     this.db.list('/proveedor').valueChanges().subscribe(d => {
-      console.log(d);
-      // this.proveedor = d;
+      this.proveedor= [];//Resetea el array para poder recibir info
+      console.log(d)
       d.forEach(element => {
-        console.log(element['src'])
-        if (element['src'] != undefined) {
-          element['src'] = 'https://goo.gl/jhsD4G';
-        }
+        // if (element['src'] != undefined) {
+        // }
+        element['src'] = 'https://goo.gl/jhsD4G';
         this.proveedor.push(element);
       });
 
     });
   }
 
-  clickHandler(username) {
+  edit(id) {
     this.store.dispatch([
-      new SetUsername(username),
+      new SetIdProveedor(id),
+      new SetAccion('edit'),
       new SetShowForm(true),
+    ]);
+  }
+  nuevo(){
+    this.store.dispatch([
+      new SetAccion('new'),
+      new SetShowForm(true)
     ]);
   }
   getImg(val){
     console.log(this.sanitizer.bypassSecurityTrustStyle('url(' + val + ')'))
     return this.sanitizer.bypassSecurityTrustStyle('url(' + val + ')');
   }
+  delete(id){
+    console.log(id)
+    this.db.database.ref('/proveedor').child('/'+id).remove();
+  }
+  
 }

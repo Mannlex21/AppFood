@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { ProveedorPage } from './proveedor.page';
 import { ListComponent } from './list/list.component';
 import { FormComponent } from './form/form.component';
+import { AlertComponent } from '../components/alert/alert.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,8 @@ const routes: Routes = [
   declarations: [
     ProveedorPage,
     ListComponent,
-    FormComponent]
+    FormComponent,
+    AlertComponent
+  ]
 })
 export class ProveedorPageModule {}

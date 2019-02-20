@@ -11,9 +11,24 @@
     opacity: 1;
   }  
 }
-.btnEditRestaurante{
+.btnsRestaurante{
   position: absolute;
   bottom: 0;
   right: 0;
+}
+.btnEditRestaurante{
   opacity: 0.7;
+  font-size: 9px;
+  width: 32px;
+}
+.btnRemoveRestaurante{
+  opacity: 0.7;
+  font-size: 9px;
+  width: 32px;
+}
+.descripcionProveedor{
+  // white-space: nowrap;
+  // width: 12em;
+  // overflow: hidden;
+  // text-overflow: ellipsis;
 }
