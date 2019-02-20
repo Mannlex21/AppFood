@@ -18,6 +18,7 @@ export class FormComponent implements OnInit {
   form = {
     nombre: '',
     telefono: '',
+    direccion: '',
     ciudad: '',
     estado: '',
     cp: '',
@@ -77,6 +78,7 @@ export class FormComponent implements OnInit {
     const _this = this;
     this.db.object('/proveedor/' + id).update( {
       nombre: _this.form.nombre,
+      direccion: _this.form.direccion,
       descripcion: _this.form.descripcion,
       telefono: _this.form.telefono,
       ciudad: _this.form.ciudad,
@@ -96,6 +98,7 @@ export class FormComponent implements OnInit {
     this.db.object('/proveedor/' + id + '/').set({
       id: id,
       nombre: _this.form.nombre,
+      direccion: _this.form.direccion,
       descripcion: _this.form.descripcion,
       telefono: _this.form.telefono,
       ciudad: _this.form.ciudad,
@@ -117,6 +120,7 @@ export class FormComponent implements OnInit {
         return val['id'] === _this.idProveedor;
       });
       _this.form.nombre = r[0]['nombre'];
+      _this.form.direccion = r[0]['direccion'];
       _this.form.descripcion = r[0]['descripcion'];
       _this.form.telefono = r[0]['telefono'];
       _this.form.ciudad = r[0]['ciudad'];

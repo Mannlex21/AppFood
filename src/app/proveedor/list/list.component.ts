@@ -63,7 +63,6 @@ export class ListComponent implements OnInit {
     ]);
   }
   getImg(val) {
-    console.log(this.sanitizer.bypassSecurityTrustStyle('url(' + val + ')'))
     return this.sanitizer.bypassSecurityTrustStyle('url(' + val + ')');
   }
   delete(id) {
