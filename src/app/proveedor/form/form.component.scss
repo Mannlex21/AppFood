@@ -93,7 +93,6 @@ legend {
   background: #e8eeef;
 }
 .tablePlatillos thead tr th {
-  font-family: OpenSans-Regular;
   font-size: 18px;
   color: #8a97a0;
   line-height: 1.2;
@@ -111,4 +110,15 @@ legend {
 }
 .tablePlatillos td, .tablePlatillos th {
   padding-left: 8px;
+}
+.btnAddToTable{
+  color: #FFF;
+  background: #1abc9c;
+  border: 1px solid #16a085;
+  border-width: 1px 1px 3px;
+  padding-top: 11px;
+  padding-bottom: 11px;
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%;
 }

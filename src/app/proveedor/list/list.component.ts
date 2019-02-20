@@ -15,7 +15,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class ListComponent implements OnInit {
   @Select(state => state.app) app$;
   state$: Observable<AppState>;
-  proveedor= []; /*[
+  proveedor = []; /*[
     {nombre: 'Cubanas', src: 'https://goo.gl/VbKRyZ'},
     {nombre: 'McDonald\'s '},
     {nombre: 'Burguer King'},
@@ -25,9 +25,7 @@ export class ListComponent implements OnInit {
     {nombre: 'Tacos de Smog'},
     {nombre: 'DonJoJo'}
   ];*/
-  
-
-  constructor(private store: Store, private db: AngularFireDatabase,private sanitizer: DomSanitizer) {
+  constructor(private store: Store, private db: AngularFireDatabase, private sanitizer: DomSanitizer) {
     this.state$ = this.store.select(state => state);
   }
 
@@ -40,15 +38,14 @@ export class ListComponent implements OnInit {
     // AQUI SE HACE LA CONSULTA A LA BD FIREBASE PARA OBTENER DATOS
     // let key = this.db.list('myFirebasePath').push({key:val}).key;
     this.db.list('/proveedor').valueChanges().subscribe(d => {
-      this.proveedor= [];//Resetea el array para poder recibir info
-      console.log(d)
+      this.proveedor = []; // Resetea el array para poder recibir info
+      console.log(d);
       d.forEach(element => {
         // if (element['src'] != undefined) {
         // }
         element['src'] = 'https://goo.gl/jhsD4G';
         this.proveedor.push(element);
       });
-
     });
   }
 
@@ -59,19 +56,18 @@ export class ListComponent implements OnInit {
       new SetShowForm(true),
     ]);
   }
-  nuevo(){
+  nuevo() {
     this.store.dispatch([
       new SetAccion('new'),
       new SetShowForm(true)
     ]);
   }
-  getImg(val){
+  getImg(val) {
     console.log(this.sanitizer.bypassSecurityTrustStyle('url(' + val + ')'))
     return this.sanitizer.bypassSecurityTrustStyle('url(' + val + ')');
   }
-  delete(id){
-    console.log(id)
-    this.db.database.ref('/proveedor').child('/'+id).remove();
+  delete(id) {
+    console.log(id);
+    this.db.database.ref('/proveedor').child('/' + id).remove();
   }
-  
 }
