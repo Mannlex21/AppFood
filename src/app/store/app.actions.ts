@@ -19,3 +19,8 @@ export class SetShowForm {
     static readonly type = '[app] set showForm';
     constructor(public playload: boolean) {}
 }
+
+export class SetShowComponentShop {
+    static readonly type = '[app] set showComponentShop';
+    constructor(public playload: string) {}
+}
