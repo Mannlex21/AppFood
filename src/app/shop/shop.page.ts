@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { AppState } from '../store/app.state';
+import { SetShowComponentShop } from '../store/app.actions';
 
 @Component({
   selector: 'app-shop',
@@ -11,7 +12,7 @@ import { AppState } from '../store/app.state';
 export class ShopPage implements OnInit {
   state$: Observable<AppState>;
   showComponentShop: string;
-  constructor(private store: Store) { 
+  constructor(private store: Store) {
     this.state$ = this.store.select(state => state);
   }
 
@@ -20,6 +21,11 @@ export class ShopPage implements OnInit {
       console.log(data);
       this.showComponentShop = data['app'].showComponentShop;
     });
+  }
+  atras() {
+    this.store.dispatch([
+      new SetShowComponentShop('shop'),
+    ]);
   }
 
 }

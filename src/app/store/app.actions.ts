@@ -1,3 +1,4 @@
+// PROVEEDOR ACTIONS
 export class SetUsername {
     static readonly type = '[app] set username';
     constructor(public playload: string) {}
@@ -20,7 +21,9 @@ export class SetShowForm {
     constructor(public playload: boolean) {}
 }
 
+// SHOP ACTIONS
 export class SetShowComponentShop {
     static readonly type = '[app] set showComponentShop';
     constructor(public playload: string) {}
 }
+

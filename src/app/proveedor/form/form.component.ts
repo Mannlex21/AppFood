@@ -47,11 +47,11 @@ export class FormComponent implements OnInit {
       _this.accion = data['app'].accion;
       if (_this.accion === 'edit') {
         _this.setDataForm();
-        this.db.list('/proveedor').valueChanges().subscribe(d => {
+        _this.db.list('/proveedor').valueChanges().subscribe(d => {
           const r = d.filter(function (val) {
             return val['id'] === _this.idProveedor;
           });
-          this.menu = r[0]['menu'];
+          _this.menu = r[0]['menu'];
           _this.setTabla();
         });
       }
@@ -163,23 +163,34 @@ export class FormComponent implements OnInit {
     const data = this.menu;
     const _this = this;
     _this.tabla = [];
-    data.forEach(function (element) {
+    data.forEach(function (element, index) {
       const o = {
+        idFood: index,
+        tipo: 'food',
         nombre: element.nombre,
         medida: element.medida,
-        precio: element.precio,
-        id: null
+        precio: element.precio
       };
       _this.tabla.push(o);
-      element.medidas.forEach(function (element2, index) {
+      element.medidas.forEach(function (element2, index2) {
         const o2 = {
+          idFood: index,
+          idSize: index2,
+          tipo: 'size',
           nombre: '',
           medida: element2.medida,
-          precio: element2.precio,
-          id: index,
+          precio: element2.precio
         };
         _this.tabla.push(o2);
       });
     });
+  }
+  // Borra la comida seleccionada dentro del menu
+  removeFood(idFood) {
+    this.db.database.ref('/proveedor/' + this.idProveedor + '/menu').child('/' + idFood ).remove();
+  }
+  // Borra la medida de la comida seleccionada dentro del menu
+  removeSize(idFood, idSize) {
+    this.db.database.ref('/proveedor/' + this.idProveedor + '/menu/' + idFood + '/medidas').child('/' + idSize).remove();
   }
 }

@@ -87,7 +87,7 @@
             <td style="text-align: center;">{{item.precio}}</td>
             <td style="text-align: center;">{{item.medida}}</td>
             <td style="text-align: center;">
-              <ion-button *ngIf="item.id!==null" mode="ios" size="small" color="noColor">
+              <ion-button (click)="(item.tipo==='food')?removeFood(item.idFood):removeSize(item.idFood,item.idSize)" mode="ios" size="small" color="noColor">
                 <ion-icon slot="icon-only" name="trash"></ion-icon>
               </ion-button>
             </td>

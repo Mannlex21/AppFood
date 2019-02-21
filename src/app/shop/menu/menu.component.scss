@@ -1,0 +1,196 @@
+.divImg{
+  width: 100%;
+  background-size: cover;
+  background-position: center center;
+  color: #262626;
+}
+.divDescOut{
+  margin-left: auto;
+  margin-right: auto;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  background: transparent;
+}
+.divDesc{
+  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  box-shadow: 0 2px 25px 0 rgba(0, 0, 0, 0.08);
+  line-height: 24px;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  background-color: #FFFFFF;
+  box-sizing: border-box;
+  font-weight: 400;
+  max-width: 480px;
+  border-radius: 4px;
+}
+
+.h1Title{
+  letter-spacing: 0;
+  flex: 1;
+}
+
+// BOTTOM MENU 
+.divInferior{
+  margin-right: auto;
+  margin-left: auto;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  box-sizing: border-box;
+}
+.divMenu{
+  min-height: 480px;
+  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  width: 100%;
+  box-sizing: border-box;
+}
+.divPedido{
+  min-width: 432px;
+  margin-top: 80px;
+  box-sizing: border-box;
+}
+// FOOD
+.divFood{
+  flex-grow: 1;
+  -webkit-box-flex: 1;
+  border: 1px solid #E0E0E0;
+  border-radius: 2px;
+  position: relative;
+  display: -webkit-box;
+  display: -moz-box;  
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  background-color: #FFFFFF;
+  width: 100%;
+  box-sizing: border-box;
+}
+.divImgFood{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  color: #262626;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  box-sizing: border-box;
+  background-position: center;
+}
+.divInfoFood{
+  min-width: 0px;
+  flex: 1;
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+}
+@media only screen and (max-width: 768px) {
+  .divImg {
+    height: 300px;
+    box-shadow: rgb(255, 255, 255) 0px -80px 0px 0px inset;
+  }
+  .divDescOut{
+    padding-left: 16px;
+    padding-right: 16px;
+    max-width: 1206px;
+  }
+  .divDesc{
+    text-align: center;
+    padding: 16px;
+    border-radius: 2px;
+    width: 100%;
+    max-width: 100%;
+    align-self: flex-end;
+  }
+  .h1Title{
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #262626;
+    font-size: 30px;
+    line-height: 36px;
+    margin-bottom: 8px;
+  }
+
+  // BOTTOM MENU 
+  .divInferior{
+    padding-bottom: 32px;
+    padding-top: 16px;
+    background-color: #FFFFFF;
+    max-width: 1206px;
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  // FOOD
+  .divPedido{
+    display: none;
+  }
+  .divFood{
+    padding: 16px 0px 16px 0px;
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid #E0E0E0;
+    
+  }
+  .divInfoFood{
+    border: none;
+  }
+  .divImgFood{
+    margin-left: 8px;
+    width: 88px;
+    height: 88px;
+    flex-basis: 88px;
+    border-radius: 0;
+  }
+}
+@media only screen and (min-width: 769px) {
+  .divImg {
+    height: 364px;
+  }
+  .divDescOut{
+    max-width: 1238px;
+    padding-right: 32px;
+    padding-left: 32px;
+  }
+  .divDesc{
+    padding: 32px;
+    align-self: center;
+  }
+
+  // BOTTOM MENU
+  .divInferior{
+    padding-bottom: 40px;
+    padding-top: 40px;
+    // max-width: 1238px;
+    max-width: 95%;
+    padding-right: 32px;
+    padding-left: 32px;
+  }
+  // FOOD
+  .divImgFood{
+    width: 160px;
+    height: 160px;
+    flex-basis: 160px;
+  }
+  .divInfoFood{
+    padding: 20px 16px;
+  }
+  
+
+}
+@media only screen and (max-width: 575px) {
+  .h1Title{
+    font-weight: 400;
+  }
+}
+
