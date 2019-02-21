@@ -26,6 +26,15 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'shop',
+        children: [
+          {
+            path: '',
+            loadChildren: '../shop/shop.module#ShopPageModule'
+          }
+        ]
+      },
+      {
         path: '',
         redirectTo: '/tabs/proveedor',
         pathMatch: 'full'
