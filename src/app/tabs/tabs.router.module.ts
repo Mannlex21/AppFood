@@ -7,7 +7,7 @@ const routes: Routes = [
     path: 'tabs',
     component: TabsPage,
     children: [
-      {
+     {
         path: 'proveedor',
         children: [
           {
@@ -31,6 +31,10 @@ const routes: Routes = [
         pathMatch: 'full'
       }
     ]
+  },
+  {
+    path: 'login',
+    redirectTo: '/login'
   },
   {
     path: '',

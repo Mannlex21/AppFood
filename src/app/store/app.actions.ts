@@ -27,3 +27,8 @@ export class SetShowComponentShop {
     constructor(public playload: string) {}
 }
 
+export class SetLogged {
+    static readonly type = '[app] set logged';
+    constructor(public playload: boolean){}
+}
+
