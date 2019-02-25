@@ -2,11 +2,11 @@
   <!-- <img style="width:100%; object-fit: cover;" src='../../../assets/img/pizza.jpg'> -->
   <div class="divDescOut">
     <div class="divDesc">
-        <h1 class="h1Title">{{proveedor.nombre}}</h1>
+        <h1 class="h1Title">{{proveedor?.nombre}}</h1>
         <div>
-          <div>Telefono: {{proveedor.telefono}}</div>
-          <div>{{proveedor.direccion}} {{proveedor.cp}} {{proveedor.ciudad}} {{proveedor.estado}}</div>
-          <div>{{proveedor.descripcion}}</div>
+          <div>Telefono: {{proveedor?.telefono}}</div>
+          <div>{{proveedor?.direccion}} {{proveedor?.cp}} {{proveedor?.ciudad}} {{proveedor?.estado}}</div>
+          <div>{{proveedor?.descripcion}}</div>
         </div>
       </div>
   </div>
@@ -17,7 +17,7 @@
 <div class="divInferior">
   <div class="divMenu">
     <ion-row>
-      <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="6" *ngFor ="let item of proveedor.menu">
+      <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="6" *ngFor ="let item of proveedor?.menu">
         <div class="divFood" >
             <!-- style="width:100%;max-height:335px;height:335px;" -->
           <div class="divInfoFood">

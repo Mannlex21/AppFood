@@ -153,7 +153,12 @@
     border-radius: 0;
   }
 }
-@media only screen and (min-width: 769px) {
+@media only screen and (min-width: 773px) and (max-width:950px) {
+  .divPedido {
+    min-width: 320px;
+  }
+}
+@media only screen and (min-width: 769px)  {
   .divImg {
     height: 364px;
   }
@@ -185,8 +190,6 @@
   .divInfoFood{
     padding: 20px 16px;
   }
-  
-
 }
 @media only screen and (max-width: 575px) {
   .h1Title{

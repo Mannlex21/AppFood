@@ -14,6 +14,7 @@ export class MenuComponent implements OnInit {
   state$: Observable<AppState>;
   idProveedor: string;
   proveedor: any;
+  menu: any;
 
   constructor(private store: Store, private db: AngularFireDatabase) {
     const _this = this;
@@ -32,6 +33,7 @@ export class MenuComponent implements OnInit {
           element['src'] = 'https://goo.gl/jhsD4G';
         });
         _this.proveedor = r[0];
+        _this.menu = r[0]['menu'];
       });
     });
   }
