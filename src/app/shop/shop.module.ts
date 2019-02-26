@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { ShopPage } from './shop.page';
 import { ListComponent } from './list/list.component';
 import { MenuComponent } from './menu/menu.component';
+import { ViewMenuComponent } from './components/view-menu/view-menu.component';
 
 const routes: Routes = [
   {
@@ -26,7 +27,11 @@ const routes: Routes = [
   declarations: [
     ShopPage,
     ListComponent,
-    MenuComponent
+    MenuComponent,
+    ViewMenuComponent,
+  ],
+  entryComponents: [
+    ViewMenuComponent
   ]
 })
 export class ShopPageModule {}

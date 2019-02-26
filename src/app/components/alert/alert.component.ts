@@ -21,7 +21,7 @@ export class AlertComponent implements OnInit {
   async presentAlertConfirm() {
     const alert = await this.alertController.create({
       header: 'Cancelar',
-      message: "Todos los datos se perderan. ¿Deseas salir?",
+      message: 'Todos los datos se perderan. ¿Deseas salir?',
       buttons: [
         {
           text: 'Cancelar',

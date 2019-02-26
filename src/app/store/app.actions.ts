@@ -20,10 +20,11 @@ export class SetShowForm {
     static readonly type = '[app] set showForm';
     constructor(public playload: boolean) {}
 }
-
-// SHOP ACTIONS
-export class SetShowComponentShop {
-    static readonly type = '[app] set showComponentShop';
-    constructor(public playload: string) {}
+export class SetShowViewMenu {
+  static readonly type = '[app] set showViewMenu';
+  constructor(public playload: boolean) {}
 }
-
+export class SetShowComponentShop {
+  static readonly type = '[app] set showComponentShop';
+  constructor(public playload: string) {}
+}

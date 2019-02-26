@@ -10,16 +10,20 @@ import { SetShowComponentShop } from '../store/app.actions';
   styleUrls: ['./shop.page.scss'],
 })
 export class ShopPage implements OnInit {
-  state$: Observable<AppState>;
+  menu$: Observable<AppState>;
+
   showComponentShop: string;
+  showViewMenu: boolean;
   constructor(private store: Store) {
-    this.state$ = this.store.select(state => state);
+    this.menu$ = this.store.select(state => state);
   }
 
   ngOnInit() {
-    this.state$.subscribe(data => {
-      console.log(data);
-      this.showComponentShop = data['app'].showComponentShop;
+    const _this = this;
+    _this.menu$.subscribe(data => {
+      console.log( data);
+      _this.showComponentShop = data['app']['showComponentShop'];
+      _this.showViewMenu = data['app']['showViewMenu'];
     });
   }
   atras() {

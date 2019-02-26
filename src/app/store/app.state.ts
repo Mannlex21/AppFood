@@ -1,5 +1,5 @@
 import { State, Action, StateContext } from '@ngxs/store';
-import { SetIdProveedor, SetShowForm, SetAccion, SetConfirmDialogCancel, SetShowComponentShop } from './app.actions';
+import { SetIdProveedor, SetShowForm, SetAccion, SetConfirmDialogCancel, SetShowComponentShop, SetShowViewMenu } from './app.actions';
 
 export interface AppStateModel {
   idProveedor: string;
@@ -8,16 +8,18 @@ export interface AppStateModel {
   showForm: boolean;
   confirmDialogCancel: boolean;
   showComponentShop: string;
+  showViewMenu: boolean;
 }
 @State<AppStateModel>({
   name: 'app',
   defaults: {
-    confirmDialogCancel:false,
+    confirmDialogCancel: false,
     idProveedor: '',
-    accion:'',
-    showComponentShop:'shop',
+    accion: '',
+    showComponentShop: 'shop',
     orderId: Math.floor(Math.random() * 23000),
-    showForm: false
+    showForm: false,
+    showViewMenu: false,
   }
 })
 export class AppState {
@@ -37,8 +39,14 @@ export class AppState {
   setConfirmDialogCancel({ patchState }: StateContext<AppStateModel>, { playload }: SetConfirmDialogCancel) {
     patchState({ confirmDialogCancel: playload});
   }
+
   @Action(SetShowComponentShop)
   setShowComponentShop({ patchState }: StateContext<AppStateModel>, { playload }: SetShowComponentShop) {
     patchState({ showComponentShop: playload});
+  }
+
+  @Action(SetShowViewMenu)
+  setShowViewMenu({ patchState }: StateContext<AppStateModel>, { playload }: SetShowViewMenu) {
+    patchState({ showViewMenu: playload });
   }
 }

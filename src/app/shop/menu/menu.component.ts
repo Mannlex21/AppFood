@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { SetShowComponentShop } from 'src/app/store/app.actions';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/store/app.state';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { SetShowComponentShop, SetShowViewMenu } from 'src/app/store/app.actions';
+import { ViewMenuComponent } from '../components/view-menu/view-menu.component';
+import { ModalController } from '@ionic/angular';
+import { OverlayEventDetail } from '@ionic/core';
 
 @Component({
   selector: 'menu-shop',
@@ -16,7 +19,10 @@ export class MenuComponent implements OnInit {
   proveedor: any;
   menu: any;
 
-  constructor(private store: Store, private db: AngularFireDatabase) {
+  animal: string;
+  name: string;
+
+  constructor(private store: Store, private db: AngularFireDatabase, public modalController: ModalController) {
     const _this = this;
     this.state$ = this.store.select(state => state);
   }
@@ -42,4 +48,25 @@ export class MenuComponent implements OnInit {
       new SetShowComponentShop('shop'),
     ]);
   }
+  openFood() {
+    this.store.dispatch([
+      new SetShowViewMenu(true),
+    ]);
+  }
+  async openModal() {
+    const modal: HTMLIonModalElement =
+       await this.modalController.create({
+          component: ViewMenuComponent,
+          componentProps: {
+             aParameter: true,
+             otherParameter: new Date()
+          }
+    });
+    modal.onDidDismiss().then((detail: OverlayEventDetail) => {
+       if (detail !== null) {
+         console.log('The result:', detail.data);
+       }
+    });
+    await modal.present();
+}
 }

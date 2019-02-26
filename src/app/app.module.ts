@@ -19,6 +19,8 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 
 
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -28,7 +30,7 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
     AppRoutingModule,
     NgxsModule.forRoot([
       RouterState,
-      AppState,
+      AppState
     ]),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),
