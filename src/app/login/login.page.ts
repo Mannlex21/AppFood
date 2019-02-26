@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AppState } from '../store/app.state';
 import { Navigate } from '../store/router.state';
 import { SetLogged } from '../store/app.actions';
+import { Route, RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginPage implements OnInit {
   pass: string;
 
   state$: Observable<AppState>;  
-  constructor(private store: Store) {
+  constructor(private store: Store, private router: Router) {
     this.state$ = this.store.select(state => state);
    }
 
@@ -31,11 +32,12 @@ export class LoginPage implements OnInit {
       new SetLogged(true),
     ]).subscribe(d => {
       console.log(d);
-      _this.store.dispatch([
-        new Navigate('/'),
-      ]).subscribe(d => {
-        console.log(d);
-      });
+      _this.router.navigate(['/']);
+      // _this.store.dispatch([
+      //   new Navigate('/'),
+      // ]).subscribe(d => {
+      //   console.log(d);
+      // });
     });
 
   }

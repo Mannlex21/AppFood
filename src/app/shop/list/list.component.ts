@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { AppState } from 'src/app/store/app.state';
 import { Select, Store } from '@ngxs/store';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { SetShowComponentShop, SetIdProveedor } from 'src/app/store/app.actions';
+import { SetShowComponentShop, SetIdProveedor, SetLogged } from 'src/app/store/app.actions';
 
 @Component({
   selector: 'list-shop',
@@ -37,5 +37,13 @@ export class ListComponent implements OnInit {
       new SetShowComponentShop('menu'),
       new SetIdProveedor(id)
     ]);
+  }
+  logout(){
+    const _this = this;
+    
+    _this.store.dispatch([
+      new SetLogged(false),
+    ]).subscribe(d => {
+    });
   }
 }

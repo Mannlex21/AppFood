@@ -6,6 +6,7 @@ const routes: Routes = [
   {
     path: 'tabs',
     component: TabsPage,
+    data: { delay: true },
     children: [
      {
         path: 'proveedor',
@@ -34,7 +35,7 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    redirectTo: '/login'
+    loadChildren: '../login/login.module#LoginPageModule'
   },
   {
     path: '',
