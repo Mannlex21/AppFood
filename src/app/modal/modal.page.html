@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title text-center>Registro</ion-title>
+    <ion-button slot="end" color="dark" (click)="CloseModal()"><ion-icon name="close"></ion-icon></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-grid>
+      <ion-row>          
+        <!-- Informacion principal proveedor -->
+        <!-- <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12" >
+          <legend><h4>Datos Generales</h4></legend>
+        </ion-col> -->
+
+        <ion-item-divider color="medium">
+          <ion-label style="font-size:x-large">
+            Datos Generales
+          </ion-label>
+        </ion-item-divider>
+
+        <ion-col size-xs="4" size-sm="4" size-md="4" size-lg="4" size-xl="4" >
+          <ion-item>
+            <ion-label position="floating">Nombre(s)</ion-label>
+            <ion-input (keyup)="upper($event, 'nombre')" [(ngModel)]='form.nombre'></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size-xs="4" size-sm="4" size-md="4" size-lg="4" size-xl="4" >
+          <ion-item>
+            <ion-label position="floating">Apellido Paterno</ion-label>
+            <ion-input (keyup)="upper($event, 'apellidoPaterno')" [(ngModel)]='form.apellidoPaterno'></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size-xs="4" size-sm="4" size-md="4" size-lg="4" size-xl="4" >
+          <ion-item>
+            <ion-label position="floating">Apellido Materno</ion-label>
+            <ion-input (keyup)="upper($event, 'apellidoMaterno')" [(ngModel)]='form.apellidoMaterno'></ion-input>
+          </ion-item>            
+        </ion-col>
+        <!-- <ion-col size-xs="4" size-sm="4" size-md="4" size-lg="4" size-xl="4" >
+          <ion-item>
+            <ion-label position="floating">Nombre Corto</ion-label>
+            <ion-input></ion-input>
+          </ion-item>              
+        </ion-col> -->
+        <ion-col size-xs="4" size-sm="4" size-md="4" size-lg="4" size-xl="4" >
+          <ion-item>
+            <ion-label position="floating">Correo Electrónico</ion-label>
+            <ion-input (keyup)="lower($event, 'correo')" [(ngModel)]='form.correo'></ion-input>
+          </ion-item>              
+        </ion-col>
+        <ion-col size-xs="4" size-sm="4" size-md="4" size-lg="4" size-xl="4" >
+          <ion-item>
+            <ion-label position="floating">Teléfono</ion-label>
+            <ion-input [(ngModel)]='form.telefono'></ion-input>
+          </ion-item>              
+        </ion-col>
+        <ion-col size-xs="4" size-sm="4" size-md="4" size-lg="4" size-xl="4" >
+          <ion-item>
+            <ion-label position="floating">Domicilio</ion-label>
+            <ion-input (keyup)="upper($event, 'domicilio')" [(ngModel)]='form.domicilio'></ion-input>
+          </ion-item>            
+        </ion-col>
+        <ion-col size-xs="4" size-sm="4" size-md="4" size-lg="4" size-xl="4" >
+          <ion-item>
+            <ion-label position="floating">Ciudad</ion-label>
+            <ion-input (keyup)="upper($event, 'ciudad')" [(ngModel)]='form.ciudad'></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size-xs="4" size-sm="4" size-md="4" size-lg="4" size-xl="4" >
+          <ion-item>
+            <ion-label position="floating">Estado</ion-label>
+            <ion-input (keyup)="upper($event, 'estado')" [(ngModel)]='form.estado'></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size-xs="4" size-sm="4" size-md="4" size-lg="4" size-xl="4" >
+          <ion-item>
+            <ion-label position="floating">Código Postal</ion-label>
+            <ion-input [(ngModel)]='form.cp'></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top:20px">
+        <ion-col size-xs="12" text-right>
+          <ion-button shape="round" color="dark" (click)="Registrar()">Registrar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    {{form.nombre | uppercase}}
+    {{form.cp | number}}
+</ion-content>

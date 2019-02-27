@@ -6,7 +6,8 @@ const routes: Routes = [
   
   // { path: 'proveedor', loadChildren: './proveedor/proveedor.module#ProveedorPageModule' },
   // { path: 'shop', loadChildren: './shop/shop.module#ShopPageModule' },
-  { path: '', loadChildren: './tabs/tabs.module#TabsPageModule' },
+  { path: '', loadChildren: './tabs/tabs.module#TabsPageModule' },  { path: 'modal', loadChildren: './modal/modal.module#ModalPageModule' },
+
   
 ];
 @NgModule({
