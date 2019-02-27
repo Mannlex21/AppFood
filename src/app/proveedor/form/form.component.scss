@@ -106,10 +106,22 @@ legend {
   color: #555f66;
   line-height: 1.2;
   font-weight: unset;
-  border-bottom: 1px solid #e8eeef;
+  // border-bottom: 1px solid #e8eeef;
 }
 .tablePlatillos td, .tablePlatillos th {
   padding-left: 8px;
+}
+.tablePlatillos tbody {
+  display: block;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+.tablePlatillos thead,
+tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
 }
 .btnAddToTable{
   color: #FFF;
@@ -118,7 +130,5 @@ legend {
   border-width: 1px 1px 3px;
   padding-top: 11px;
   padding-bottom: 11px;
-  display: table-cell;
-  vertical-align: middle;
   width: 100%;
 }

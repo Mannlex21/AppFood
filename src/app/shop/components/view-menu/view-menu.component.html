@@ -3,7 +3,49 @@
     <ion-icon slot="icon-only" name='close'></ion-icon>
   </ion-button>
 </div>
-<ion-content padding>
-  <h1>{{proveedor?.nombre}}</h1>
-  <h3>{{proveedor?.tipo}}</h3>
+<ion-content class="view">
+  <div class="inView">
+    <div class="bodyView">
+      <h1>{{proveedor?.nombre}}</h1>
+      <h1>{{proveedor?.nombre}}</h1>
+      <h1>{{proveedor?.nombre}}</h1>
+      <h1>{{proveedor?.nombre}}</h1>
+      <h1>{{proveedor?.nombre}}</h1>
+      <h1>{{proveedor?.nombre}}</h1>
+      <h1>{{proveedor?.nombre}}</h1>
+      <h1>{{proveedor?.nombre}}</h1>
+      <h1>{{proveedor?.nombre}}</h1>
+      <h1>{{proveedor?.nombre}}</h1>
+      <h1>{{proveedor?.nombre}}</h1>
+      <h1>{{proveedor?.nombre}}</h1>
+      <h1>{{proveedor?.nombre}}</h1>
+      <h1>{{proveedor?.nombre}}</h1>
+      <h1>{{proveedor?.nombre}}</h1>
+      <h1>{{proveedor?.nombre}}</h1>
+      <h1>{{proveedor?.nombre}}</h1>
+    </div>
+    <div class="bottomView" style="display: flex;">
+      <div class="buttonsBottomView">
+        <button color="primary" size="small" class="btnRound" (click)="remove()">
+            <ion-icon slot="icon-only" name="remove"></ion-icon>
+        </button>
+        <div class="amount">{{contador}}</div>
+        <button color="primary" size="small" class="btnRound" (click)="add()">
+          <ion-icon slot="icon-only" name="add"></ion-icon>
+        </button>
+      </div>
+      <div class="buttonCartBottomView">
+        <button class="btnCart">
+          <div style="display: block;width: 100%;text-align: center;">
+            <div style="text-align: center;">
+                Agregar al carrito 
+                <div class="totalCart">30.00 MXN</div>
+            </div>
+          </div>
+          
+        </button>
+      </div>
+    </div>
+  </div>
+  
 </ion-content>

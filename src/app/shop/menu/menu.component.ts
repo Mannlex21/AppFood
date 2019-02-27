@@ -34,15 +34,19 @@ export class MenuComponent implements OnInit {
       this.db.list('/proveedor').valueChanges().subscribe(d => {
         console.log(d);
         d.forEach(element => {
-          element['src'] = 'https://goo.gl/jhsD4G'; //'https://goo.gl/jhsD4G';
+          element['src'] = 'https://goo.gl/jhsD4G'; // https://goo.gl/jhsD4G';
         });
         const r = d.filter(function (val) {
           return val['id'] === _this.idProveedor;
-        }); 
+        });
         _this.proveedor = r[0];
         _this.menu = r[0]['menu'];
       });
     });
+  }
+  formaterPrice(val) {
+    const price = val + ' MXN';
+    return price;
   }
   atras() {
     this.store.dispatch([
@@ -69,5 +73,5 @@ export class MenuComponent implements OnInit {
        }
     });
     await modal.present();
-}
+  }
 }

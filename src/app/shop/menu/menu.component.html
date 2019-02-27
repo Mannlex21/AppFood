@@ -24,28 +24,14 @@
         <div class="divFood" >
             <!-- style="width:100%;max-height:335px;height:335px;" -->
           <div class="divInfoFood">
-            <div>{{item.nombre}}</div>
-            <div>{{item.nombre}}</div>
-            <div>{{item.tipo}}</div>
+            <div class="titleFood">{{item.nombre}}</div>
+            <div class="priceFood">
+              <span>{{formaterPrice(item.precio)}}</span>
+            </div>
           </div>
           <!-- style="background-image: url('../../../assets/img/pizza.jpg');" -->
           <div class="divImgFood" style="background-image: url(https://goo.gl/jhsD4G);"></div>
         </div>
-        <!-- <ion-card style="max-height:335px;height:335px;cursor: pointer;">
-          <ion-card-header>
-            <div class="divImgComida">
-              <img src="https://goo.gl/jhsD4G" class="imgFood">
-            </div>
-            <ion-card-subtitle>{{item.nombre}}</ion-card-subtitle>
-            <ion-card-title>{{item.tipo}}</ion-card-title>
-          </ion-card-header>
-    
-          <ion-card-content class="descripcionProveedor">
-            asdasdasdasdasdasdasd
-            asdasdasd
-            asd
-          </ion-card-content>
-        </ion-card> -->
       </ion-col>
     </ion-row>
   </div>

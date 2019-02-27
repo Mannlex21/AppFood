@@ -21,14 +21,15 @@ export class ViewMenuComponent implements OnInit {
   idProveedor: string;
   proveedor: any;
   menu: any;
-  constructor(private store: Store, private db: AngularFireDatabase, private modalController: ModalController,private navParams: NavParams) { 
+  contador = 0;
+  constructor(private db: AngularFireDatabase, private modalController: ModalController,private navParams: NavParams) { 
   }
   ngOnInit() {
     const _this = this;
     this.db.list('/proveedor').valueChanges().subscribe(d => {
       const r = d.filter(function (val) {
         return val['id'] === _this.idProveedor;
-      }); 
+      });
       _this.proveedor = r[0];
       _this.menu = r[0]['menu'];
     });
@@ -39,5 +40,13 @@ export class ViewMenuComponent implements OnInit {
   async myDismiss() {
     const result: Date = new Date();
     await this.modalController.dismiss(result);
+  }
+  add() {
+    this.contador ++;
+  }
+  remove() {
+    if (this.contador > 0) {
+      this.contador --;
+    }
   }
 }

@@ -51,6 +51,7 @@
   -webkit-box-direction: normal;
   width: 100%;
   box-sizing: border-box;
+  
 }
 .divPedido{
   min-width: 432px;
@@ -72,6 +73,7 @@
   background-color: #FFFFFF;
   width: 100%;
   box-sizing: border-box;
+  cursor: pointer;
 }
 .divImgFood{
   position: relative;
@@ -93,6 +95,31 @@
   flex-direction: column;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
+}
+.titleFood{
+  color: #262626;
+  line-height: 24px;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+.priceFood{
+  line-height: 20px;
+  font-size: 14px;
+  color: #262626;
+  -webkit-font-smoothing: antialiased;
+  align-items: flex-end;
+  -webkit-box-align: end;
+  flex-wrap: wrap;
+  -webkit-box-lines: multiple;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+.priceFood span{
+  color: #262626;
+  padding-top: 8px;
 }
 @media only screen and (max-width: 768px) {
   .divImg {
@@ -152,6 +179,7 @@
     flex-basis: 88px;
     border-radius: 0;
   }
+
 }
 @media only screen and (min-width: 773px) and (max-width:950px) {
   .divPedido {
@@ -189,6 +217,12 @@
   }
   .divInfoFood{
     padding: 20px 16px;
+  }
+
+  .priceFood{
+    bottom: 16px;
+    flex-grow: 3;
+    -webkit-box-flex: 3;
   }
 }
 @media only screen and (max-width: 575px) {
