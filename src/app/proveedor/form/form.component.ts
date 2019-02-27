@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/store/app.state';
-import { Store } from '@ngxs/store';
+import { Store, Select } from '@ngxs/store';
 import { SetShowForm, SetConfirmDialogCancel } from 'src/app/store/app.actions';
 import { AngularFireDatabase } from 'angularfire2/database';
 
@@ -11,10 +11,11 @@ import { AngularFireDatabase } from 'angularfire2/database';
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
-  state$: Observable<AppState>;
+  @Select(state => state.app.idProveedor) StoreidProveedor;
+  @Select(state => state.app.accion) accion;
+  @Select(state => state.app.confirmDialogCancel) confirmDialogCancel;
+
   idProveedor: string;
-  accion: string;
-  confirmDialogCancel: boolean;
   form = {
     nombre: '',
     telefono: '',
@@ -32,16 +33,35 @@ export class FormComponent implements OnInit {
     otroTamano: '',
     precio: 0
   };
-  menu = [];
+  menu: any;
   tabla = [];
 
   constructor(private store: Store, private db: AngularFireDatabase) {
-    this.state$ = this.store.select(state => state);
   }
 
   ngOnInit() {
     const _this = this;
-    _this.state$.subscribe(data => {
+    _this.StoreidProveedor.subscribe(data=>{_this.idProveedor = data;});
+    _this.accion.subscribe(data=>{
+      if (data === 'edit') {
+        _this.setDataForm();
+        _this.db.list('/proveedor').valueChanges().subscribe(d => {
+          const r = d.filter(function (val) {
+            return val['id'] === _this.idProveedor;
+          });
+          _this.menu = r[0]['menu'];
+          _this.setTabla();
+        });
+      }
+    })
+    _this.db.list('/proveedor').valueChanges().subscribe(d => {
+      const r = d.filter(function (val) {
+        return val['id'] === _this.idProveedor;
+      });
+      _this.menu = r[0]['menu'];
+      _this.setTabla();
+    });
+    /*_this.state$.subscribe(data => {
       _this.idProveedor = data['app'].idProveedor;
       _this.confirmDialogCancel = data['app'].confirmDialogCancel;
       _this.accion = data['app'].accion;
@@ -55,7 +75,7 @@ export class FormComponent implements OnInit {
           _this.setTabla();
         });
       }
-    });
+    });*/
   }
   cancel() {
     this.store.dispatch([
@@ -63,16 +83,16 @@ export class FormComponent implements OnInit {
     ]).subscribe(d => {
       console.log(d);
     });
-    // this.store.dispatch([
-    //   new SetShowForm(false),
-    // ]);
   }
   clickSaveEdit() {
-    if (this.accion === 'new') {
-      this.save();
-    } else if (this.accion === 'edit') {
-      this.update(this.idProveedor);
-    }
+    const _this =this;
+    _this.accion.subscribe(data=>{
+      if (data === 'new') {
+        this.save();
+      } else if (data === 'edit') {
+        this.update(this.idProveedor);
+      }
+    });
   }
   update(id) {
     const _this = this;
@@ -187,10 +207,26 @@ export class FormComponent implements OnInit {
   }
   // Borra la comida seleccionada dentro del menu
   removeFood(idFood) {
-    this.db.database.ref('/proveedor/' + this.idProveedor + '/menu').child('/' + idFood ).remove();
+    this.menu = this.menu.filter(function(item,index) {
+      console.log(index)
+      return index != idFood;
+    });
+    this.menu=this.menu.filter(function(){return true;});
+    console.log(this.menu)
+    this.setTabla();
+    // this.db.database.ref('/proveedor/' + this.idProveedor + '/menu').child('/' + idFood ).remove();
   }
   // Borra la medida de la comida seleccionada dentro del menu
   removeSize(idFood, idSize) {
-    this.db.database.ref('/proveedor/' + this.idProveedor + '/menu/' + idFood + '/medidas').child('/' + idSize).remove();
+    console.log(this.menu,idFood,idSize)
+    this.menu[idFood].medidas = this.menu[idFood].medidas.filter(function(item,index) {
+      console.log(index)
+      return index != idSize;
+    });
+    this.menu[idFood].medidas=this.menu[idFood].medidas.filter(function(){return true;});
+    console.log(this.menu[idFood].medidas)
+    this.setTabla();
+    
+    // this.db.database.ref('/proveedor/' + this.idProveedor + '/menu/' + idFood + '/medidas').child('/' + idSize).remove();
   }
 }

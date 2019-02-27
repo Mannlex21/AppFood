@@ -1,6 +1,6 @@
 <ion-grid>
   <ion-row>
-    <alert-component *ngIf="confirmDialogCancel"></alert-component>
+    <alert-component *ngIf="confirmDialogCancel | async"></alert-component>
     <!-- Informacion principal proveedor -->
     <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12" >
       <legend><span class="number">1</span> Información</legend>

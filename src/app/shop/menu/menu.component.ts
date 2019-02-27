@@ -32,12 +32,13 @@ export class MenuComponent implements OnInit {
     _this.state$.subscribe(data => {
       _this.idProveedor = data['app'].idProveedor;
       this.db.list('/proveedor').valueChanges().subscribe(d => {
+        console.log(d);
+        d.forEach(element => {
+          element['src'] = 'https://goo.gl/jhsD4G'; //'https://goo.gl/jhsD4G';
+        });
         const r = d.filter(function (val) {
           return val['id'] === _this.idProveedor;
-        });
-        d.forEach(element => {
-          element['src'] = 'https://goo.gl/jhsD4G';
-        });
+        }); 
         _this.proveedor = r[0];
         _this.menu = r[0]['menu'];
       });
@@ -54,12 +55,12 @@ export class MenuComponent implements OnInit {
     ]);
   }
   async openModal() {
+    const _this = this;
     const modal: HTMLIonModalElement =
        await this.modalController.create({
           component: ViewMenuComponent,
           componentProps: {
-             aParameter: true,
-             otherParameter: new Date()
+            idProveedor: _this.idProveedor,
           }
     });
     modal.onDidDismiss().then((detail: OverlayEventDetail) => {
