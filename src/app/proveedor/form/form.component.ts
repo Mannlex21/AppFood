@@ -29,11 +29,15 @@ export class FormComponent implements OnInit {
   formMenu = {
     nombre: '',
     tipo: '',
-    tamano: '',
-    otroTamano: '',
-    precio: 0
+    precio: 0,
+    descripcion: ''
+  };
+  formIngrediente = {
+    nombre: '',
+    precio: 0,
   };
   menu = [];
+  ingrediente = [];
   tabla = [];
 
   constructor(private store: Store, private db: AngularFireDatabase) {
@@ -49,8 +53,9 @@ export class FormComponent implements OnInit {
           const r = d.filter(function (val) {
             return val['id'] === _this.idProveedor;
           });
-          _this.menu = r[0]['menu'];
-          _this.setTabla();
+          _this.menu = (r[0]['menu'] !== undefined) ?  r[0]['menu'] : [];
+          _this.ingrediente = (r[0]['ingrediente'] !== undefined) ? r[0]['ingrediente'] : [];
+          // _this.setTabla();
         });
       }
     });
@@ -89,6 +94,23 @@ export class FormComponent implements OnInit {
   }
   update(id) {
     const _this = this;
+    const idF = this.db.database.ref('/proveedor').push().key;
+    const arrMenu = []; const arrIngrediente = [];
+    // Aqui cambia los id predefinidos por unos especificados
+    _this.menu.forEach(element => {
+      if (!element.hasOwnProperty('id')) {
+        const idFood = this.db.database.ref('/proveedor/' + idF + '/menu').push().key;
+        element.id = idFood;
+      }
+      arrMenu.push(element);
+    });
+    _this.ingrediente.forEach(element => {
+      if (!element.hasOwnProperty('id')) {
+        const idIngrediente = this.db.database.ref('/proveedor/' + idF + '/ingrediente').push().key;
+        element.id = idIngrediente;
+      }
+      arrIngrediente.push(element);
+    });
     this.db.object('/proveedor/' + id).update( {
       nombre: _this.form.nombre,
       direccion: _this.form.direccion,
@@ -98,7 +120,8 @@ export class FormComponent implements OnInit {
       estado: _this.form.estado,
       cp: _this.form.cp,
       pagina: _this.form.pagina,
-      menu: _this.menu
+      menu: _this.menu,
+      ingrediente: arrIngrediente
     }).then(function() {
       _this.store.dispatch([
         new SetShowForm(false)
@@ -108,14 +131,18 @@ export class FormComponent implements OnInit {
   save() {
     const _this = this;
     const id = this.db.database.ref('/proveedor').push().key;
-    const arrResult = [];
-    //Aqui cambia los id predefinidos por unos especificados
-    _this.menu.forEach(element=>{
+    const arrMenu = []; const arrIngrediente = [];
+    // Aqui cambia los id predefinidos por unos especificados
+    _this.menu.forEach(element => {
       const idFood = this.db.database.ref('/proveedor/' + id + '/menu').push().key;
-      element.id=idFood;
-      arrResult.push(element);
+      element.id = idFood;
+      arrMenu.push(element);
     });
-    console.log(arrResult)
+    _this.ingrediente.forEach(element => {
+      const idIngrediente = this.db.database.ref('/proveedor/' + id + '/ingrediente').push().key;
+      element.id = idIngrediente;
+      arrIngrediente.push(element);
+    });
     this.db.object('/proveedor/' + id + '/').set({
       id: id,
       nombre: _this.form.nombre,
@@ -127,7 +154,8 @@ export class FormComponent implements OnInit {
       cp: _this.form.cp,
       pagina: _this.form.pagina,
       src: 'link',
-      menu: arrResult
+      menu: arrMenu,
+      ingrediente: arrIngrediente
     }).then(function() {
       _this.store.dispatch([
         new SetShowForm(false)
@@ -154,32 +182,21 @@ export class FormComponent implements OnInit {
   // Agrega a la tabla del menu
   addToTable() {
     const _this = this;
-    // const existFood = _this.menu.filter(function (data) {
-    //   return data.nombre === _this.formMenu.nombre && data.tipo === _this.formMenu.tipo;
-    // });
-    // if (existFood.length > 0) {
-    //   const medida = {
-    //     medida: _this.formMenu.tamano,
-    //     precio: _this.formMenu.precio
-    //   };
-    //   existFood[0].medidas.push(medida);
-    //   _this.setTabla();
-    // } else {
-      const obj = {
-        nombre: _this.formMenu.nombre,
-        tipo: _this.formMenu.tipo,
-        precio: _this.formMenu.precio
-        // medidas: [
-        //   {
-        //     medida: _this.formMenu.tamano,
-        //     precio: _this.formMenu.precio
-        //   }
-        // ]
-      };
-      _this.menu.push(obj);
-      console.log(_this.menu);
-      _this.setTabla();
-    // }
+    const obj = {
+      nombre: _this.formMenu.nombre,
+      tipo: _this.formMenu.tipo,
+      precio: _this.formMenu.precio
+    };
+    _this.menu.push(obj);
+    console.log(_this.menu);
+  }
+  addToTableIngrediente() {
+    const _this = this;
+    const obj = {
+      nombre: _this.formIngrediente.nombre,
+      precio: _this.formIngrediente.precio
+    };
+    _this.ingrediente.push(obj);
   }
   // Convierte el objeto menu en tabla para que el html pueda procesarlo
   setTabla() {
@@ -189,32 +206,18 @@ export class FormComponent implements OnInit {
     data.forEach(function (element, index) {
       const o = {
         idFood: index,
-        tipo: 'food',
+        tipo: element.tipo,
         nombre: element.nombre,
-        medida: element.medida,
         precio: element.precio
       };
       _this.tabla.push(o);
-      // element.medidas.forEach(function (element2, index2) {
-      //   const o2 = {
-      //     idFood: index,
-      //     idSize: index2,
-      //     tipo: 'size',
-      //     nombre: '',
-      //     medida: element2.medida,
-      //     precio: element2.precio
-      //   };
-      //   _this.tabla.push(o2);
-      // });
     });
   }
   // Borra la comida seleccionada dentro del menu
-  removeFood(idFood) {
-    this.menu = this.menu.filter(function(item, index) {
-      return index !== idFood;
+  removeFood(id) {
+    this.menu = this.menu.filter(function(item) {
+      return item.id !== id;
     });
-    this.menu = this.menu.filter(function() { return true; });
-    this.setTabla();
     // this.db.database.ref('/proveedor/' + this.idProveedor + '/menu').child('/' + idFood ).remove();
   }
   // Borra la medida de la comida seleccionada dentro del menu
@@ -222,8 +225,6 @@ export class FormComponent implements OnInit {
     this.menu[idFood].medidas = this.menu[idFood].medidas.filter(function(item , index) {
       return index !== idSize;
     });
-    this.menu[idFood].medidas = this.menu[idFood].medidas.filter(function() { return true; });
-    this.setTabla();
     // this.db.database.ref('/proveedor/' + this.idProveedor + '/menu/' + idFood + '/medidas').child('/' + idSize).remove();
   }
 }

@@ -22,9 +22,11 @@ export class ViewMenuComponent implements OnInit {
   idFood: string;
   proveedor: any;
   menu: any;
+  ingrediente: any;
   food: any;
   total: any;
   contador = 1;
+  select = '';
   constructor(private db: AngularFireDatabase, private modalController: ModalController,private navParams: NavParams) { 
   }
   ngOnInit() {
@@ -35,11 +37,12 @@ export class ViewMenuComponent implements OnInit {
       });
 
       _this.proveedor = r[0];
+      _this.ingrediente = r[0]['ingrediente'];
       _this.menu = r[0]['menu'].filter(function (val) {
         return val['id'] === _this.idFood;
-      });;
+      });
       _this.food = _this.menu[0];
-      _this.total = _this.food.precio; 
+      _this.total = _this.food.precio;
       console.log(_this.food);
     });
   }

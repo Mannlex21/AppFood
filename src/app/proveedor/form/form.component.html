@@ -30,7 +30,7 @@
       <ion-input [(ngModel)]='form.descripcion' class="inputForm" maxlength="150" placeholder="Descripción" ></ion-input>
     </ion-col>
 
-    <!-- Informacion principal proveedor -->
+    <!-- Informacion menu -->
     <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12" >
       <legend><span class="number">2</span> Menú</legend>
     </ion-col>
@@ -43,21 +43,9 @@
         <ion-select-option value="italiana">Italiana</ion-select-option>
       </ion-select>
     </ion-col>
-    <ion-col style="padding:0;" size-xs="12" size-sm="12" size-md="6" size-lg="6" size-xl="6" >
-      <ion-row>
-        <ion-col  size-xs="4" size-sm="4" size-md="6" size-lg="6" size-xl="6" >
-          <ion-select [(ngModel)]='formMenu.tamano' placeholder="Tamaño" class="inputForm">
-            <ion-select-option value="chico">Chico</ion-select-option>
-            <ion-select-option value="mediano">Mediano</ion-select-option>
-            <ion-select-option value="grande">Grande</ion-select-option>
-            <ion-select-option value="otro">Otro</ion-select-option>
-          </ion-select>
-        </ion-col>
-        <ion-col  size-xs="8" size-sm="8" size-md="6" size-lg="6" size-xl="6" >
-          <ion-input [(ngModel)]='formMenu.otroTamano' class="inputForm" placeholder="Otro" disabled></ion-input>
-        </ion-col>
-      </ion-row> 
-    </ion-col> 
+    <ion-col size-xs="12" size-sm="12" size-md="6" size-lg="6" size-xl="6" >
+      <ion-input [(ngModel)]='formMenu.descripcion' class="inputForm" placeholder="Descripcion"></ion-input>
+    </ion-col>
     <ion-col style="padding:0;" size-xs="12" size-sm="12" size-md="6" size-lg="6" size-xl="6" >
       <ion-row>
         <ion-col  size-xs="10" size-sm="10" size-md="10" size-lg="10" size-xl="10" >
@@ -77,31 +65,76 @@
           <tr>
             <th>Nombre</th>
             <th>Precio</th>
-            <th>Medida</th>
+            <th>Tipo</th>
             <th>Control</th>
           </tr>
         </thead>
         <tbody> 
-          <tr *ngFor ="let item of tabla">
-            <td [ngStyle]="{'border-top':item.tipo==='food'?'5px solid rgb(195, 196, 197)':'',
-              'border-bottom':item.tipo==='food'?'1px solid rgb(195, 196, 197)':''}"
-            >
+          <tr *ngFor ="let item of menu">
+            <td style="text-align:center;">
               {{item.nombre}}
             </td>
-            <td [ngStyle]="{'border-top':item.tipo==='food'?'5px solid rgb(195, 196, 197)':'',
-              'border-bottom':item.tipo==='food'?'1px solid rgb(195, 196, 197)':'','text-align': 'center'}"
-            >
-            {{item.precio}}
+            <td style="text-align:center;">
+              {{item.precio}}
             </td>
-            <td [ngStyle]="{'border-top':item.tipo==='food'?'5px solid rgb(195, 196, 197)':'',
-              'border-bottom':item.tipo==='food'?'1px solid rgb(195, 196, 197)':'','text-align': 'center'}"
-            >
-            {{item.medida}}
+            <td style="text-align:center;">
+              {{item.tipo}}
             </td>
-            <td [ngStyle]="{'border-top':item.tipo==='food'?'5px solid rgb(195, 196, 197)':'',
-              'border-bottom':item.tipo==='food'?'1px solid rgb(195, 196, 197)':'','text-align': 'center'}"
-            >
-              <ion-button (click)="(item.tipo==='food')?removeFood(item.idFood):removeSize(item.idFood,item.idSize)" 
+            <td style="text-align:center;">
+              <ion-button (click)="removeFood(item.id)" 
+                mode="ios" size="small" color="noColor">
+                <ion-icon slot="icon-only" name="add"></ion-icon>
+              </ion-button>
+              <ion-button (click)="removeFood(item.id)" 
+                mode="ios" size="small" color="noColor">
+                <ion-icon slot="icon-only" name="trash"></ion-icon>
+              </ion-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ion-col>
+
+    <!-- Informacion ingrediente -->
+    <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12" >
+      <legend><span class="number">3</span> Ingredientes</legend>
+    </ion-col>
+    <ion-col size-xs="12" size-sm="12" size-md="6" size-lg="6" size-xl="6" >
+      <ion-input [(ngModel)]='formIngrediente.nombre' class="inputForm" placeholder="Nombre"></ion-input>
+    </ion-col>
+    <ion-col style="padding:0;" size-xs="12" size-sm="12" size-md="6" size-lg="6" size-xl="6" >
+      <ion-row>
+        <ion-col  size-xs="10" size-sm="10" size-md="10" size-lg="10" size-xl="10" >
+          <ion-input [(ngModel)]='formIngrediente.precio' class="inputForm" placeholder="Precio"></ion-input>
+        </ion-col>
+        <ion-col  size-xs="2" size-sm="2" size-md="2" size-lg="2" size-xl="2">
+            <button class="btnAddToTable" (click)="addToTableIngrediente()">
+              Agregar
+            </button>  
+        </ion-col>
+      </ion-row> 
+    </ion-col>
+    
+    <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12" >
+      <table class="tablePlatillos">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Tipo</th>
+            <th>Control</th>
+          </tr>
+        </thead>
+        <tbody> 
+          <tr *ngFor ="let item of ingrediente">
+            <td style="text-align:center;">
+              {{item.nombre}}
+            </td>
+            <td style="text-align:center;">
+              {{item.precio}}
+            </td>
+            <td style="text-align:center;">
+              <ion-button (click)="removeFood(item.id)" 
                 mode="ios" size="small" color="noColor">
                 <ion-icon slot="icon-only" name="trash"></ion-icon>
               </ion-button>

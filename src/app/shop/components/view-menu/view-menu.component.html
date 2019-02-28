@@ -7,22 +7,19 @@
   <div class="inView">
     <div class="bodyView">
       <h1>{{proveedor?.nombre}}</h1>
-      <h1>{{proveedor?.nombre}}</h1>
-      <h1>{{proveedor?.nombre}}</h1>
-      <h1>{{proveedor?.nombre}}</h1>
-      <h1>{{proveedor?.nombre}}</h1>
-      <h1>{{proveedor?.nombre}}</h1>
-      <h1>{{proveedor?.nombre}}</h1>
-      <h1>{{proveedor?.nombre}}</h1>
-      <h1>{{proveedor?.nombre}}</h1>
-      <h1>{{proveedor?.nombre}}</h1>
-      <h1>{{proveedor?.nombre}}</h1>
-      <h1>{{proveedor?.nombre}}</h1>
-      <h1>{{proveedor?.nombre}}</h1>
-      <h1>{{proveedor?.nombre}}</h1>
-      <h1>{{proveedor?.nombre}}</h1>
-      <h1>{{proveedor?.nombre}}</h1>
-      <h1>{{proveedor?.nombre}}</h1>
+      <ion-item>
+        <ion-label>Seleccione</ion-label>
+        <ion-select okText="Okay" cancelText="Dismiss">
+          <ion-select-option value="item.id" *ngFor="let item of ingrediente">{{item.nombre}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <select [(ngModel)]="select">
+        <option *ngFor="let item of ingrediente" [ngValue]="item.id">
+          {{item.nombre}}
+        </option>
+      </select>
+      <label>{{select}}</label>
+      <button (click)="select=''">Select</button>
     </div>
     <div class="bottomView" style="display: flex;">
       <div class="buttonsBottomView">
