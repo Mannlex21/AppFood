@@ -106,8 +106,16 @@ export class FormComponent implements OnInit {
     });
   }
   save() {
-    const id = this.db.database.ref('/proveedor').push().key;
     const _this = this;
+    const id = this.db.database.ref('/proveedor').push().key;
+    const arrResult = [];
+    //Aqui cambia los id predefinidos por unos especificados
+    _this.menu.forEach(element=>{
+      const idFood = this.db.database.ref('/proveedor/' + id + '/menu').push().key;
+      element.id=idFood;
+      arrResult.push(element);
+    });
+    console.log(arrResult)
     this.db.object('/proveedor/' + id + '/').set({
       id: id,
       nombre: _this.form.nombre,
@@ -119,7 +127,7 @@ export class FormComponent implements OnInit {
       cp: _this.form.cp,
       pagina: _this.form.pagina,
       src: 'link',
-      menu: _this.menu
+      menu: arrResult
     }).then(function() {
       _this.store.dispatch([
         new SetShowForm(false)

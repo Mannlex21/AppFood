@@ -19,9 +19,12 @@ export interface DialogData {
 export class ViewMenuComponent implements OnInit {
   state$: Observable<AppState>;
   idProveedor: string;
+  idFood: string;
   proveedor: any;
   menu: any;
-  contador = 0;
+  food: any;
+  total: any;
+  contador = 1;
   constructor(private db: AngularFireDatabase, private modalController: ModalController,private navParams: NavParams) { 
   }
   ngOnInit() {
@@ -30,12 +33,19 @@ export class ViewMenuComponent implements OnInit {
       const r = d.filter(function (val) {
         return val['id'] === _this.idProveedor;
       });
+
       _this.proveedor = r[0];
-      _this.menu = r[0]['menu'];
+      _this.menu = r[0]['menu'].filter(function (val) {
+        return val['id'] === _this.idFood;
+      });;
+      _this.food = _this.menu[0];
+      _this.total = _this.food.precio; 
+      console.log(_this.food);
     });
   }
   ionViewWillEnter() {
     this.idProveedor = this.navParams.get('idProveedor');
+    this.idFood = this.navParams.get('idFood');
   }
   async myDismiss() {
     const result: Date = new Date();
@@ -43,10 +53,16 @@ export class ViewMenuComponent implements OnInit {
   }
   add() {
     this.contador ++;
+    this.total = this.food.precio * this.contador; 
   }
   remove() {
-    if (this.contador > 0) {
+    if (this.contador > 1) {
       this.contador --;
+      this.total = this.food.precio * this.contador; 
     }
+  }
+  formaterPrice(val) {
+    const price = val + ' MXN';
+    return price;
   }
 }

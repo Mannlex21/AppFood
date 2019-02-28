@@ -40,6 +40,10 @@ export class MenuComponent implements OnInit {
           return val['id'] === _this.idProveedor;
         });
         _this.proveedor = r[0];
+        _this.proveedor.menu.forEach(element => {
+          console.log(element)
+        });
+        console.log(_this.proveedor)
         _this.menu = r[0]['menu'];
       });
     });
@@ -58,13 +62,14 @@ export class MenuComponent implements OnInit {
       new SetShowViewMenu(true),
     ]);
   }
-  async openModal() {
+  async openModal(id) {
     const _this = this;
     const modal: HTMLIonModalElement =
        await this.modalController.create({
           component: ViewMenuComponent,
           componentProps: {
             idProveedor: _this.idProveedor,
+            idFood: id
           }
     });
     modal.onDidDismiss().then((detail: OverlayEventDetail) => {
