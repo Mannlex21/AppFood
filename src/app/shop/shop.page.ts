@@ -11,7 +11,7 @@ import { SetShowComponentShop } from '../store/app.actions';
 })
 export class ShopPage implements OnInit {
   menu$: Observable<AppState>;
-
+  select: any;
   showComponentShop: string;
   showViewMenu: boolean;
   constructor(private store: Store) {

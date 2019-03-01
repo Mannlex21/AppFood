@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { Component, OnInit, Inject, OnChanges } from '@angular/core';
+import {  _MatSortHeaderMixinBase} from '@angular/material';
 import { ModalController, NavParams } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/store/app.state';
@@ -26,7 +26,8 @@ export class ViewMenuComponent implements OnInit {
   food: any;
   total: any;
   contador = 1;
-  select = '';
+  select = null;
+  addedIngredient = [];
   constructor(private db: AngularFireDatabase, private modalController: ModalController,private navParams: NavParams) { 
   }
   ngOnInit() {
@@ -67,5 +68,26 @@ export class ViewMenuComponent implements OnInit {
   formaterPrice(val) {
     const price = val + ' MXN';
     return price;
+  }
+  addIngredient(){
+    const _this = this;
+    _this.addedIngredient.indexOf(_this.select) === -1 ? _this.addedIngredient.push(_this.select):_this.addedIngredient;
+    let arr = [];
+    _this.ingrediente.forEach(element => {
+      if(_this.addedIngredient.indexOf(element)){
+        arr.push(element)
+      }
+    });
+    _this.ingrediente = arr;
+    _this.select='';
+  }
+  removeIngredient(item){
+    this.addedIngredient = this.addedIngredient.filter(function(val){
+      return val.id !== item.id;
+    })
+  }
+  res(){
+    this.select = '';
+    console.log(this.select)
   }
 }

@@ -18,6 +18,7 @@ import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -25,6 +26,7 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
+    
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
@@ -36,6 +38,7 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
     NgxsLoggerPluginModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     StatusBar,
