@@ -5,6 +5,7 @@ import { Store, Select } from '@ngxs/store';
 import { SetUsername } from '../store/app.actions';
 import { Navigate } from '../store/router.state';
 
+
 @Component({
   selector: 'app-proveedor',
   templateUrl: './proveedor.page.html',

@@ -38,10 +38,7 @@
       <ion-input [(ngModel)]='formMenu.nombre' class="inputForm" placeholder="Nombre"></ion-input>
     </ion-col>
     <ion-col size-xs="12" size-sm="12" size-md="6" size-lg="6" size-xl="6" >
-      <ion-select [(ngModel)]='formMenu.tipo' placeholder="Tipo" class="inputForm">
-        <ion-select-option value="mexicana">Mexicana</ion-select-option>
-        <ion-select-option value="italiana">Italiana</ion-select-option>
-      </ion-select>
+      <ion-input [(ngModel)]='formMenu.clasificacion' class="inputForm" placeholder="Clasificación"></ion-input>
     </ion-col>
     <ion-col size-xs="12" size-sm="12" size-md="6" size-lg="6" size-xl="6" >
       <ion-input [(ngModel)]='formMenu.descripcion' class="inputForm" placeholder="Descripcion"></ion-input>
@@ -65,7 +62,7 @@
           <tr>
             <th>Nombre</th>
             <th>Precio</th>
-            <th>Tipo</th>
+            <th>Clasificación</th>
             <th>Control</th>
           </tr>
         </thead>
@@ -78,7 +75,7 @@
               {{item.precio}}
             </td>
             <td style="text-align:center;">
-              {{item.tipo}}
+              {{item.clasificacion}}
             </td>
             <td style="text-align:center;">
               <ion-button (click)="removeFood(item.id)" 
@@ -121,7 +118,6 @@
           <tr>
             <th>Nombre</th>
             <th>Precio</th>
-            <th>Tipo</th>
             <th>Control</th>
           </tr>
         </thead>

@@ -25,10 +25,11 @@ export class ViewMenuComponent implements OnInit {
   ingrediente: any;
   food: any;
   total: any;
+  totalExtras: any;
   contador = 1;
-  select = null;
-  addedIngredient = [];
-  constructor(private db: AngularFireDatabase, private modalController: ModalController,private navParams: NavParams) { 
+  select: [];
+
+  constructor(private db: AngularFireDatabase, private modalController: ModalController, private navParams: NavParams) {
   }
   ngOnInit() {
     const _this = this;
@@ -44,6 +45,7 @@ export class ViewMenuComponent implements OnInit {
       });
       _this.food = _this.menu[0];
       _this.total = _this.food.precio;
+      _this.total = _this.food.precio;
       console.log(_this.food);
     });
   }
@@ -57,37 +59,29 @@ export class ViewMenuComponent implements OnInit {
   }
   add() {
     this.contador ++;
-    this.total = this.food.precio * this.contador; 
+    this.total = this.food.precio * this.contador;
+    this.calculateExtras();
   }
   remove() {
     if (this.contador > 1) {
       this.contador --;
-      this.total = this.food.precio * this.contador; 
+      this.total = this.food.precio * this.contador;
+      this.calculateExtras();
     }
   }
   formaterPrice(val) {
     const price = val + ' MXN';
     return price;
   }
-  addIngredient(){
-    const _this = this;
-    _this.addedIngredient.indexOf(_this.select) === -1 ? _this.addedIngredient.push(_this.select):_this.addedIngredient;
-    let arr = [];
-    _this.ingrediente.forEach(element => {
-      if(_this.addedIngredient.indexOf(element)){
-        arr.push(element)
-      }
+  onChang() {
+    this.calculateExtras();
+  }
+  calculateExtras() {
+    let t = 0;
+    this.select.forEach(element => {
+      t = t + Number(element['precio']);
     });
-    _this.ingrediente = arr;
-    _this.select='';
-  }
-  removeIngredient(item){
-    this.addedIngredient = this.addedIngredient.filter(function(val){
-      return val.id !== item.id;
-    })
-  }
-  res(){
-    this.select = '';
-    console.log(this.select)
+    t = t * this.contador;
+    this.totalExtras = Number(this.total) + Number(t);
   }
 }

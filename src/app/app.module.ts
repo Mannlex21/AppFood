@@ -1,5 +1,7 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule } from '@angular/core';
+
 import { RouteReuseStrategy } from '@angular/router';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -18,16 +20,14 @@ import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-    
     BrowserModule,
+    BrowserAnimationsModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     NgxsModule.forRoot([
@@ -38,7 +38,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgxsLoggerPluginModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    BrowserAnimationsModule,
   ],
   providers: [
     StatusBar,

@@ -28,7 +28,7 @@ export class FormComponent implements OnInit {
   };
   formMenu = {
     nombre: '',
-    tipo: '',
+    clasificacion: '',
     precio: 0,
     descripcion: ''
   };
@@ -184,17 +184,17 @@ export class FormComponent implements OnInit {
     const _this = this;
     const obj = {
       nombre: _this.formMenu.nombre,
-      tipo: _this.formMenu.tipo,
-      precio: _this.formMenu.precio
+      clasificacion: _this.formMenu.clasificacion,
+      precio: _this.formMenu.precio,
+      descripcion: _this.formMenu.descripcion
     };
     _this.menu.push(obj);
-    console.log(_this.menu);
   }
   addToTableIngrediente() {
     const _this = this;
     const obj = {
       nombre: _this.formIngrediente.nombre,
-      precio: _this.formIngrediente.precio
+      precio: _this.formIngrediente.precio,
     };
     _this.ingrediente.push(obj);
   }
@@ -206,7 +206,7 @@ export class FormComponent implements OnInit {
     data.forEach(function (element, index) {
       const o = {
         idFood: index,
-        tipo: element.tipo,
+        clasificacion: element.clasificacion,
         nombre: element.nombre,
         precio: element.precio
       };

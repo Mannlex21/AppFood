@@ -10,6 +10,7 @@ import { ListComponent } from './list/list.component';
 import { FormComponent } from './form/form.component';
 import { AlertComponent } from '../components/alert/alert.component';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -22,7 +23,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
   ],
   declarations: [
     ProveedorPage,

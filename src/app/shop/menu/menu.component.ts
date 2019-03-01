@@ -18,6 +18,7 @@ export class MenuComponent implements OnInit {
   idProveedor: string;
   proveedor: any;
   menu: any;
+  clasifMenu: any;
 
   animal: string;
   name: string;
@@ -32,7 +33,6 @@ export class MenuComponent implements OnInit {
     _this.state$.subscribe(data => {
       _this.idProveedor = data['app'].idProveedor;
       this.db.list('/proveedor').valueChanges().subscribe(d => {
-        console.log(d);
         d.forEach(element => {
           element['src'] = 'https://goo.gl/jhsD4G'; // https://goo.gl/jhsD4G';
         });
@@ -40,13 +40,40 @@ export class MenuComponent implements OnInit {
           return val['id'] === _this.idProveedor;
         });
         _this.proveedor = r[0];
-        _this.proveedor.menu.forEach(element => {
-          console.log(element)
-        });
-        console.log(_this.proveedor)
         _this.menu = r[0]['menu'];
+        this.formatMenu();
+        console.log(_this.clasifMenu);
       });
     });
+  }
+  formatMenu() {
+    const _this = this;
+    const array = [];
+    _this.menu.forEach(element => {
+      if (containObject(array, element.clasificacion)) {
+        array.forEach(element2 => {
+          if (element2.clasificacion === element.clasificacion) {
+            element2.menu.push(element);
+          }
+        });
+      } else {
+        array.push( { clasificacion: element.clasificacion, menu: [element]});
+      }
+    });
+    _this.clasifMenu = array;
+    function containObject(arr, val) {
+      let c = 0;
+      arr.forEach(element => {
+        if (element.clasificacion === val) {
+          c++;
+        }
+      });
+      if ( c > 0 ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   }
   formaterPrice(val) {
     const price = val + ' MXN';
@@ -74,7 +101,6 @@ export class MenuComponent implements OnInit {
     });
     modal.onDidDismiss().then((detail: OverlayEventDetail) => {
        if (detail !== null) {
-         console.log('The result:', detail.data);
        }
     });
     await modal.present();
