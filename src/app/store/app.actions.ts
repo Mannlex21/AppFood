@@ -28,3 +28,7 @@ export class SetShowComponentShop {
   static readonly type = '[app] set showComponentShop';
   constructor(public playload: string) {}
 }
+export class SetCarrito {
+  static readonly type = '[app] set setCarrito';
+  constructor(public playload: Array<any>) {}
+}

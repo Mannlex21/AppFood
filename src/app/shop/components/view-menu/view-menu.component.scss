@@ -3,9 +3,9 @@
   max-height: 800px;
   min-height: 500px;
   height: 70vh;
-  max-width: 600px;
-  min-width: 400px;
-  width: 70vw;
+  // max-width: 600px;
+  // min-width: 400px;
+  width: 100%;
   flex-direction: column;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -188,9 +188,26 @@
     color: rgb(38, 38, 38);
     -webkit-font-smoothing: antialiased;
   }
+  
 }
 @media only screen and (min-width: 567px)  {
   .buttonCartBottomView{
     margin-left: 32px;
+  }
+  .price{
+    display: none;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .buttonsBottomView{
+    margin-right: 10px;
+  }
+}
+@media only screen and (max-width: 566px) {
+  .add-price{
+    display: none;
+  }
+  .totalCart{
+    text-align: center;
   }
 }

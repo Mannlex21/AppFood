@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngxs/store';
+import { Store, Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/store/app.state';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -22,6 +22,7 @@ export class MenuComponent implements OnInit {
 
   animal: string;
   name: string;
+  carrito= [];
 
   constructor(private store: Store, private db: AngularFireDatabase, public modalController: ModalController) {
     const _this = this;
@@ -32,6 +33,8 @@ export class MenuComponent implements OnInit {
     const _this = this;
     _this.state$.subscribe(data => {
       _this.idProveedor = data['app'].idProveedor;
+      _this.carrito = data['app'].carrito;
+      console.log(_this.carrito)
       this.db.list('/proveedor').valueChanges().subscribe(d => {
         d.forEach(element => {
           element['src'] = 'https://goo.gl/jhsD4G'; // https://goo.gl/jhsD4G';

@@ -55,8 +55,108 @@
 }
 .divPedido{
   min-width: 432px;
-  margin-top: 80px;
+  // margin-top: 80px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 25px 0px;
+  width: 378px;
+  margin: 24px;
+  border-radius: 4px;
+  font-size: 20px;
+  overflow: hidden;
+  background-color: #FFFFFF;
   box-sizing: border-box;
+
+  // transform: translateZ(0px);
+  // position: fixed;
+  // top: 138px;
+  // left: 411px;
+  // width: 432px;
+  // position: relative;
+}
+// .divPedido div{
+//   transform: translateZ(0px);
+//   position: fixed;
+//   top: 138px;
+//   left: 411px;
+//   width: 432px;
+// }
+.divTop{
+  padding: 24px;
+  border-bottom: 1px solid rgb(224, 224, 224);
+  align-items: center;
+  -webkit-box-align: center;
+  width: 100%;
+}
+.divMiddle{
+  max-height: 320px;
+  overflow-y: scroll;
+  box-sizing: border-box;
+}
+.divMiddle div{
+  box-sizing: border-box;
+}
+.divMiddle div div{
+  padding: 16px 24px;
+  justify-content: space-around;
+  -webkit-box-pack: justify;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  box-sizing: border-box;
+}
+.divBottom{
+  justify-content: space-between;
+  -webkit-box-pack: justify;
+  line-height: 20px;
+  font-size: 14px;
+  color: #262626;
+  -webkit-font-smoothing: antialiased;
+  border-top: 1px solid #E0E0E0;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  padding: 24px;
+  box-sizing: border-box;
+}
+.divButtonRevisar{
+  background: blue;
+  color: white;
+  text-align: center;
+  font-size: 14px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(62, 153, 32);
+  background: rgb(62, 153, 32);
+  min-width: 120px;
+  height: 48px;
+  text-decoration: none;
+  stroke: rgb(255, 255, 255);
+  line-height: 0;
+  box-sizing: border-box;
+  border-radius: 2px;
+  padding: 8px 16px;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;  
+  position: relative; 
+  cursor: pointer;
+  justify-content: center;
+    -webkit-box-pack: center;
+    align-items: center;
+    -webkit-box-align: center;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    fill: #FFFFFF;
+    color: #FFFFFF;
+    width: 100%;
+    text-align: center;
+    text-transform: none;
+    overflow: visible;
 }
 // FOOD
 .divFood{

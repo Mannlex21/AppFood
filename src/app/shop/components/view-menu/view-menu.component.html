@@ -13,26 +13,33 @@
             <div class="descripcion">{{food?.descripcion}}</div>
           </div>
         </ion-col>
-        <ion-col style="padding: 0;margin-top:10px;" size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12">
+        <ion-col style="padding: 0;margin-top:20px;" size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12">
           <div class="divSubTitulos">
             <div>
               Ingredientes extras
             </div>
           </div>
           <mat-form-field style="width:100%; padding: 0px 20px;">
-            <mat-select [(ngModel)]="select" placeholder="Ingredientes extras" (selectionChange)="onChang()"  multiple>
-              <mat-option *ngFor="let item of ingrediente" [value]="item">{{item.nombre}}</mat-option>
+            <mat-select [(ngModel)]="selectIngredient" placeholder="Ingredientes extras" (selectionChange)="onChang()"  multiple>
+              <mat-option *ngFor="let item of ingrediente" [value]="item">
+                <div style="display:inline-block;">
+                  {{item.nombre}}
+                </div>
+                <div style="float: right;margin-right: 40px;">
+                  {{formatPriceIngredient(item.precio)}}
+                </div>
+              </mat-option>
             </mat-select>
           </mat-form-field>
         </ion-col>
-        <ion-col style="padding: 0;margin-top:10px;" size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12">
+        <ion-col style="padding: 0;margin-top:20px;" size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12">
           <div class="divSubTitulos">
             <div>
               Instrucciones especiales
             </div>
           </div>
           <mat-form-field style="width:100%;padding: 0px 20px;">
-            <textarea matInput placeholder="Instrucciones especiales"></textarea>
+            <textarea [(ngModel)]="description" matInput placeholder="Instrucciones especiales"></textarea>
           </mat-form-field>
         </ion-col>
       </ion-row>
@@ -49,11 +56,17 @@
         </button>
       </div>
       <div class="buttonCartBottomView">
-        <button class="btnCart">
+        <button class="btnCart" (click)="addToCart()">
           <div style="display: block;width: 100%;text-align: center;">
-            <div style="text-align: center;">
+            <div class="add-price" style="text-align: center;">
                 Agregar al carrito 
-                <div class="totalCart">{{formaterPrice((totalExtras!==undefined)?totalExtras:total)}}</div>
+                <div class="totalCart">{{formatPrice((totalExtras!==undefined)?totalExtras:total)}}</div>
+            </div>
+            <div class="totalCart price">
+              <ion-icon src="../assets/shopping-cart.svg"></ion-icon>
+              <div style="display: inline-block;margin-left: 10px;">
+                {{formatPrice((totalExtras!==undefined)?totalExtras:total)}}
+              </div>
             </div>
           </div>
         </button>

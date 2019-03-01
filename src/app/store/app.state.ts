@@ -1,5 +1,5 @@
 import { State, Action, StateContext } from '@ngxs/store';
-import { SetIdProveedor, SetShowForm, SetAccion, SetConfirmDialogCancel, SetShowComponentShop, SetShowViewMenu } from './app.actions';
+import { SetIdProveedor, SetShowForm, SetAccion, SetConfirmDialogCancel, SetShowComponentShop, SetShowViewMenu, SetCarrito } from './app.actions';
 
 export interface AppStateModel {
   idProveedor: string;
@@ -9,6 +9,7 @@ export interface AppStateModel {
   confirmDialogCancel: boolean;
   showComponentShop: string;
   showViewMenu: boolean;
+  carrito: Array<any>;
 }
 @State<AppStateModel>({
   name: 'app',
@@ -20,6 +21,7 @@ export interface AppStateModel {
     orderId: Math.floor(Math.random() * 23000),
     showForm: false,
     showViewMenu: false,
+    carrito: [],
   }
 })
 export class AppState {
@@ -48,5 +50,9 @@ export class AppState {
   @Action(SetShowViewMenu)
   setShowViewMenu({ patchState }: StateContext<AppStateModel>, { playload }: SetShowViewMenu) {
     patchState({ showViewMenu: playload });
+  }
+  @Action(SetCarrito)
+  setCarrito({ patchState }: StateContext<AppStateModel>, { playload }: SetCarrito) {
+    patchState({ carrito: playload });
   }
 }

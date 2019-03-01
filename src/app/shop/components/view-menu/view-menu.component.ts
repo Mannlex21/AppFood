@@ -3,8 +3,9 @@ import {  _MatSortHeaderMixinBase} from '@angular/material';
 import { ModalController, NavParams } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/store/app.state';
-import { Store } from '@ngxs/store';
+import { Store, Select } from '@ngxs/store';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { SetCarrito } from 'src/app/store/app.actions';
 
 export interface DialogData {
   animal: string;
@@ -27,9 +28,12 @@ export class ViewMenuComponent implements OnInit {
   total: any;
   totalExtras: any;
   contador = 1;
-  select: [];
+  selectIngredient= [];
+  description= '';
 
-  constructor(private db: AngularFireDatabase, private modalController: ModalController, private navParams: NavParams) {
+  @Select(state => state.app.carrito) carrito;
+
+  constructor(private store: Store,private db: AngularFireDatabase, private modalController: ModalController, private navParams: NavParams) {
   }
   ngOnInit() {
     const _this = this;
@@ -45,8 +49,8 @@ export class ViewMenuComponent implements OnInit {
       });
       _this.food = _this.menu[0];
       _this.total = _this.food.precio;
-      _this.total = _this.food.precio;
-      console.log(_this.food);
+      _this.totalExtras = _this.food.precio;
+      _this.calculateExtras();
     });
   }
   ionViewWillEnter() {
@@ -69,8 +73,12 @@ export class ViewMenuComponent implements OnInit {
       this.calculateExtras();
     }
   }
-  formaterPrice(val) {
+  formatPrice(val) {
     const price = val + ' MXN';
+    return price;
+  }
+  formatPriceIngredient(val){
+    const price ='+ ' + val + ' MXN';
     return price;
   }
   onChang() {
@@ -78,10 +86,39 @@ export class ViewMenuComponent implements OnInit {
   }
   calculateExtras() {
     let t = 0;
-    this.select.forEach(element => {
+    this.selectIngredient.forEach(element => {
       t = t + Number(element['precio']);
     });
     t = t * this.contador;
     this.totalExtras = Number(this.total) + Number(t);
+  }
+  addToCart(){
+    const _this = this;
+    let arr = [];
+    _this.carrito.subscribe(d=>{  arr = d });
+    let arrI = [];
+    let totalI = 0;
+    _this.selectIngredient.forEach(element => {
+      arrI.push({
+        nombre: element['nombre'],
+        precio: element['precio']
+      });
+      totalI = totalI+Number(element['precio']);
+    });
+    arr.push(
+      {
+        comida: _this.food.nombre,
+        precio: _this.food.precio,
+        cantidad: _this.contador,
+        ingredientesExtras: arrI,
+        descripcion: _this.description,
+        total: _this.totalExtras,
+        totalOnlyFood: Number(_this.food.precio)*_this.contador,
+        totalIngredient: (totalI!==0) ? totalI * _this.contador : 0
+      }
+    );
+    _this.store.dispatch([
+      new SetCarrito(arr)
+    ]);
   }
 }
