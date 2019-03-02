@@ -43,23 +43,35 @@
       </ion-col>
     </ion-row>
   </div>
-  <div class="divPedido">
+  <div class="divPedido" id="pedido" >
     <div >
-      <div class="divTop">
-        <div class="divButtonRevisar">Revisar</div>
-      </div>
-      <div class="divMiddle">
-        <div *ngFor="let item of carrito">
-          <div >
-              {{item.comida}}
-          </div>
-          <!-- <label>{{item.comida}}</label> -->
+      <div style="transform: translateZ(0px);max-height: calc(100vh - 138px);">
+        <div style="box-sizing: border-box;background-color: #FFFFFF;overflow: hidden;box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 25px 0px;width: 378px;margin: 24px;border-radius: 4px;font-size: 20px;">
+            <div class="divTop">
+              <div class="divButtonRevisar">Revisar</div>
+            </div>
+      
+            <div class="divMiddle">
+              <div *ngFor="let item of carrito">
+                <div >
+                    {{item.comida}}
+                </div>
+                <!-- <label>{{item.comida}}</label> -->
+              </div>
+            </div>
+      
+            <div class="divBottom">
+              <ng-container *ngIf="carrito.length>0; else elseTemplate">
+                  <div style="display:inline-block">Total</div>
+                  <div style="float:right;">200 MXN</div>
+              </ng-container>
+              <ng-template #elseTemplate>
+                  <div style="display:inline-block;width: 100%;text-align: center;">Agrega artículos a tu carrito, y aparecerán aquí.</div>
+              </ng-template>
+            </div>
         </div>
       </div>
-      <div class="divBottom">
-        <div style="display:inline-block">Total</div>
-        <div style="float:right;">200 MXN</div>
-      </div>
+
     </div>
     
   </div>

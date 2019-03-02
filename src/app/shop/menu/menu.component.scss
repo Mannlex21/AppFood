@@ -55,30 +55,15 @@
 }
 .divPedido{
   min-width: 432px;
-  // margin-top: 80px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 25px 0px;
-  width: 378px;
-  margin: 24px;
-  border-radius: 4px;
-  font-size: 20px;
-  overflow: hidden;
-  background-color: #FFFFFF;
-  box-sizing: border-box;
-
-  // transform: translateZ(0px);
-  // position: fixed;
-  // top: 138px;
-  // left: 411px;
-  // width: 432px;
-  // position: relative;
+  margin-top: 80px;
 }
-// .divPedido div{
-//   transform: translateZ(0px);
-//   position: fixed;
-//   top: 138px;
-//   left: 411px;
-//   width: 432px;
-// }
+.divPedidoFixed{
+  transform: translateZ(0px);
+  position: fixed;
+  top: 138px;
+  left: 530.4px;
+  width: 432px;
+}
 .divTop{
   padding: 24px;
   border-bottom: 1px solid rgb(224, 224, 224);
@@ -143,20 +128,20 @@
   position: relative; 
   cursor: pointer;
   justify-content: center;
-    -webkit-box-pack: center;
-    align-items: center;
-    -webkit-box-align: center;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    fill: #FFFFFF;
-    color: #FFFFFF;
-    width: 100%;
-    text-align: center;
-    text-transform: none;
-    overflow: visible;
+  -webkit-box-pack: center;
+  align-items: center;
+  -webkit-box-align: center;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  fill: #FFFFFF;
+  color: #FFFFFF;
+  width: 100%;
+  text-align: center;
+  text-transform: none;
+  overflow: visible;
 }
 // FOOD
 .divFood{
@@ -283,6 +268,9 @@
 }
 @media only screen and (min-width: 773px) and (max-width:950px) {
   .divPedido {
+    min-width: 320px;
+  }
+  .divPedidoFixed{
     min-width: 320px;
   }
 }

@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, Renderer2 } from '@angular/core';
 import { Store, Select } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Observable, fromEvent } from 'rxjs';
 import { AppState } from 'src/app/store/app.state';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { SetShowComponentShop, SetShowViewMenu } from 'src/app/store/app.actions';
 import { ViewMenuComponent } from '../components/view-menu/view-menu.component';
 import { ModalController } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'menu-shop',
@@ -22,19 +23,17 @@ export class MenuComponent implements OnInit {
 
   animal: string;
   name: string;
-  carrito= [];
+  carrito = [];
 
-  constructor(private store: Store, private db: AngularFireDatabase, public modalController: ModalController) {
+  constructor(private store: Store, private db: AngularFireDatabase, public modalController: ModalController, private renderer: Renderer2) {
     const _this = this;
     this.state$ = this.store.select(state => state);
   }
-
   ngOnInit() {
     const _this = this;
     _this.state$.subscribe(data => {
       _this.idProveedor = data['app'].idProveedor;
       _this.carrito = data['app'].carrito;
-      console.log(_this.carrito)
       this.db.list('/proveedor').valueChanges().subscribe(d => {
         d.forEach(element => {
           element['src'] = 'https://goo.gl/jhsD4G'; // https://goo.gl/jhsD4G';
@@ -45,7 +44,6 @@ export class MenuComponent implements OnInit {
         _this.proveedor = r[0];
         _this.menu = r[0]['menu'];
         this.formatMenu();
-        console.log(_this.clasifMenu);
       });
     });
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { AppState } from '../store/app.state';
@@ -17,7 +17,6 @@ export class ShopPage implements OnInit {
   constructor(private store: Store) {
     this.menu$ = this.store.select(state => state);
   }
-
   ngOnInit() {
     const _this = this;
     _this.menu$.subscribe(data => {
