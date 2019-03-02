@@ -7,7 +7,7 @@ import { SetShowComponentShop, SetShowViewMenu } from 'src/app/store/app.actions
 import { ViewMenuComponent } from '../components/view-menu/view-menu.component';
 import { ModalController } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core';
-import * as $ from 'jquery';
+
 
 @Component({
   selector: 'menu-shop',
@@ -17,7 +17,7 @@ import * as $ from 'jquery';
 export class MenuComponent implements OnInit {
   state$: Observable<AppState>;
   idProveedor: string;
-  proveedor: any;
+  proveedor= {};
   menu: any;
   clasifMenu: any;
 
@@ -75,10 +75,6 @@ export class MenuComponent implements OnInit {
         return false;
       }
     }
-  }
-  formaterPrice(val) {
-    const price = val + ' MXN';
-    return price;
   }
   atras() {
     this.store.dispatch([

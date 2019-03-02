@@ -4,8 +4,10 @@
     <div class="divDesc">
         <h1 class="h1Title">{{proveedor?.nombre}}</h1>
         <div>
-          <div>Telefono: {{proveedor?.telefono}}</div>
-          <div>{{proveedor?.direccion}} {{proveedor?.cp}} {{proveedor?.ciudad}} {{proveedor?.estado}}</div>
+          <div >
+            <a href="tel:{{proveedor.telefono}}">{{proveedor.telefono | formaterPhone}}</a>
+          </div>
+          <div>{{proveedor?.direccion | formaterAddress:proveedor?.cp:proveedor?.ciudad:proveedor?.estado }}</div>
           <div>{{proveedor?.descripcion}}</div>
         </div>
       </div>
@@ -21,7 +23,7 @@
       >
       <div style="margin-bottom: 24px;" *ngFor ="let menu of clasifMenu">
         <div style="padding: 32px 0 40px 0;box-sizing: border-box;">
-          <h2 style="line-height: 26px;font-size: 22px;color: #262626;margin: 0;-webkit-font-smoothing: antialiased;letter-spacing: -.02em;">{{menu.clasificacion}}</h2>
+          <h2 class="titleClasificacion">{{menu.clasificacion}}</h2>
         </div>
         <ion-row>
           <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="6" 
@@ -32,7 +34,7 @@
               <div class="divInfoFood">
                 <div class="titleFood">{{item.nombre}}</div>
                 <div class="priceFood">
-                  <span>{{formaterPrice(item.precio)}}</span>
+                  <span>{{item.precio | formaterPrice}}</span>
                 </div>
               </div>
               <div class="divImgFood" style="background-image: url(https://goo.gl/jhsD4G);"></div>
@@ -53,8 +55,16 @@
       
             <div class="divMiddle">
               <div *ngFor="let item of carrito">
-                <div >
-                    {{item.comida}}
+                <div class="divPedidoFood" style="padding: 16px 24px;justify-content: space-around;-webkit-box-pack: justify;">
+                  <div class="divQuantityFood">
+                    {{item.cantidad}}
+                  </div>  
+                  <div class="divNameFood">
+                    <div class="divNameFoodIn">{{item.comida}}</div>
+                    <button class="btnRemoveFood">Eliminar</button>
+                  </div>
+                  <div class="divTotalFood">{{item.total | formaterPrice }}</div>
+                  
                 </div>
                 <!-- <label>{{item.comida}}</label> -->
               </div>

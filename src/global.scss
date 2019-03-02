@@ -18,4 +18,31 @@
   --ion-color-contrast-rgb: var(--ion-color-noColor-contrast-rgb) !important;
   --ion-color-shade: var(--ion-color-noColor-shade) !important;
   --ion-color-tint: var(--ion-color-noColor-tint) !important;
-  }
+}
+@font-face {
+  font-family: 'Helvetica-Bold';
+  src: url('./assets/font/Helvetica-Bold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Helvetica-BoldOblique';
+  src: url('./assets/font/Helvetica-BoldOblique.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Helvetica-Oblique';
+  src: url('./assets/font/Helvetica-Oblique.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Helvetica';
+  src: url('./assets/font/Helvetica.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+* {
+  font-family: 'Helvetica' !important;
+}

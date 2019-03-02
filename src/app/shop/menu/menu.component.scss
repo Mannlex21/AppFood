@@ -31,6 +31,7 @@
 .h1Title{
   letter-spacing: 0;
   flex: 1;
+  font-family: 'Helvetica-Bold' !important;
 }
 
 // BOTTOM MENU 
@@ -43,6 +44,15 @@
   display: -webkit-flex;
   display: flex;
   box-sizing: border-box;
+}
+.titleClasificacion{
+  line-height: 26px;
+  font-size: 22px;
+  color: #262626;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -.02em;
+  font-family: 'Helvetica-Bold' !important;
 }
 .divMenu{
   min-height: 480px;
@@ -74,20 +84,6 @@
 .divMiddle{
   max-height: 320px;
   overflow-y: scroll;
-  box-sizing: border-box;
-}
-.divMiddle div{
-  box-sizing: border-box;
-}
-.divMiddle div div{
-  padding: 16px 24px;
-  justify-content: space-around;
-  -webkit-box-pack: justify;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
   box-sizing: border-box;
 }
 .divBottom{
@@ -143,6 +139,78 @@
   text-transform: none;
   overflow: visible;
 }
+.divPedidoFood{
+  padding: 16px 24px;
+  justify-content: space-around;
+  -webkit-box-pack: justify;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  box-sizing: border-box;
+  font-size: 20px;
+}
+.divQuantityFood{
+  margin-top: 8px;
+  margin-right: 16px;
+  line-height: 20px;
+  font-size: 14px;
+  color: #262626;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+.divNameFood{
+  padding: 0;
+  width: 216px;
+  flex-grow: 1;
+  -webkit-box-flex: 1;
+  overflow: hidden;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.divNameFoodIn{
+  padding: 8px 0;
+  line-height: 20px;
+  font-size: 14px;
+  color: #262626;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+.btnRemoveFood{
+  fill: rgb(36, 122, 0);
+  background: transparent;
+  line-height: 16px;
+  font-size: 12px;
+  text-decoration: none;
+  color: rgb(36, 122, 0);
+  border: none;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  cursor: pointer;
+  justify-content: center;
+  -webkit-box-pack: center;
+  align-items: center;
+  -webkit-box-align: center;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-appearance: button;
+  text-transform: none;
+  overflow: visible;
+  margin: 0;
+  box-sizing: border-box;
+}
+.divTotalFood{
+  padding: 8px 0;
+  line-height: 20px;
+  font-size: 14px;
+  color: #262626;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
 // FOOD
 .divFood{
   flex-grow: 1;
@@ -186,6 +254,7 @@
   line-height: 24px;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
+  font-family: 'Helvetica-Bold' !important;
 }
 .priceFood{
   line-height: 20px;

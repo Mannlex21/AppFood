@@ -26,7 +26,7 @@
                   {{item.nombre}}
                 </div>
                 <div style="float: right;margin-right: 40px;">
-                  {{formatPriceIngredient(item.precio)}}
+                  {{item.precio | formaterPriceAdd}}
                 </div>
               </mat-option>
             </mat-select>
@@ -42,6 +42,7 @@
             <textarea [(ngModel)]="description" matInput placeholder="Instrucciones especiales"></textarea>
           </mat-form-field>
         </ion-col>
+        
       </ion-row>
     </div>
 
@@ -60,12 +61,12 @@
           <div style="display: block;width: 100%;text-align: center;">
             <div class="add-price" style="text-align: center;">
                 Agregar al carrito 
-                <div class="totalCart">{{formatPrice((totalExtras!==undefined)?totalExtras:total)}}</div>
+                <div class="totalCart">{{ (totalExtras!==undefined)?totalExtras:total | formaterPrice}}</div>
             </div>
             <div class="totalCart price">
               <ion-icon src="../assets/shopping-cart.svg"></ion-icon>
               <div style="display: inline-block;margin-left: 10px;">
-                {{formatPrice((totalExtras!==undefined)?totalExtras:total)}}
+                {{(totalExtras!==undefined)?totalExtras:total | formaterPrice}}
               </div>
             </div>
           </div>

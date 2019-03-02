@@ -15,42 +15,15 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import {CdkStepperModule} from '@angular/cdk/stepper';
 import {CdkTableModule} from '@angular/cdk/table';
 import {CdkTreeModule} from '@angular/cdk/tree';
-import {
-  MatAutocompleteModule,
-  MatBadgeModule,
-  MatBottomSheetModule,
-  MatButtonModule,
-  MatButtonToggleModule,
-  MatCardModule,
-  MatCheckboxModule,
-  MatChipsModule,
-  MatDatepickerModule,
-  MatDialogModule,
-  MatDividerModule,
-  MatExpansionModule,
-  MatGridListModule,
-  MatIconModule,
-  MatInputModule,
-  MatListModule,
-  MatMenuModule,
-  MatNativeDateModule,
-  MatPaginatorModule,
-  MatProgressBarModule,
-  MatProgressSpinnerModule,
-  MatRadioModule,
-  MatRippleModule,
-  MatSelectModule,
-  MatSidenavModule,
-  MatSliderModule,
-  MatSlideToggleModule,
-  MatSnackBarModule,
-  MatSortModule,
-  MatStepperModule,
-  MatTableModule,
-  MatTabsModule,
-  MatToolbarModule,
-  MatTooltipModule,
-  MatTreeModule,
+
+import { FormaterPrice,FormaterPriceAdd,FormaterAddress,FormaterPhone } from '../global-function.pipe';
+import 
+{ 
+  MatAutocompleteModule,MatBadgeModule,MatBottomSheetModule,MatButtonModule,MatButtonToggleModule,MatCardModule,
+  MatCheckboxModule,MatChipsModule,MatDatepickerModule,MatDialogModule,MatDividerModule,MatExpansionModule,MatGridListModule,
+  MatIconModule,MatInputModule,MatListModule,MatMenuModule,MatNativeDateModule,MatPaginatorModule,MatProgressBarModule,
+  MatProgressSpinnerModule,MatRadioModule,MatRippleModule, MatSelectModule,MatSidenavModule,MatSliderModule,MatSlideToggleModule,
+  MatSnackBarModule,MatSortModule,MatStepperModule,MatTableModule,MatTabsModule, MatToolbarModule,MatTooltipModule,MatTreeModule,
 } from '@angular/material';
 
 const routes: Routes = [
@@ -113,6 +86,10 @@ const routes: Routes = [
     ListComponent,
     MenuComponent,
     ViewMenuComponent,
+    FormaterPrice,
+    FormaterPriceAdd,
+    FormaterAddress,
+    FormaterPhone
   ],
   entryComponents: [
     ViewMenuComponent
