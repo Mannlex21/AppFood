@@ -12,7 +12,7 @@ import { SetConfirmDialogCancel, SetShowForm } from 'src/app/store/app.actions';
 })
 export class AlertComponent implements OnInit {
   state$: Observable<AppState>;
-  constructor(public alertController: AlertController,private store: Store) {
+  constructor(public alertController: AlertController, private store: Store) {
    }
 
   ngOnInit() {
@@ -31,7 +31,7 @@ export class AlertComponent implements OnInit {
             console.log('Confirm Cancel: blah');
             this.store.dispatch([
               new SetConfirmDialogCancel(false),
-            ])
+            ]);
           }
         }, {
           text: 'Ok',
@@ -40,7 +40,7 @@ export class AlertComponent implements OnInit {
             this.store.dispatch([
               new SetConfirmDialogCancel(false),
               new SetShowForm(false),
-            ])
+            ]);
           }
         }
       ]

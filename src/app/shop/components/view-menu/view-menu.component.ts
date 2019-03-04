@@ -28,12 +28,13 @@ export class ViewMenuComponent implements OnInit {
   total: any;
   totalExtras: any;
   contador = 1;
-  selectIngredient= [];
-  description= '';
+  selectIngredient = [];
+  description = '';
 
   @Select(state => state.app.carrito) carrito;
 
-  constructor(private store: Store,private db: AngularFireDatabase, private modalController: ModalController, private navParams: NavParams) {
+  constructor(private store: Store, private db: AngularFireDatabase,
+    private modalController: ModalController, private navParams: NavParams) {
   }
   ngOnInit() {
     const _this = this;
@@ -58,8 +59,7 @@ export class ViewMenuComponent implements OnInit {
     this.idFood = this.navParams.get('idFood');
   }
   async myDismiss() {
-    const result: Date = new Date();
-    await this.modalController.dismiss(result);
+    await this.modalController.dismiss();
   }
   add() {
     this.contador ++;
@@ -77,8 +77,8 @@ export class ViewMenuComponent implements OnInit {
     const price = val + ' MXN';
     return price;
   }
-  formatPriceIngredient(val){
-    const price ='+ ' + val + ' MXN';
+  formatPriceIngredient(val) {
+    const price = '+ ' + val + ' MXN';
     return price;
   }
   onChang() {
@@ -92,18 +92,18 @@ export class ViewMenuComponent implements OnInit {
     t = t * this.contador;
     this.totalExtras = Number(this.total) + Number(t);
   }
-  addToCart(){
+  addToCart() {
     const _this = this;
     let arr = [];
-    _this.carrito.subscribe(d=>{  arr = d });
-    let arrI = [];
+    _this.carrito.subscribe(d => {  arr = d; });
+    const arrI = [];
     let totalI = 0;
     _this.selectIngredient.forEach(element => {
       arrI.push({
         nombre: element['nombre'],
         precio: element['precio']
       });
-      totalI = totalI+Number(element['precio']);
+      totalI = totalI + Number(element['precio']);
     });
     arr.push(
       {
@@ -113,12 +113,14 @@ export class ViewMenuComponent implements OnInit {
         ingredientesExtras: arrI,
         descripcion: _this.description,
         total: _this.totalExtras,
-        totalOnlyFood: Number(_this.food.precio)*_this.contador,
-        totalIngredient: (totalI!==0) ? totalI * _this.contador : 0
+        totalOnlyFood: Number(_this.food.precio) * _this.contador,
+        totalIngredient: (totalI !== 0) ? totalI * _this.contador : 0
       }
     );
     _this.store.dispatch([
       new SetCarrito(arr)
-    ]);
+    ]).subscribe(d => {
+      _this.myDismiss();
+    });
   }
 }

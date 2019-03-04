@@ -20,8 +20,11 @@ export class FormaterPriceAdd implements PipeTransform {
   name: 'formaterAddress'
 })
 export class FormaterAddress implements PipeTransform {
-  transform(direccion: string,cp: string,ciudad: string,estado: string): string {
-    return direccion+'. '+cp+'. '+ciudad+', '+estado+'.';
+  transform(direccion: string, cp: string, ciudad: string, estado: string): string {
+    // if (direccion === undefined || cp === undefined || ciudad === undefined || estado === undefined){
+    //   return '';
+    // }
+    return direccion + '. ' + cp + '. ' + ciudad + ', ' + estado + '.';
   }
 }
 
@@ -30,7 +33,6 @@ export class FormaterAddress implements PipeTransform {
 })
 export class FormaterPhone implements PipeTransform {
   transform(phone: string): string {
-    console.log(phone)
-    return (phone!==undefined)? phone.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3'):phone;
+    return (phone !== undefined && phone !== null) ? phone.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3') : phone;
   }
 }

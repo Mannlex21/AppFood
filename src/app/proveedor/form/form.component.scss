@@ -132,3 +132,18 @@ tbody tr {
   padding-bottom: 11px;
   width: 100%;
 }
+
+.txt{
+  display: block;
+}
+.icon{
+  display: none;
+}
+@media only screen and (max-width: 451px)  {
+  .txt{
+    display: none;
+  }
+  .icon{
+    display: block;
+  }
+}

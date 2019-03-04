@@ -1,0 +1,38 @@
+
+<div style="height: 100%;    padding: 90px 0 68px 0;">
+  <div class="divTopBarView" style="border-bottom: 1px solid #cacaca;">
+    <ion-button style="font-size: 16px;" color="noColor" mode="ios" size="small" (click)="myDismiss()">
+      <ion-icon slot="icon-only" name='close'></ion-icon>
+    </ion-button>
+  </div>
+  <div class="divTop">
+    <div class="divButtonRevisar">Finalizar</div>
+  </div>
+
+  <div class="divMiddle">
+    <div *ngFor="let item of cart; let i = index">
+      <div class="divPedidoFood" style="padding: 16px 24px;justify-content: space-around;-webkit-box-pack: justify;">
+        <div class="divQuantityFood">
+          {{item.cantidad}}
+        </div>  
+        <div class="divNameFood">
+          <div class="divNameFoodIn">{{item.comida}}</div>
+          <button class="btnRemoveFood" (click)="removeFoodCart(i)">Eliminar</button>
+        </div>
+        <div class="divTotalFood">{{item.total | formaterPrice }}</div>
+        
+      </div>
+      <!-- <label>{{item.comida}}</label> -->
+    </div>
+  </div>
+
+  <div class="divBottom">
+    <ng-container *ngIf="cart.length>0; else elseTemplate">
+        <div style="display:inline-block">Total</div>
+        <div style="float:right;">200 MXN</div>
+    </ng-container>
+    <ng-template #elseTemplate>
+        <div style="display:inline-block;width: 100%;text-align: center;">Agrega artículos a tu carrito, y aparecerán aquí.</div>
+    </ng-template>
+  </div>
+</div>

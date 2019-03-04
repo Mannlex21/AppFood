@@ -32,3 +32,7 @@ export class SetCarrito {
   static readonly type = '[app] set setCarrito';
   constructor(public playload: Array<any>) {}
 }
+export class SetShowCartModal {
+  static readonly type = '[app] set setCarrito';
+  constructor(public playload: boolean) {}
+}

@@ -50,7 +50,10 @@
         </ion-col>
         <ion-col  size-xs="2" size-sm="2" size-md="2" size-lg="2" size-xl="2">
             <button class="btnAddToTable" (click)="addToTable()">
-              Agregar
+              <div class="txt">Agregar</div>
+              <div class="icon">
+                <ion-icon src="../../assets/icon/accept.svg"></ion-icon>
+              </div>
             </button>  
         </ion-col>
       </ion-row> 
@@ -106,7 +109,10 @@
         </ion-col>
         <ion-col  size-xs="2" size-sm="2" size-md="2" size-lg="2" size-xl="2">
             <button class="btnAddToTable" (click)="addToTableIngrediente()">
-              Agregar
+              <div class="txt">Agregar</div>
+              <div class="icon">
+                <ion-icon src="../../assets/icon/accept.svg"></ion-icon>
+              </div>
             </button>  
         </ion-col>
       </ion-row> 
@@ -146,10 +152,20 @@
     <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12" class="btns">
       <ion-row>
         <ion-col size-xs="6" size-sm="6" size-md="6" size-lg="6" size-xl="6">
-          <button class="btnFormCancelar" (click)="cancel()">Cancelar</button>  
+          <button class="btnFormCancelar" (click)="cancel()">
+              <div class="txt">CANCELAR</div>
+              <div class="icon">
+                <ion-icon src="../../assets/icon/cancel.svg"></ion-icon>
+              </div>
+          </button>  
         </ion-col>
         <ion-col size-xs="6" size-sm="6" size-md="6" size-lg="6" size-xl="6">
-          <button class="btnForm" (click)="clickSaveEdit()">Guardar</button>  
+          <button class="btnForm" (click)="clickSaveEdit()">
+              <div class="txt">GUARDAR</div>
+              <div class="icon">
+                <ion-icon src="../../assets/icon/accept.svg"></ion-icon>
+              </div>
+          </button>  
         </ion-col>
       </ion-row>
     </ion-col>

@@ -11,4 +11,6 @@
   <list-shop *ngIf="showComponentShop==='shop'"></list-shop>
   <menu-shop *ngIf="showComponentShop==='menu'"></menu-shop>
   <view-menu  *ngIf="showViewMenu"></view-menu>
+  <cart-modal *ngIf="showCartModal"></cart-modal>
+  <cart-shop *ngIf="cart.length>0" (click)="openCartModal()"></cart-shop>
 </ion-content>

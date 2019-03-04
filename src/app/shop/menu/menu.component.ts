@@ -1,10 +1,11 @@
-import { Component, OnInit, HostListener, Renderer2 } from '@angular/core';
+import { Component, OnInit, HostListener, Renderer2, NgZone } from '@angular/core';
 import { Store, Select } from '@ngxs/store';
 import { Observable, fromEvent } from 'rxjs';
 import { AppState } from 'src/app/store/app.state';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { SetShowComponentShop, SetShowViewMenu } from 'src/app/store/app.actions';
+import { SetShowComponentShop, SetCarrito } from 'src/app/store/app.actions';
 import { ViewMenuComponent } from '../components/view-menu/view-menu.component';
+
 import { ModalController } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core';
 
@@ -15,18 +16,16 @@ import { OverlayEventDetail } from '@ionic/core';
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit {
-  state$: Observable<AppState>;
-  idProveedor: string;
-  proveedor= {};
-  menu: any;
-  clasifMenu: any;
+  state$: Observable<AppState>; // Variable que lee los estados del store
+  idProveedor: string; // Variable que almacena el id del proveedor seleccionado
+  proveedor: any; // Variable que almacena la informacion total del proveedor seleccionado
+  menu: any; // Variable que almacena la informacion del menu del proveedor seleccionadop
+  clasifMenu: any; // Variable que almacena la informacion del menu organizada por clasificacion
+  carrito = []; // Variable que almacena la informacion del carrito de compras
+  showCarrito = true; // Variable que almacena el estado de la vista del carrito
 
-  animal: string;
-  name: string;
-  carrito = [];
-
-  constructor(private store: Store, private db: AngularFireDatabase, public modalController: ModalController, private renderer: Renderer2) {
-    const _this = this;
+  constructor(private store: Store, private db: AngularFireDatabase, public modalController: ModalController, private renderer: Renderer2,
+    private zone: NgZone) {
     this.state$ = this.store.select(state => state);
   }
   ngOnInit() {
@@ -46,7 +45,19 @@ export class MenuComponent implements OnInit {
         this.formatMenu();
       });
     });
+    // Esta funcion esta asigna un valor false a la variable showCarrito
+    // al llegar a cierta medida de la pantalla
+    matchMedia('(max-width: 768px)').addListener((mql => {
+      if (mql.matches) {
+          this.zone.run(() => {
+            _this.showCarrito = false;
+          });
+      } else {
+        _this.showCarrito = true;
+      }
+    }));
   }
+  // Formatea el menu en clasificaciones
   formatMenu() {
     const _this = this;
     const array = [];
@@ -76,16 +87,13 @@ export class MenuComponent implements OnInit {
       }
     }
   }
+  // Funcion que permite ir hacia la lista de proveedores
   atras() {
     this.store.dispatch([
       new SetShowComponentShop('shop'),
     ]);
   }
-  openFood() {
-    this.store.dispatch([
-      new SetShowViewMenu(true),
-    ]);
-  }
+  // Funcion que permite abrir modal de view menu
   async openModal(id) {
     const _this = this;
     const modal: HTMLIonModalElement =
@@ -95,11 +103,21 @@ export class MenuComponent implements OnInit {
             idProveedor: _this.idProveedor,
             idFood: id
           }
-    });
+      });
     modal.onDidDismiss().then((detail: OverlayEventDetail) => {
        if (detail !== null) {
        }
     });
     await modal.present();
+  }
+  // Elimina un pedido del carrito de compras
+  removeFoodCart(val) {
+    const _this = this;
+    _this.carrito = _this.carrito.filter(function(value, index, arr) {
+      return index !== val;
+    });
+    _this.store.dispatch([
+      new SetCarrito(_this.carrito)
+    ]).subscribe(d => {});
   }
 }

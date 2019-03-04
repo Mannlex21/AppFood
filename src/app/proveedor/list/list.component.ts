@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { SetIdProveedor, SetShowForm, SetAccion } from 'src/app/store/app.actions';
 import { Navigate } from 'src/app/store/router.state';
@@ -15,28 +15,25 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class ListComponent implements OnInit {
   @Select(state => state.app) app$;
   state$: Observable<AppState>;
-  proveedor = []; /*[
-    {nombre: 'Cubanas', src: 'https://goo.gl/VbKRyZ'},
-    {nombre: 'McDonald\'s '},
-    {nombre: 'Burguer King'},
-    {nombre: 'Sushi Infinito'},
-    {nombre: 'Diña Cristy', src: 'https://goo.gl/VbKRyZ'},
-    {nombre: 'Lirul Cisa'},
-    {nombre: 'Tacos de Smog'},
-    {nombre: 'DonJoJo'}
-  ];*/
-  constructor(private store: Store, private db: AngularFireDatabase, private sanitizer: DomSanitizer) {
+  proveedor = [];
+  // showNewP: Boolean;
+  constructor(private store: Store, private db: AngularFireDatabase, private sanitizer: DomSanitizer, private zone: NgZone) {
+    const _this = this;
     this.state$ = this.store.select(state => state);
-  }
-
-  ngOnInit() {
-    // this.proveedor.forEach(element => {
-    //   if (element.src === undefined) {
-    //     element.src = 'https://goo.gl/jhsD4G';
+    // matchMedia('(max-width: 579px)').addListener((mql => {
+    //   if (mql.matches) {
+    //       this.zone.run(() => {
+    //         _this.showNewP = false;
+    //       });
+    //   } else {
+    //     _this.showNewP = true;
     //   }
-    // });
+    // }));
+    // console.log(_this.showNewP);
+  }
+  ngOnInit() {
+    const _this = this;
     // AQUI SE HACE LA CONSULTA A LA BD FIREBASE PARA OBTENER DATOS
-    // let key = this.db.list('myFirebasePath').push({key:val}).key;
     this.db.list('/proveedor').valueChanges().subscribe(d => {
       this.proveedor = []; // Resetea el array para poder recibir info
       console.log(d);
@@ -56,7 +53,7 @@ export class ListComponent implements OnInit {
       new SetShowForm(true),
     ]);
   }
-  nuevo() {
+  newP() {
     this.store.dispatch([
       new SetAccion('new'),
       new SetShowForm(true)

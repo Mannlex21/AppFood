@@ -1,0 +1,157 @@
+.divTopBarView{
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.divPedido{
+  min-width: 432px;
+  margin-top: 80px;
+}
+.divTop{
+  position: absolute;
+  top: 45px;
+  align-items: center;
+  -webkit-box-align: center;
+  width: 100%;
+}
+.divButtonRevisar{
+  background: blue;
+  color: white;
+  text-align: center;
+  font-size: 14px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(62, 153, 32);
+  background: rgb(62, 153, 32);
+  min-width: 120px;
+  height: 48px;
+  text-decoration: none;
+  stroke: rgb(255, 255, 255);
+  line-height: 0;
+  box-sizing: border-box;
+  border-radius: 2px;
+  padding: 8px 16px;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;  
+  position: relative; 
+  cursor: pointer;
+  justify-content: center;
+  -webkit-box-pack: center;
+  align-items: center;
+  -webkit-box-align: center;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  fill: #FFFFFF;
+  color: #FFFFFF;
+  width: 100%;
+  text-align: center;
+  text-transform: none;
+  overflow: visible;
+}
+.divMiddle{
+  // max-height: 428px;
+  // overflow-y: scroll;
+  box-sizing: border-box;
+  height: 100%;
+  overflow-y: scroll;
+}
+.divPedidoFood{
+  padding: 16px 24px;
+  justify-content: space-around;
+  -webkit-box-pack: justify;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  box-sizing: border-box;
+  font-size: 20px;
+}
+.divQuantityFood{
+  margin-top: 8px;
+  margin-right: 16px;
+  line-height: 20px;
+  font-size: 14px;
+  color: #262626;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+.divNameFood{
+  padding: 0;
+  width: 216px;
+  flex-grow: 1;
+  -webkit-box-flex: 1;
+  overflow: hidden;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.divNameFoodIn{
+  padding: 8px 0;
+  line-height: 20px;
+  font-size: 14px;
+  color: #262626;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+.btnRemoveFood{
+  fill: rgb(36, 122, 0);
+  background: transparent;
+  line-height: 16px;
+  font-size: 12px;
+  text-decoration: none;
+  color: rgb(36, 122, 0);
+  border: none;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  cursor: pointer;
+  justify-content: center;
+  -webkit-box-pack: center;
+  align-items: center;
+  -webkit-box-align: center;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-appearance: button;
+  text-transform: none;
+  overflow: visible;
+  margin: 0;
+  box-sizing: border-box;
+}
+.divTotalFood{
+  padding: 8px 0;
+  line-height: 20px;
+  font-size: 14px;
+  color: #262626;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+.divBottom{
+  height: 68px;
+  justify-content: space-between;
+  -webkit-box-pack: justify;
+  line-height: 20px;
+  font-size: 14px;
+  color: #262626;
+  -webkit-font-smoothing: antialiased;
+  border-top: 1px solid #E0E0E0;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  padding: 24px;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
