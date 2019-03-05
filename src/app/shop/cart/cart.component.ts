@@ -27,7 +27,6 @@ export class CartComponent implements OnInit {
         _this.total = _this.total + element.total;
         _this.amount = _this.amount + element.cantidad;
       });
-      console.log(_this.cart);
     });
   }
 

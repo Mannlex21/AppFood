@@ -21,9 +21,9 @@ export class MenuComponent implements OnInit {
   proveedor: any; // Variable que almacena la informacion total del proveedor seleccionado
   menu: any; // Variable que almacena la informacion del menu del proveedor seleccionadop
   clasifMenu: any; // Variable que almacena la informacion del menu organizada por clasificacion
-  carrito = []; // Variable que almacena la informacion del carrito de compras
+  cart = []; // Variable que almacena la informacion del carrito de compras
   showCarrito = true; // Variable que almacena el estado de la vista del carrito
-
+  total = 0;
   constructor(private store: Store, private db: AngularFireDatabase, public modalController: ModalController, private renderer: Renderer2,
     private zone: NgZone) {
     this.state$ = this.store.select(state => state);
@@ -32,7 +32,11 @@ export class MenuComponent implements OnInit {
     const _this = this;
     _this.state$.subscribe(data => {
       _this.idProveedor = data['app'].idProveedor;
-      _this.carrito = data['app'].carrito;
+      _this.cart = data['app'].carrito;
+      _this.total = 0;
+      _this.cart.forEach(element => {
+        _this.total = _this.total + element.total;
+      });
       this.db.list('/proveedor').valueChanges().subscribe(d => {
         d.forEach(element => {
           element['src'] = 'https://goo.gl/jhsD4G'; // https://goo.gl/jhsD4G';
@@ -113,11 +117,11 @@ export class MenuComponent implements OnInit {
   // Elimina un pedido del carrito de compras
   removeFoodCart(val) {
     const _this = this;
-    _this.carrito = _this.carrito.filter(function(value, index, arr) {
+    _this.cart = _this.cart.filter(function(value, index, arr) {
       return index !== val;
     });
     _this.store.dispatch([
-      new SetCarrito(_this.carrito)
+      new SetCarrito(_this.cart)
     ]).subscribe(d => {});
   }
 }

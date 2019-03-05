@@ -54,7 +54,7 @@
             </div>
       
             <div class="divMiddle">
-              <div *ngFor="let item of carrito; let i = index">
+              <div *ngFor="let item of cart; let i = index">
                 <div class="divPedidoFood" style="padding: 16px 24px;justify-content: space-around;-webkit-box-pack: justify;">
                   <div class="divQuantityFood">
                     {{item.cantidad}}
@@ -71,9 +71,9 @@
             </div>
       
             <div class="divBottom">
-              <ng-container *ngIf="carrito.length>0; else elseTemplate">
+              <ng-container *ngIf="cart.length>0; else elseTemplate">
                   <div style="display:inline-block">Total</div>
-                  <div style="float:right;">200 MXN</div>
+                  <div style="float:right;">{{total | formaterPrice}}</div>
               </ng-container>
               <ng-template #elseTemplate>
                   <div style="display:inline-block;width: 100%;text-align: center;">Agrega artículos a tu carrito, y aparecerán aquí.</div>

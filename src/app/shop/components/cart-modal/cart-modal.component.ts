@@ -13,7 +13,7 @@ import { SetCarrito } from 'src/app/store/app.actions';
 export class CartModalComponent implements OnInit {
   state$: Observable<AppState>; // Variable que lee los estados del store
   cart = [];
-
+  total: 0;
   constructor(private store: Store, private modalController: ModalController, private navParams: NavParams) {
     this.state$ = this.store.select(state => state);
   }
@@ -22,6 +22,10 @@ export class CartModalComponent implements OnInit {
     const _this = this;
     _this.state$.subscribe(data => {
       _this.cart = data['app'].carrito;
+      _this.total = 0;
+      _this.cart.forEach(element => {
+        _this.total = _this.total + element.total;
+      });
     });
   }
   ionViewWillEnter() {

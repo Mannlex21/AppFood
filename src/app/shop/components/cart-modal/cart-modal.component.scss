@@ -13,7 +13,8 @@
 }
 .divTop{
   position: absolute;
-  top: 45px;
+  // top: 45px;
+  bottom:0;
   align-items: center;
   -webkit-box-align: center;
   width: 100%;
@@ -151,7 +152,7 @@
   padding: 24px;
   box-sizing: border-box;
   position: absolute;
-  bottom: 0;
+  bottom: 48px;
   left: 0;
   width: 100%;
 }
