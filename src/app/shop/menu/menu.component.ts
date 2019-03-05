@@ -124,4 +124,25 @@ export class MenuComponent implements OnInit {
       new SetCarrito(_this.cart)
     ]).subscribe(d => {});
   }
+  saveCart() {
+    const _this = this;
+    let total = 0;
+    let amount = 0;
+    _this.cart.forEach(element => {
+      total = total + element.total;
+      amount = amount + element.cantidad;
+    });
+    const id = this.db.database.ref('/cart').push().key;
+    // Cuando el login finalize, el path quedaria asi /cart/idUsuario/idCart
+    this.db.object('/cart/' + id + '/').set({
+      id: id,
+      total: total,
+      amount: amount,
+      detail: _this.cart
+    }).then(function() {
+      _this.store.dispatch([
+        new SetCarrito([])
+      ]);
+    });
+  }
 }

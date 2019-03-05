@@ -1,9 +1,5 @@
-<div class="divTopBarView" style="border-bottom: 1px solid #cacaca;">
-  <ion-button style="font-size: 16px;" color="noColor" mode="ios" size="small" (click)="myDismiss()">
-    <ion-icon slot="icon-only" name='close'></ion-icon>
-  </ion-button>
-</div>
-<div class="view">
+
+<!-- <div class="view">
   <div class="view2">
     <div class="inView">
       <div class="bodyView">
@@ -77,6 +73,85 @@
           </div>
         </div>
         
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div style="padding: 45px 0 81px 0;height: 100%;">
+  <div class="divTopBarView">
+    <ion-button style="font-size: 16px;" color="noColor" mode="ios" size="small" (click)="myDismiss()">
+      <ion-icon slot="icon-only" name='close'></ion-icon>
+    </ion-button>
+  </div>
+
+  <div class="divMiddle">
+    <ion-row>
+      <ion-col style="margin-top: 20px;" size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12">
+        <div style="padding: 0px 20px;">
+          <div class="titulo">{{food?.nombre}}</div>
+          <div class="descripcion">{{food?.descripcion}}</div>
+        </div>
+      </ion-col>
+      <ion-col style="padding: 0;margin-top:20px;" size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12">
+        <div class="divSubTitulos">
+          <div>
+            Ingredientes extras
+          </div>
+        </div>
+        <mat-form-field style="width:100%; padding: 0px 20px;">
+          <mat-select [(ngModel)]="selectIngredient" placeholder="Ingredientes extras" (selectionChange)="onChang()"  multiple>
+            <mat-option *ngFor="let item of ingrediente" [value]="item">
+              <div style="display:inline-block;">
+                {{item.nombre}}
+              </div>
+              <div style="float: right;margin-right: 40px;">
+                {{item.precio | formaterPriceAdd}}
+              </div>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ion-col>
+      <ion-col style="padding: 0;margin-top:20px;" size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12">
+        <div class="divSubTitulos">
+          <div>
+            Instrucciones especiales
+          </div>
+        </div>
+        <mat-form-field style="width:100%;padding: 0px 20px;">
+          <textarea [(ngModel)]="description" matInput placeholder="Instrucciones especiales"></textarea>
+        </mat-form-field>
+      </ion-col>
+      
+    </ion-row>
+  </div>
+
+  <div class="bottomView" style="display: flex;">
+    <div class="bottomView2">
+      <div class="buttonsBottomView">
+        <button color="primary" size="small" class="btnRound" (click)="remove()">
+            <ion-icon slot="icon-only" name="remove"></ion-icon>
+        </button>
+        <div class="amount">{{contador}}</div>
+        <button color="primary" size="small" class="btnRound" (click)="add()">
+          <ion-icon slot="icon-only" name="add"></ion-icon>
+        </button>
+      </div>
+      <div class="buttonCartBottomView">
+        <button class="btnCart" (click)="addToCart()">
+          <div style="display: block;width: 100%;text-align: center;">
+            <div class="add-price" style="text-align: center;">
+                Agregar al carrito 
+                <div class="totalCart">{{totalExtras | formaterPrice}}</div>
+            </div>
+            <div class="totalCart price">
+              <ion-icon src="../assets/shopping-cart.svg"></ion-icon>
+              <div style="display: inline-block;margin-left: 10px;">
+                {{totalExtras | formaterPrice}}
+              </div>
+            </div>
+          </div>
+        </button>
       </div>
     </div>
   </div>

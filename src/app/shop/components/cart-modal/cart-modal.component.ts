@@ -4,6 +4,8 @@ import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/store/app.state';
 import { SetCarrito } from 'src/app/store/app.actions';
+import { ShopPage } from '../../shop.page';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @Component({
   selector: 'cart-modal',
@@ -14,7 +16,8 @@ export class CartModalComponent implements OnInit {
   state$: Observable<AppState>; // Variable que lee los estados del store
   cart = [];
   total: 0;
-  constructor(private store: Store, private modalController: ModalController, private navParams: NavParams) {
+  constructor(private store: Store, private modalController: ModalController,
+    private navParams: NavParams, private db: AngularFireDatabase) {
     this.state$ = this.store.select(state => state);
   }
 
@@ -46,6 +49,28 @@ export class CartModalComponent implements OnInit {
       if ( _this.cart.length === 0) {
         _this.myDismiss();
       }
+    });
+  }
+  saveCart() {
+    const _this = this;
+    let total = 0;
+    let amount = 0;
+    _this.cart.forEach(element => {
+      total = total + element.total;
+      amount = amount + element.cantidad;
+    });
+    const id = this.db.database.ref('/cart').push().key;
+    // Cuando el login finalize, el path quedaria asi /cart/idUsuario/idCart
+    this.db.object('/cart/' + id + '/').set({
+      id: id,
+      total: total,
+      amount: amount,
+      detail: _this.cart
+    }).then(function() {
+      _this.store.dispatch([
+        new SetCarrito([])
+      ]);
+      _this.myDismiss();
     });
   }
 }

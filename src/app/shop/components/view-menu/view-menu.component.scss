@@ -1,91 +1,44 @@
-.view{
-  overflow: hidden;
-  max-height: 800px;
-  min-height: 500px;
-  height: 70vh;
-  width: 100%;
-  flex-direction: column;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  background-color: #FFFFFF;
-}
-.view2{
-  background: rgb(255, 255, 255);
-  overflow: hidden;
-  flex-direction: column;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  flex: 1;
-  position: relative;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  box-sizing: border-box;
-}
-.inView{
-  background: rgb(255, 255, 255);
-  overflow: hidden;
-  flex-direction: column;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  flex: 1;
-  position: relative;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-}
 .divTopBarView{
-  min-height: 45px;
+  height: 45px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  border-bottom: 1px solid #cacaca;
 }
-.bodyView{
-  overflow-y: auto;
-  flex: 2 1 0%;
-  color: #262626;
-  flex-direction: column;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  line-height: 24px;
-  font-size: 16px;
-  -webkit-font-smoothing: antialiased;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
+.divMiddle{
+  // max-height: 428px;
+  // overflow-y: scroll;
+  box-sizing: border-box;
+  height: 100%;
+  overflow-y: scroll;
 }
 .bottomView{
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 25px;
-  z-index: 3;
-  flex-shrink: 0;
-  padding: 24px;
-  box-sizing: border-box;
-}
-.bottomView2{
-  flex-direction: column;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
+  height: 81px;
+  justify-content: space-between;
+  -webkit-box-pack: justify;
+  line-height: 20px;
+  font-size: 14px;
+  color: #262626;
+  -webkit-font-smoothing: antialiased;
+  border-top: 1px solid #E0E0E0;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
-  background-color: #FFFFFF;
+  padding: 18px;
   box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
+  left: 0;
   width: 100%;
 }
-.bottomView3{
+.bottomView2{
+  display: flex;
+  width: 100%;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -102,6 +55,22 @@
   display: flex;
   text-align: center;
 }
+
+
+.amount{
+  padding-right: 8px;
+  padding-left: 8px;
+  justify-content: center;
+  -webkit-box-pack: center;
+  align-items: center;
+  -webkit-box-align: center;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
 .btnRound{
   width: 48px;
   height: 48px;
@@ -128,19 +97,7 @@
   margin: 0;
   overflow: visible;
 }
-.amount{
-  padding-right: 8px;
-  padding-left: 8px;
-  justify-content: center;
-  -webkit-box-pack: center;
-  align-items: center;
-  -webkit-box-align: center;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-}
+
 .buttonCartBottomView{
   flex: 1;
   margin-left: 32px;
@@ -188,7 +145,6 @@
 .totalCart{
   text-align: right;
 }
-
 .titulo{
   font-size: 32px;
   color: #262626;
@@ -220,15 +176,13 @@
   line-height: 24px;
   -webkit-font-smoothing: antialiased;
 }
-
-@media only screen and (min-width: 769px)  {
-  .buttonsBottomView{
-    line-height: 24px;
-    font-size: 16px;
-    color: rgb(38, 38, 38);
-    -webkit-font-smoothing: antialiased;
+@media only screen and (max-width: 566px) {
+  .add-price{
+    display: none;
   }
-  
+  .totalCart{
+    text-align: center;
+  }
 }
 @media only screen and (min-width: 567px)  {
   .buttonCartBottomView{
@@ -238,16 +192,257 @@
     display: none;
   }
 }
-@media only screen and (max-width: 768px) {
-  .buttonsBottomView{
-    margin-right: 10px;
-  }
-}
-@media only screen and (max-width: 566px) {
-  .add-price{
-    display: none;
-  }
-  .totalCart{
-    text-align: center;
-  }
-}
+// .view{
+//   overflow: hidden;
+//   max-height: 800px;
+//   min-height: 500px;
+//   height: 70vh;
+//   width: 100%;
+//   flex-direction: column;
+//   -webkit-box-orient: vertical;
+//   -webkit-box-direction: normal;
+//   display: -webkit-box;
+//   display: -moz-box;
+//   display: -ms-flexbox;
+//   display: -webkit-flex;
+//   display: flex;
+//   background-color: #FFFFFF;
+// }
+// .view2{
+//   background: rgb(255, 255, 255);
+//   overflow: hidden;
+//   flex-direction: column;
+//   -webkit-box-orient: vertical;
+//   -webkit-box-direction: normal;
+//   flex: 1;
+//   position: relative;
+//   display: -webkit-box;
+//   display: -moz-box;
+//   display: -ms-flexbox;
+//   display: -webkit-flex;
+//   display: flex;
+//   box-sizing: border-box;
+// }
+// .inView{
+//   background: rgb(255, 255, 255);
+//   overflow: hidden;
+//   flex-direction: column;
+//   -webkit-box-orient: vertical;
+//   -webkit-box-direction: normal;
+//   flex: 1;
+//   position: relative;
+//   display: -webkit-box;
+//   display: -moz-box;
+//   display: -ms-flexbox;
+//   display: -webkit-flex;
+//   display: flex;
+// }
+// .divTopBarView{
+//   min-height: 45px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: flex-end;
+// }
+// .bodyView{
+//   overflow-y: auto;
+//   flex: 2 1 0%;
+//   color: #262626;
+//   flex-direction: column;
+//   -webkit-box-orient: vertical;
+//   -webkit-box-direction: normal;
+//   line-height: 24px;
+//   font-size: 16px;
+//   -webkit-font-smoothing: antialiased;
+//   display: -webkit-box;
+//   display: -moz-box;
+//   display: -ms-flexbox;
+//   display: -webkit-flex;
+//   display: flex;
+// }
+// .bottomView{
+//   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 25px;
+//   z-index: 3;
+//   flex-shrink: 0;
+//   padding: 24px;
+//   box-sizing: border-box;
+// }
+// .bottomView2{
+//   flex-direction: column;
+//   -webkit-box-orient: vertical;
+//   -webkit-box-direction: normal;
+//   display: -webkit-box;
+//   display: -moz-box;
+//   display: -ms-flexbox;
+//   display: -webkit-flex;
+//   display: flex;
+//   background-color: #FFFFFF;
+//   box-sizing: border-box;
+//   width: 100%;
+// }
+// .bottomView3{
+  
+//   display: -webkit-box;
+//   display: -moz-box;
+//   display: -ms-flexbox;
+//   display: -webkit-flex;
+//   display: flex;
+// }
+// .buttonsBottomView{
+//   height: 52px;
+//   color: #262626;
+//   display: -webkit-box;
+//   display: -moz-box;
+//   display: -ms-flexbox;
+//   display: -webkit-flex;
+//   display: flex;
+//   text-align: center;
+// }
+// .btnRound{
+//   width: 48px;
+//   height: 48px;
+//   border-width: 1px;
+//   border-style: solid;
+//   border-color: rgb(224, 224, 224);
+//   border-image: initial;
+//   border-radius: 50%;
+//   cursor: pointer;
+//   justify-content: center;
+//   -webkit-box-pack: center;
+//   align-items: center;
+//   -webkit-box-align: center;
+//   display: -webkit-box;
+//   display: -moz-box;
+//   display: -ms-flexbox;
+//   display: -webkit-flex;
+//   display: flex;
+//   background-color: #FFFFFF;
+//   -webkit-appearance: button;
+//   text-transform: none;
+//   color: inherit;
+//   font: inherit;
+//   margin: 0;
+//   overflow: visible;
+// }
+// .amount{
+//   padding-right: 8px;
+//   padding-left: 8px;
+//   justify-content: center;
+//   -webkit-box-pack: center;
+//   align-items: center;
+//   -webkit-box-align: center;
+//   display: -webkit-box;
+//   display: -moz-box;
+//   display: -ms-flexbox;
+//   display: -webkit-flex;
+//   display: flex;
+// }
+// .buttonCartBottomView{
+//   flex: 1;
+//   margin-left: 32px;
+//   box-sizing: border-box;
+// }
+// .btnCart{
+//   border-width: 1px;
+//   border-style: solid;
+//   border-color: rgb(62, 153, 32);
+//   border-image: initial;
+//   background: rgb(62, 153, 32);
+//   stroke: rgb(255, 255, 255);
+//   min-width: 120px;
+//   height: 48px;
+//   text-decoration: none;
+//   line-height: 0;
+//   border-radius: 2px;
+//   padding: 8px 16px;
+//   font-size: 14px;
+//   -webkit-font-smoothing: antialiased;
+//   cursor: pointer;
+//   position: relative;
+//   justify-content: center;
+//   -webkit-box-pack: center;
+//   align-items: center;
+//   -webkit-box-align: center;
+//   display: -webkit-box;
+//   display: -moz-box;
+//   display: -ms-flexbox;
+//   display: -webkit-flex;
+//   display: flex;
+//   fill: #FFFFFF;
+//   color: #FFFFFF;
+//   width: 100%;
+//   text-align: center;
+//   -webkit-appearance: button;
+//   text-transform: none;
+//   overflow: visible;
+//   margin: 0;
+// }
+// .btnCart:hover{
+//   border-color: rgb(36, 122, 0);
+//   background: rgb(36, 122, 0);
+// }
+// .totalCart{
+//   text-align: right;
+// }
+
+// .titulo{
+//   font-size: 32px;
+//   color: #262626;
+// }
+// .descripcion{
+//   line-height: 16px;
+//   font-size: 13px;
+//   color: #757575;
+//   margin-top:15px;
+// }
+// .divSubTitulos{
+//   margin: 0px 0px 8px;
+//   padding: 10px 24px;
+//   justify-content: space-between;
+//   -webkit-box-pack: justify;
+//   background-color: #F5F5F5;
+//   align-items: center;
+//   -webkit-box-align: center;
+//   display: -webkit-box;
+//   display: -moz-box;
+//   display: -ms-flexbox;
+//   display: -webkit-flex;
+//   display: flex;
+// }
+// .divSubTitulos div{
+//   font-size: 20px;
+//   font-family: UberMoveText-Medium, Helvetica, sans-serif;
+//   color: #262626;
+//   line-height: 24px;
+//   -webkit-font-smoothing: antialiased;
+// }
+
+// @media only screen and (min-width: 769px)  {
+//   .buttonsBottomView{
+//     line-height: 24px;
+//     font-size: 16px;
+//     color: rgb(38, 38, 38);
+//     -webkit-font-smoothing: antialiased;
+//   }
+  
+// }
+// @media only screen and (min-width: 567px)  {
+//   .buttonCartBottomView{
+//     margin-left: 32px;
+//   }
+//   .price{
+//     display: none;
+//   }
+// }
+// @media only screen and (max-width: 768px) {
+//   .buttonsBottomView{
+//     margin-right: 10px;
+//   }
+// }
+// @media only screen and (max-width: 566px) {
+//   .add-price{
+//     display: none;
+//   }
+//   .totalCart{
+//     text-align: center;
+//   }
+// }

@@ -49,5 +49,4 @@ export class ShopPage implements OnInit {
     });
     await modal.present();
   }
-
 }

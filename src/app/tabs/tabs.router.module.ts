@@ -26,6 +26,24 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'history',
+        children: [
+          {
+            path: '',
+            loadChildren: '../history/history.module#HistoryPageModule'
+          }
+        ]
+      },
+      {
+        path: 'settings',
+        children: [
+          {
+            path: '',
+            loadChildren: '../settings/settings.module#SettingsPageModule'
+          }
+        ]
+      },
+      {
         path: '',
         redirectTo: '/tabs/proveedor',
         pathMatch: 'full'
