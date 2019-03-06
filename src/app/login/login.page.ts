@@ -30,7 +30,7 @@ export class LoginPage implements OnInit {
     console.log(this.user, this.pass);
     
     const _this = this;
-    
+    /*
     _this.store.dispatch([
       new SetLogged(true),
     ]).subscribe(d => {
@@ -42,7 +42,7 @@ export class LoginPage implements OnInit {
       //   console.log(d);
       // });
     });
-
+    */
   }
 
   async OpenModal(){
@@ -53,4 +53,9 @@ export class LoginPage implements OnInit {
 
     modal.present();
   }  
+
+  validate(){
+    console.log('validar');
+    
+  }
 }
