@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/store/app.state';
 import { Store, Select } from '@ngxs/store';
-import { SetShowForm } from 'src/app/store/app.actions';
+import { SetShowComponentShop, SetDataAlert } from 'src/app/store/app.actions';
 import { AngularFireDatabase } from 'angularfire2/database';
 
 @Component({
@@ -13,7 +13,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 export class FormComponent implements OnInit {
   @Select(state => state.app.idProveedor) StoreidProveedor;
   @Select(state => state.app.accion) accion;
-  @Select(state => state.app.confirmDialogCancel) confirmDialogCancel;
+  @Select(state => state.app.dataAlert.show) showAlert;
 
   idProveedor: string;
   form = {
@@ -77,7 +77,7 @@ export class FormComponent implements OnInit {
   }
   cancel() {
     this.store.dispatch([
-      // new SetConfirmDialogCancel(true),
+      new SetDataAlert({show:true,from:'form',to:'shop'}),
     ]).subscribe(d => {
       console.log(d);
     });
@@ -124,7 +124,7 @@ export class FormComponent implements OnInit {
       ingrediente: arrIngrediente
     }).then(function() {
       _this.store.dispatch([
-        new SetShowForm(false)
+        new SetShowComponentShop('shop'),
       ]);
     });
   }
@@ -158,7 +158,7 @@ export class FormComponent implements OnInit {
       ingrediente: arrIngrediente
     }).then(function() {
       _this.store.dispatch([
-        new SetShowForm(false)
+        new SetShowComponentShop('shop'),
       ]);
     });
   }

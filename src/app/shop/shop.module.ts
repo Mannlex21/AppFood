@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { ShopPage } from './shop.page';
 import { ListComponent } from './list/list.component';
+import { FormComponent } from './form/form.component';
+import { AlertComponent } from './components/alert/alert.component';
 import { MenuComponent } from './menu/menu.component';
 import { ViewMenuComponent } from './components/view-menu/view-menu.component';
 import { CartModalComponent } from './components/cart-modal/cart-modal.component';
@@ -91,7 +93,9 @@ const routes: Routes = [
     FormaterPrice,
     FormaterPriceAdd,
     FormaterAddress,
-    FormaterPhone
+    FormaterPhone,
+    FormComponent,
+    AlertComponent
   ],
   entryComponents: [
     ViewMenuComponent,

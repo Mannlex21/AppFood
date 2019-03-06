@@ -3,7 +3,7 @@ import { AlertController } from '@ionic/angular';
 import { Store } from '@ngxs/store';
 import { AppState } from 'src/app/store/app.state';
 import { Observable } from 'rxjs';
-import { SetShowForm, SetShowComponentShop } from 'src/app/store/app.actions';
+import { SetShowComponentShop, SetDataAlert } from 'src/app/store/app.actions';
 
 @Component({
   selector: 'alert-component',
@@ -12,13 +12,20 @@ import { SetShowForm, SetShowComponentShop } from 'src/app/store/app.actions';
 })
 export class AlertComponent implements OnInit {
   state$: Observable<AppState>;
+  dataAlert= {};
   constructor(public alertController: AlertController, private store: Store) {
-   }
+    this.state$ = this.store.select(state => state);
+  }
 
   ngOnInit() {
-    this.presentAlertConfirm();
+    const _this = this;
+    _this.presentAlertConfirm();
+    _this.state$.subscribe(data => {
+      _this.dataAlert = data['app'].dataAlert;
+    });
   }
   async presentAlertConfirm() {
+    const _this = this;
     const alert = await this.alertController.create({
       header: 'Cancelar',
       message: 'Todos los datos se perderan. ¿Deseas salir?',
@@ -30,7 +37,7 @@ export class AlertComponent implements OnInit {
           handler: (blah) => {
             console.log('Confirm Cancel: blah');
             this.store.dispatch([
-              // new SetConfirmDialogCancel(false),
+              new SetDataAlert({show:false,from:'form',to:'shop'}),
             ]);
           }
         }, {
@@ -38,8 +45,8 @@ export class AlertComponent implements OnInit {
           handler: () => {
             console.log('Confirm Okay');
             this.store.dispatch([
-              // new SetConfirmDialogCancel(false),
-              new SetShowComponentShop('shop'),
+              new SetDataAlert({show:false,from:'form',to:'shop'}),
+              new SetShowComponentShop(_this.dataAlert['to']),
             ]);
           }
         }

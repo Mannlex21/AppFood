@@ -1,6 +1,6 @@
 import { State, Action, StateContext } from '@ngxs/store';
 import { SetIdProveedor, SetShowForm, SetAccion,
-        SetConfirmDialogCancel, SetShowComponentShop, SetShowViewMenu, SetCarrito, SetShowCartModal } from './app.actions';
+        SetShowComponentShop, SetShowViewMenu, SetCarrito, SetShowCartModal, SetDataAlert } from './app.actions';
 
 export interface AppStateModel {
   idProveedor: string;
@@ -12,6 +12,7 @@ export interface AppStateModel {
   showViewMenu: boolean;
   showCartModal: boolean;
   carrito: Array<any>;
+  dataAlert: Object;
 }
 @State<AppStateModel>({
   name: 'app',
@@ -25,6 +26,11 @@ export interface AppStateModel {
     showViewMenu: false,
     showCartModal: false,
     carrito: [],
+    dataAlert: {
+      show:false,
+      from:'',
+      to: ''
+    }
   }
 })
 export class AppState {
@@ -39,10 +45,6 @@ export class AppState {
   @Action(SetShowForm)
   setShowForm({ patchState }: StateContext<AppStateModel>, { playload }: SetShowForm) {
     patchState({ showForm: playload});
-  }
-  @Action(SetConfirmDialogCancel)
-  setConfirmDialogCancel({ patchState }: StateContext<AppStateModel>, { playload }: SetConfirmDialogCancel) {
-    patchState({ confirmDialogCancel: playload});
   }
 
   @Action(SetShowComponentShop)
@@ -61,5 +63,10 @@ export class AppState {
   @Action(SetShowCartModal)
   setShowCartModal({ patchState }: StateContext<AppStateModel>, { playload }: SetShowCartModal) {
     patchState({ showCartModal: playload });
+  }
+
+  @Action(SetDataAlert)
+  setDataAlert({ patchState }: StateContext<AppStateModel>, { playload }: SetDataAlert) {
+    patchState({ dataAlert: playload });
   }
 }

@@ -7,15 +7,15 @@ const routes: Routes = [
     path: 'tabs',
     component: TabsPage,
     children: [
-      {
-        path: 'proveedor',
-        children: [
-          {
-            path: '',
-            loadChildren: '../proveedor/proveedor.module#ProveedorPageModule'
-          }
-        ]
-      },
+      // {
+      //   path: 'proveedor',
+      //   children: [
+      //     {
+      //       path: '',
+      //       loadChildren: '../proveedor/proveedor.module#ProveedorPageModule'
+      //     }
+      //   ]
+      // },
       {
         path: 'shop',
         children: [
@@ -26,14 +26,23 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'history',
+        path: 'chat',
         children: [
           {
             path: '',
-            loadChildren: '../history/history.module#HistoryPageModule'
+            loadChildren: '../chat/chat.module#ChatPageModule'
           }
         ]
       },
+      // {
+      //   path: 'history',
+      //   children: [
+      //     {
+      //       path: '',
+      //       loadChildren: '../history/history.module#HistoryPageModule'
+      //     }
+      //   ]
+      // },
       {
         path: 'settings',
         children: [
@@ -45,14 +54,14 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/tabs/proveedor',
+        redirectTo: '/tabs/shop',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/proveedor',
+    redirectTo: '/tabs/shop',
     pathMatch: 'full'
   }
 ];

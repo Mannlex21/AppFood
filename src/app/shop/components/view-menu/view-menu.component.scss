@@ -106,9 +106,11 @@
 .btnCart{
   border-width: 1px;
   border-style: solid;
-  border-color: rgb(62, 153, 32);
+  background: #1abc9c;
+  border: 1px solid #16a085;
+  // border-color: rgb(62, 153, 32);
   border-image: initial;
-  background: rgb(62, 153, 32);
+  // background: rgb(62, 153, 32);
   stroke: rgb(255, 255, 255);
   min-width: 120px;
   height: 48px;
@@ -139,8 +141,10 @@
   margin: 0;
 }
 .btnCart:hover{
-  border-color: rgb(36, 122, 0);
-  background: rgb(36, 122, 0);
+  background: #1abc9c;
+  border: 1px solid #1dc4a2;
+  // border-color: rgb(36, 122, 0);
+  // background: rgb(36, 122, 0);
 }
 .totalCart{
   text-align: right;

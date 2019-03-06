@@ -45,7 +45,7 @@ export class MenuComponent implements OnInit {
           return val['id'] === _this.idProveedor;
         });
         _this.proveedor = r[0];
-        _this.menu = r[0]['menu'];
+        _this.menu = (r[0]['menu']!==undefined) ? r[0]['menu'] : [];
         this.formatMenu();
       });
     });
@@ -126,6 +126,7 @@ export class MenuComponent implements OnInit {
   }
   saveCart() {
     const _this = this;
+    const date = new Date();
     let total = 0;
     let amount = 0;
     _this.cart.forEach(element => {
@@ -136,6 +137,7 @@ export class MenuComponent implements OnInit {
     // Cuando el login finalize, el path quedaria asi /cart/idUsuario/idCart
     this.db.object('/cart/' + id + '/').set({
       id: id,
+      fecha: date.getDate() + '/' + (date.getMonth()+1) + '/' + date.getFullYear(),
       total: total,
       amount: amount,
       detail: _this.cart

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngxs/store';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { SetIdProveedor, SetShowComponentShop } from 'src/app/store/app.actions';
+import { SetIdProveedor, SetShowComponentShop, SetAccion, SetShowForm } from 'src/app/store/app.actions';
 
 @Component({
   selector: 'list-shop',
@@ -34,5 +34,22 @@ export class ListComponent implements OnInit {
       new SetShowComponentShop('menu'),
       new SetIdProveedor(id)
     ]);
+  }
+  edit(id) {
+    this.store.dispatch([
+      new SetIdProveedor(id),
+      new SetAccion('edit'),
+      new SetShowComponentShop('form'),
+    ]);
+  }
+  newP() {
+    this.store.dispatch([
+      new SetAccion('new'),
+      new SetShowComponentShop('form'),
+    ]);
+  }
+  delete(id) {
+    console.log(id);
+    this.db.database.ref('/proveedor').child('/' + id).remove();
   }
 }

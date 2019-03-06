@@ -3,13 +3,14 @@
     <ion-button color="noColor" mode="ios" size="small" (click)="atras()" *ngIf="showComponentShop==='menu'">
       <ion-icon slot="icon-only" src="../../assets/left-arrow.svg"></ion-icon>
     </ion-button>
-    <ion-title *ngIf="showComponentShop!='menu'">Tienda</ion-title>
+    <ion-title *ngIf="showComponentShop==='shop'">Tienda</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content >
   <list-shop *ngIf="showComponentShop==='shop'"></list-shop>
   <menu-shop *ngIf="showComponentShop==='menu'"></menu-shop>
+  <form-proveedor *ngIf="showComponentShop==='form'"></form-proveedor>
   <view-menu  *ngIf="showViewMenu"></view-menu>
   <cart-modal *ngIf="showCartModal"></cart-modal>
   <cart-shop *ngIf="cart.length>0" (click)="openCartModal()"></cart-shop>
