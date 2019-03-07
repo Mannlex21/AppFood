@@ -8,9 +8,9 @@ import * as $  from 'jquery'
   styleUrls: ['./chat.page.scss'],
 })
 export class ChatPage implements OnInit {
-  name = 'mann';
   msgVal: string = '';
   items = [];
+  usuario = '';
   constructor(private db: AngularFireDatabase,private zone: NgZone ) { 
     // this.items = db.list('/messages', ref => ref.limitToLast(5)).valueChanges();
     
@@ -28,7 +28,10 @@ export class ChatPage implements OnInit {
     // div.scrollTop = div.scrollHeight;
   }
   chatSend(theirMessage: string) {
-    this.db.list('/messages').push({ message: theirMessage, name: this.name});
+    this.db.list('/messages').push({ message: theirMessage, usuario: this.usuario}).then(function () {
+      var div = document.getElementById('div');
+      div.scrollTop = div.scrollHeight;
+    });
     this.msgVal = '';
   }
 }

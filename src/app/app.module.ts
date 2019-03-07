@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { ScrollingModule,ScrollDispatchModule  } from '@angular/cdk/scrolling';
 
 import { RouteReuseStrategy } from '@angular/router';
 import { AngularFireModule } from 'angularfire2';
@@ -38,6 +39,8 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
     NgxsLoggerPluginModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
+    ScrollingModule,
+    ScrollDispatchModule
   ],
   providers: [
     StatusBar,

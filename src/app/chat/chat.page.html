@@ -5,15 +5,20 @@
 </ion-header>
 
 <ion-content class="overflow: hidden;">
-  <div style="overflow: hidden;height: 100%;padding: 0 0 25px 0;">
+  <div style="overflow: hidden;height: 100%;padding: 25px 0 25px 0;">
     <!-- Con el #scrollMe [scrollTop]="scrollMe.scrollHeight" automaticamente va hacia abajo cuando hay un cambio
-          en el ngfor -->
-    <div id="div" style="overflow-y: scroll;height: 100%;" #scrollMe  [scrollTop]="items.length === 0 ? 0 : scrollMe.scrollHeight">
-        <div class="chat-container" *ngFor="let item of items">
-          <a href="#">{{item.name}}</a>
-          <p>{{item.message}}</p>
-        </div>
-      </div>   
+          en el ngfor   #scrollMe  [scrollTop]="items.length === 0 ? 0 : scrollMe.scrollHeight"
+        -->
+    
+    <div id="div" style="overflow-y: scroll;height: 100%;">
+      <div [ngClass]="(item.usuario===usuario)?'chat-container me':'chat-container notMe'" *ngFor="let item of items">
+        <a href="#">{{item.usuario}}</a>
+        <p>{{item.message}}</p>
+      </div>
+    </div>   
   </div>
-  <input class="chat-input" type="text" id="message" placeholder="Chat here..." (keyup.enter)="chatSend($event.target.value)" [(ngModel)]="msgVal" />
+  <div class="chat-input">
+    <input class="user-input" type="text" placeholder="User" [(ngModel)]="usuario" />
+    <input class="msg-input" type="text" id="message" placeholder="Chat here..." (keyup.enter)="chatSend($event.target.value)" [(ngModel)]="msgVal" />
+  </div>
 </ion-content>

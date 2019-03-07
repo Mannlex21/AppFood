@@ -2,9 +2,31 @@
   // height: 100%;
   width: 100%;
 }
+.msg-input{
+  width: 80%;
+}
+.user-input{
+  width:20%;
+  // position: absolute;
+  // top:0;
+  // left:0;
+  // width: 100%;
+}
 .chat-input{
   position: absolute;
   bottom:0;
   left:0;
   width: 100%;
+}
+.me{
+  text-align: right;
+  a{
+  color: blue;
+  }
+}
+.notMe{
+  text-align: left;
+  a{
+    color: red;
+  }
 }
