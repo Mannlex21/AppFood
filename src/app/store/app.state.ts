@@ -1,6 +1,7 @@
 import { State, Action, StateContext } from '@ngxs/store';
 import { SetIdProveedor, SetShowForm, SetAccion,
-        SetShowComponentShop, SetShowViewMenu, SetCarrito, SetShowCartModal, SetDataAlert } from './app.actions';
+        SetShowComponentShop, SetShowViewMenu, SetCarrito, SetShowCartModal, SetDataAlert,
+        SetConfirmDialogCancel, SetLogged } from './app.actions';
 
 export interface AppStateModel {
   idProveedor: string;
@@ -13,6 +14,7 @@ export interface AppStateModel {
   showCartModal: boolean;
   carrito: Array<any>;
   dataAlert: Object;
+  logged: boolean;
 }
 @State<AppStateModel>({
   name: 'app',
@@ -27,10 +29,11 @@ export interface AppStateModel {
     showCartModal: false,
     carrito: [],
     dataAlert: {
-      show:false,
-      from:'',
+      show: false,
+      from: '',
       to: ''
-    }
+    },
+    logged: false
   }
 })
 export class AppState {
@@ -68,5 +71,10 @@ export class AppState {
   @Action(SetDataAlert)
   setDataAlert({ patchState }: StateContext<AppStateModel>, { playload }: SetDataAlert) {
     patchState({ dataAlert: playload });
+  }
+
+  @Action(SetLogged)
+  setLogged({ patchState }: StateContext<AppStateModel>, { playload }: SetLogged) {
+    patchState({ logged: playload });
   }
 }

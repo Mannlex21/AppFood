@@ -36,3 +36,9 @@ export class SetDataAlert {
   static readonly type = '[app] set setCarrito';
   constructor(public playload: Object) {}
 }
+
+export class SetLogged {
+    static readonly type = '[app] set logged';
+    constructor(public playload: boolean){}
+}
+
