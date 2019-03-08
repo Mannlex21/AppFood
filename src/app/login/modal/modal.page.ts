@@ -11,7 +11,7 @@ import { Store } from '@ngxs/store';
 })
 export class ModalPage implements OnInit {
 
-  form={ 
+  form = {
     nombre: '',
     apellidoPaterno: '',
     apellidoMaterno: '',
@@ -36,8 +36,8 @@ form2: any = { };
 
   constructor(
     private nav: NavParams,
-    private ModalController: ModalController,
-    private FormsModule:FormsModule,
+    private modalController: ModalController,
+    private formsModule: FormsModule,
     private db: AngularFireDatabase,
     private store: Store
     ) {
@@ -69,45 +69,37 @@ form2: any = { };
 
   }
 
-  CloseModal(){
-    this.ModalController.dismiss();
+  CloseModal() {
+    this.modalController.dismiss();
   }
 
-  Registrar(){
-
-    console.log(this.form);
-
-    const id = this.db.database.ref('/usuario').push().key;
-    const _this = this;
-
-    this.db.object('/usuario/' + id + '/').set({
-      id: id,
-      nombre: _this.form.nombre + ' ' + _this.form.apellidoPaterno + ' ' + _this.form.apellidoMaterno,
-      correo: _this.form.correo,
-      telefono: _this.form.telefono,
-      domicilio: _this.form.domicilio,
-      ciudad: _this.form.ciudad,
-      estado: _this.form.estado,
-      cp: _this.form.cp
-      }).then(function() {});
-    
-  }
-
-  upper(event, val){
-    this.form[val] = this.form[val].toUpperCase()
+  upper(event, val) {
+    this.form[val] = this.form[val].toUpperCase();
     // this.form.nombre = this.form.nombre.toUpperCase();
   }
 
-  lower(event, val){
+  lower(event, val) {
     console.log(val);
-    
-    this.form2.value.correo = this.form2.value.correo.toLowerCase();    
-    console.log(this.form2.value.correo);   
+    this.form2.value.correo = this.form2.value.correo.toLowerCase();
+    console.log(this.form2.value.correo);
     // this.form.nombre = this.form.nombre.toUpperCase();
   }
 
-  JS(form){
-
-    console.log(form);    
+  signIn(form) {
+    console.log(form);
+    if (form.value) {
+      const id = this.db.database.ref('/usuario').push().key;
+      const _this = this;
+      this.db.object('/usuario/' + id + '/').set({
+        id: id,
+        nombre: _this.form.nombre + ' ' + _this.form.apellidoPaterno + ' ' + _this.form.apellidoMaterno,
+        correo: _this.form.correo,
+        telefono: _this.form.telefono,
+        domicilio: _this.form.domicilio,
+        ciudad: _this.form.ciudad,
+        estado: _this.form.estado,
+        cp: _this.form.cp
+      }).then(function() {});
+    }
   }
 }

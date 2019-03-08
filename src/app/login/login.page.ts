@@ -6,7 +6,7 @@ import { Navigate } from '../store/router.state';
 import { SetLogged } from '../store/app.actions';
 import { Route, RouterModule, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { ModalPage } from '../modal/modal.page';
+import { ModalPage } from './modal/modal.page';
 
 @Component({
   selector: 'app-login',
@@ -19,16 +19,14 @@ export class LoginPage implements OnInit {
 
   state$: Observable<AppState>;
 
-  constructor(private store: Store, private router: Router, private ModalController: ModalController) {
+  constructor(private store: Store, private router: Router, private modalController: ModalController) {
     this.state$ = this.store.select(state => state);
    }
 
   ngOnInit() {
   }
-  
   SignIn() {
     console.log(this.user, this.pass);
-    
     const _this = this;
     /*
     _this.store.dispatch([
@@ -45,17 +43,14 @@ export class LoginPage implements OnInit {
     */
   }
 
-  async OpenModal(){
-    
-    const modal = await this.ModalController.create({
+  async OpenModal() {
+    const modal = await this.modalController.create({
       component: ModalPage
     });
-
     modal.present();
-  }  
+  }
 
-  validate(){
+  validate() {
     console.log('validar');
-    
   }
 }

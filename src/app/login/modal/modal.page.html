@@ -7,7 +7,7 @@
 
 <ion-content padding>
 
-    <form #form2="ngForm" (ngSubmit)="JS(form2)">
+    <form #form2="ngForm" (ngSubmit)="signIn(form2)">
       <ion-grid>
         <ion-row>          
           <!-- Informacion principal proveedor -->
@@ -90,7 +90,7 @@
         </ion-row>
         <ion-row style="margin-top:20px">
           <ion-col size-xs="12" text-right>
-            <ion-button type="submit" shape="round" color="dark" [disabled]="!form2.valid" (submit)="JS(form2)">Registrar</ion-button>
+            <ion-button type="submit" shape="round" color="dark" [disabled]="!form2.valid">Registrar</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

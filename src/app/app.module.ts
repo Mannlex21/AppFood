@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { ScrollingModule,ScrollDispatchModule  } from '@angular/cdk/scrolling';
+import { ScrollingModule, ScrollDispatchModule  } from '@angular/cdk/scrolling';
 
 import { RouteReuseStrategy } from '@angular/router';
 import { AngularFireModule } from 'angularfire2';
@@ -20,7 +20,7 @@ import { RouterState } from './store/router.state';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
-import { ModalPage } from './modal/modal.page';
+import { ModalPage } from './login/modal/modal.page';
 import { FormsModule } from '@angular/forms';
 
 

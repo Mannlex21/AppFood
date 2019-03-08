@@ -1,7 +1,6 @@
 import { State, Action, StateContext } from '@ngxs/store';
 import { SetIdProveedor, SetShowForm, SetAccion,
-        SetShowComponentShop, SetShowViewMenu, SetCarrito, SetShowCartModal, SetDataAlert,
-        SetConfirmDialogCancel, SetLogged } from './app.actions';
+        SetShowComponentShop, SetShowViewMenu, SetCarrito, SetShowCartModal, SetDataAlert, SetLogged } from './app.actions';
 
 export interface AppStateModel {
   idProveedor: string;
