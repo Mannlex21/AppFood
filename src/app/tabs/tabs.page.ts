@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AppState } from '../store/app.state';
 import { Navigate } from '../store/router.state';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-tabs',
@@ -12,24 +13,41 @@ import { Router } from '@angular/router';
 })
 export class TabsPage implements OnInit {
   state$: Observable<AppState>;
-  constructor(private store: Store, private router: Router){
+  constructor(private store: Store, private router: Router, public afAuth: AngularFireAuth){
     this.state$ = this.store.select(state => state.app);      
-    const _this = this;
+    
 
-    this.state$.subscribe(data => {
-      console.log(data);  
-      if(!data['logged']){
-        _this.router.navigate(['/login']);
-        // _this.store.dispatch([
-        //   new Navigate('/login'),
-        // ]).subscribe(d => {
-        //   console.log(d);
-        // });
-
-      }   
-    });  
+   
+  }
+  ngAfterViewInit() { 
+    
+  
+  }
+  ngAfterContentInit(){
+    // const _this = this;
+    // _this.afAuth.auth.onAuthStateChanged(user => {
+    //   if (user) {
+    //     console.log(user)
+    //   }else{
+    //     _this.router.navigate(['/login']);
+    //   }
+    // });
   }
   ngOnInit() {
-    
+    // const _this = this;
+    // _this.afAuth.auth.onAuthStateChanged(user => {
+    //   if (user) {
+    //     console.log(user)
+    //   }else{
+    //     _this.router.navigate(['/login']);
+    //   }
+    // });
+    // this.state$.subscribe(data => {
+    //   console.log(data);  
+      
+    //   if(!data['logged']){
+    //     _this.router.navigate(['/login']);
+    //   }   
+    // });  
   }
 }

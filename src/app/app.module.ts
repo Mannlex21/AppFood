@@ -22,11 +22,15 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { ModalPage } from './login/modal/modal.page';
 import { FormsModule } from '@angular/forms';
-
+import { AngularFirestore,  FirestoreSettingsToken } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AuthGuard } from './shared/guard/auth.guard';
+import { AuthService } from './shared/services/auth.service';
+import { VerifyEmailComponent } from './login/verify-email/verify-email.component';
 
 
 @NgModule({
-  declarations: [AppComponent, ModalPage],
+  declarations: [AppComponent, ModalPage,VerifyEmailComponent ],
   entryComponents: [ModalPage],
   imports: [
     BrowserModule,
@@ -43,12 +47,16 @@ import { FormsModule } from '@angular/forms';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     ScrollingModule,
-    ScrollDispatchModule
+    ScrollDispatchModule,
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    AngularFirestore,
+    AngularFireAuth,
+    AuthService,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: FirestoreSettingsToken, useValue: {} }
   ],
   bootstrap: [AppComponent]
 })

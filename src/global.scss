@@ -19,6 +19,22 @@
   --ion-color-shade: var(--ion-color-noColor-shade) !important;
   --ion-color-tint: var(--ion-color-noColor-tint) !important;
 }
+.ion-color-facebookColor {
+  --ion-color-base: var(--ion-color-facebookColor) !important;
+  --ion-color-base-rgb: var(--ion-color-facebookColor-rgb) !important;
+  --ion-color-contrast: var(--ion-color-facebookColor-contrast) !important;
+  --ion-color-contrast-rgb: var(--ion-color-facebookColor-contrast-rgb) !important;
+  --ion-color-shade: var(--ion-color-facebookColor-shade) !important;
+  --ion-color-tint: var(--ion-color-facebookColor-tint) !important;
+}
+.ion-color-googleColor {
+  --ion-color-base: var(--ion-color-googleColor) !important;
+  --ion-color-base-rgb: var(--ion-color-googleColor-rgb) !important;
+  --ion-color-contrast: var(--ion-color-googleColor-contrast) !important;
+  --ion-color-contrast-rgb: var(--ion-color-googleColor-contrast-rgb) !important;
+  --ion-color-shade: var(--ion-color-googleColor-shade) !important;
+  --ion-color-tint: var(--ion-color-googleColor-tint) !important;
+}
 @font-face {
   font-family: 'Helvetica-Bold';
   src: url('./assets/font/Helvetica-Bold.woff') format('woff');

@@ -3,6 +3,8 @@ import { NavParams, ModalController } from '@ionic/angular';
 import { FormsModule, NgForm, FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Store } from '@ngxs/store';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-modal',
@@ -13,14 +15,10 @@ export class ModalPage implements OnInit {
 
   form = {
     nombre: '',
-    apellidoPaterno: '',
-    apellidoMaterno: '',
     correo: '',
-    telefono: null,
-    domicilio: '',
-    ciudad: '',
-    estado: '',
-    cp: null
+    // telefono: null,
+    // usuario:'',
+    pass:''
   };
   private _fullName: string;
 
@@ -30,76 +28,46 @@ export class ModalPage implements OnInit {
 
 set fullName(newName: string) {
     this.form.nombre = this.form.nombre.toUpperCase();
-}
+}form2: any = { };
 
-form2: any = { };
-
-  constructor(
-    private nav: NavParams,
-    private modalController: ModalController,
-    private formsModule: FormsModule,
-    private db: AngularFireDatabase,
-    private store: Store
-    ) {
-      // this.form2 = this.formBuilder.group({
-      //   nombre: [''],
-      //   apellidoPaterno: [''],
-      //   apellidoMaterno: [''],
-      //   correo: [''],
-      //   telefono: [''],
-      //   domicilio: [''],
-      //   ciudad: [''],
-      //   estado: [''],
-      //   cp: ['']
-      // });
-    }
-
-    SaveChanges(form) {
-      console.log(form.value);
-      }
-
-  ngOnInit() {
-
-    this.form2 = new FormGroup({
-      'name': new FormControl(this.form2.nombre, [
-        Validators.required,
-        Validators.minLength(4)
-      ])
-    });
+  constructor( private nav: NavParams, private modalController: ModalController, private formsModule: FormsModule,
+    private db: AngularFireDatabase, private store: Store, public afAuth: AngularFireAuth, 
+    public authService: AuthService) {
 
   }
-
+  SaveChanges(form) {
+    console.log(form.value);
+  }
+  ngOnInit() {
+  }
+  async myDismiss() {
+    await this.modalController.dismiss();
+  }
   CloseModal() {
     this.modalController.dismiss();
   }
-
   upper(event, val) {
     this.form[val] = this.form[val].toUpperCase();
-    // this.form.nombre = this.form.nombre.toUpperCase();
   }
-
   lower(event, val) {
-    console.log(val);
-    this.form2.value.correo = this.form2.value.correo.toLowerCase();
-    console.log(this.form2.value.correo);
-    // this.form.nombre = this.form.nombre.toUpperCase();
+    this.form[val] = this.form[val].toLowerCase();
   }
-
-  signIn(form) {
-    console.log(form);
+  signUp(form) {
+    const _this = this;
     if (form.value) {
       const id = this.db.database.ref('/usuario').push().key;
       const _this = this;
-      this.db.object('/usuario/' + id + '/').set({
+      _this.db.object('/usuario/' + id + '/').set({
         id: id,
-        nombre: _this.form.nombre + ' ' + _this.form.apellidoPaterno + ' ' + _this.form.apellidoMaterno,
-        correo: _this.form.correo,
-        telefono: _this.form.telefono,
-        domicilio: _this.form.domicilio,
-        ciudad: _this.form.ciudad,
-        estado: _this.form.estado,
-        cp: _this.form.cp
+        nombre: form.controls.nombre.value,
+        correo: form.controls.correo.value,
+        // telefono: form.controls.telefono.value,
+        // usuario: form.controls.usuario.value,
+        pass: form.controls.pass.value
       }).then(function() {});
+      this.authService.SignUp(form.controls.correo.value, form.controls.pass.value).then(function () {
+        _this.CloseModal();
+      })
     }
   }
 }

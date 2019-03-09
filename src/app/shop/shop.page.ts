@@ -6,6 +6,10 @@ import { SetShowComponentShop } from '../store/app.actions';
 import { CartModalComponent } from './components/cart-modal/cart-modal.component';
 import { ModalController } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+
+import { AuthService } from "../shared/services/auth.service";
+
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.page.html',
@@ -19,7 +23,8 @@ export class ShopPage implements OnInit {
   showCartModal: boolean;
   cart: any;
 
-  constructor(private store: Store, public modalController: ModalController) {
+  constructor(private store: Store, public modalController: ModalController, 
+    public afAuth: AngularFireAuth, public authService: AuthService) {
     this.menu$ = this.store.select(state => state);
   }
   ngOnInit() {
@@ -48,5 +53,10 @@ export class ShopPage implements OnInit {
        }
     });
     await modal.present();
+  }
+  LogOut(){
+    this.afAuth.auth.signOut().then(function() {
+    }).catch(function(error) {
+    });
   }
 }

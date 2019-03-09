@@ -2,44 +2,107 @@
   <div style="text-align: -webkit-center; margin-top: 50px;">
     <ion-grid>
       <ion-row justify-content-center align-items-center>
+          <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="6" size-xl="4" >
+            <ion-card>
+              <ion-card-content>  
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12" text-center>
+                      <ion-icon style="width:110px;height: 110px;" src="../assets/icon/fast-food.svg"></ion-icon>
+                    </ion-col>
+                    <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12" >
+                      <ion-item>
+                        <ion-label position="floating">
+                          <ion-icon name="mail" color="primary"></ion-icon> Email
+                        </ion-label>
+                        <ion-input [(ngModel)]='email' (blur)="validate()" clearInput (keydown.enter)="SignIn()"></ion-input>
+                      </ion-item>
+                    </ion-col>
+
+                    <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12">
+                      <ion-item>
+                        <ion-label position="floating">
+                            <ion-icon name="unlock" color="primary" ></ion-icon> Contraseña
+                          </ion-label>
+                        <ion-input [(ngModel)]='pass' type="Password" clearInput (keydown.enter)="SignIn()"></ion-input>
+                      </ion-item>
+                    </ion-col>
+                    
+                    <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12">
+                      <ion-button expand="full" color="primary" (click)="SignIn()">        
+                        Entrar
+                      </ion-button>
+                    </ion-col>
+                    <ion-col size-xs="6" size-sm="6" size-md="6" size-lg="6" size-xl="6" text-left>
+                      <a style="cursor: pointer;" (click)="OpenModal()">Registrate</a>
+                    </ion-col>
+                    <ion-col size-xs="6" size-sm="6" size-md="6" size-lg="6" size-xl="6" text-right>
+                      <a style="cursor: pointer;" (click)="forgotPassword()">Reestablecer contraseña</a>
+                    </ion-col>
+                    <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12" text-center>
+                      <span class="or"><span class="orInner">O</span></span>
+                    </ion-col>
+                    <ion-col size-xs="6" size-sm="6" size-md="6" size-lg="6" size-xl="6" text-center>
+                      <ion-button style="width:100%;" color="googleColor" (click)="signUpGoogle()">Google</ion-button>
+                    </ion-col>
+                    <ion-col size-xs="6" size-sm="6" size-md="6" size-lg="6" size-xl="6" text-center>
+                      <ion-button style="width:100%;" color="facebookColor">Facebook</ion-button>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+      </ion-row>
+    </ion-grid>
+    
+    <!-- <ion-grid>
+      <ion-row justify-content-center align-items-center>
         <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="6" size-xl="4" >
-          <ion-card>
-          <ion-card-header>
-            <ion-card-title>
-              <h1 text-center>Ingresar</h1>
-            </ion-card-title>
-          </ion-card-header>    
-          <ion-card-content>  
-          
-            <img
-              style="text-align: -webkit-center; width: 100px"
-              src="..\assets\icon\favicon2.png"
-            >      
+          <ion-card> 
+          <ion-card-content>    
             <div style="width: 70%; text-align: -webkit-center;">
               <ion-item>
-                <ion-label position="floating" style="text-align:center;"><ion-icon name="person" color="primary"></ion-icon> Usuario</ion-label>
-                <ion-input [(ngModel)]='user' (blur)="validate()" clearInput ></ion-input>
+                <ion-label position="floating">
+                  <ion-icon name="mail" color="primary"></ion-icon> Email
+                </ion-label>
+                <ion-input [(ngModel)]='email' (blur)="validate()" clearInput (keydown.enter)="SignIn()"></ion-input>
               </ion-item>
               
               <ion-item>
-                <ion-label position="floating" style="text-align:center;"><ion-icon name="unlock" color="primary"></ion-icon> Contraseña</ion-label>
-                <ion-input [(ngModel)]='pass' type="Password" maxlength="8" clearInput ></ion-input>
+                <ion-label position="floating">
+                    <ion-icon name="unlock" color="primary" ></ion-icon> Contraseña
+                  </ion-label>
+                <ion-input [(ngModel)]='pass' type="Password" clearInput (keydown.enter)="SignIn()"></ion-input>
               </ion-item>
             </div>         
             <div style="width: 70%;margin-top:10px;">
               <ion-button expand="full" color="primary" (click)="SignIn()">        
                 Entrar
               </ion-button>
-          
               <ion-button style="margin-top:10px;" expand="full" color="medium" (click)="OpenModal()">        
                 Registrate
               </ion-button>
+              <a style="cursor: pointer;" (click)="forgotPassword()">¿Has olvidado tu contraseña?</a>
             </div>   
           </ion-card-content>
           </ion-card>
         </ion-col>        
       </ion-row> 
-    </ion-grid>
+      <ion-row>
+        <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12" text-center>
+          <span class="or"><span class="orInner">Or</span></span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-xs="6" size-sm="6" size-md="6" size-lg="6" size-xl="6" text-center>
+          <ion-button shape="round" color="dark" (click)="signUpGoogle()">Google</ion-button>
+        </ion-col>
+        <ion-col size-xs="6" size-sm="6" size-md="6" size-lg="6" size-xl="6" text-center>
+          <ion-button type="submit" shape="round" color="dark" [disabled]="!form.valid">Facebook</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid> -->
   </div>
 
 </ion-content>
