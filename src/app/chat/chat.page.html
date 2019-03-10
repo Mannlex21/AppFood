@@ -1,24 +1,55 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>chat</ion-title>
+    <ion-title>Chat</ion-title>
+    <ion-button slot="end" color="noColor" mode="ios" size="small" (click)="authService.SignOut()" >
+      <ion-icon slot="icon-only" name="log-out"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="overflow: hidden;">
-  <div style="overflow: hidden;height: 100%;padding: 25px 0 25px 0;">
-    <!-- Con el #scrollMe [scrollTop]="scrollMe.scrollHeight" automaticamente va hacia abajo cuando hay un cambio
-          en el ngfor   #scrollMe  [scrollTop]="items.length === 0 ? 0 : scrollMe.scrollHeight"
-        -->
-    
+  <div id="messagesBox" style="overflow: hidden;height: 100%;padding: 0px 0 121px 0;">
     <div id="div" style="overflow-y: scroll;height: 100%;">
-      <div [ngClass]="(item.usuario===usuario)?'chat-container me':'chat-container notMe'" *ngFor="let item of items">
-        <a href="#">{{item.usuario}}</a>
-        <p>{{item.message}}</p>
+      <div class="chat-history" [ngClass]="(item.username===username)?'chat-container me':'chat-container notMe'" *ngFor="let item of items">
+        <div class="clearfix">
+          <div class="message-data align-right">
+            <span class="message-data-name"><i class="fa fa-circle online"></i> {{item.username}}</span>
+            <span class="message-data-time">{{item.date}}</span> 
+          </div>
+          <div [ngClass]="(item.username===username)?'message my-message float-right':'message other-message'">
+              {{item.message}}
+          </div>
+        </div>
       </div>
     </div>   
   </div>
   <div class="chat-input">
-    <input class="user-input" type="text" placeholder="User" [(ngModel)]="usuario" />
-    <input class="msg-input" type="text" id="message" placeholder="Chat here..." (keyup.enter)="chatSend($event.target.value)" [(ngModel)]="msgVal" />
+      <div *ngIf="typing">
+        <ion-icon src="../../assets/icon/writing.svg"></ion-icon>
+        {{userTyping[0]}} esta escribiendo...
+      </div>
+      <div class="chat">
+        <div class="chat-message clearfix">
+          <div id="contact-form" >
+            <textarea rows="1" id="message" placeholder ="Escribe un mensaje"
+              [(ngModel)]="msgVal"
+              (keydown.enter)="preventEnter($event)"
+              (keyup.enter)="chatSendEnter($event)"
+              (keyup)="onKeyup($event)"
+            ></textarea>
+          </div>
+          <div class="classBtnSend">
+            <div id="buttonSend" class="classBtnSend2">
+              <div  class="classBtnSend3">
+                <div class="btnSend" (click)="chatSend()">
+                  <ion-icon src="../../assets/icon/send.svg"></ion-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div> <!-- end chat-message -->
+        
+      </div> <!-- end chat -->
   </div>
 </ion-content>

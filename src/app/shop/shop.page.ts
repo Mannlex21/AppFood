@@ -8,7 +8,7 @@ import { ModalController } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 
-import { AuthService } from "../shared/services/auth.service";
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-shop',
@@ -23,7 +23,7 @@ export class ShopPage implements OnInit {
   showCartModal: boolean;
   cart: any;
 
-  constructor(private store: Store, public modalController: ModalController, 
+  constructor(private store: Store, public modalController: ModalController,
     public afAuth: AngularFireAuth, public authService: AuthService) {
     this.menu$ = this.store.select(state => state);
   }
@@ -54,7 +54,7 @@ export class ShopPage implements OnInit {
     });
     await modal.present();
   }
-  LogOut(){
+  LogOut() {
     this.afAuth.auth.signOut().then(function() {
     }).catch(function(error) {
     });

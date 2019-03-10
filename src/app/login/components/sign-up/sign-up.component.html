@@ -1,0 +1,59 @@
+<div style="padding: 45px 0 0 0;height: 100%;">
+  <div class="divTopBarView">
+    <ion-button style="font-size: 16px;" color="noColor" mode="ios" size="small" (click)="myDismiss()">
+      <ion-icon slot="icon-only" name='close'></ion-icon>
+    </ion-button>
+  </div>
+  <div class="divMiddle">
+    <ion-content style="padding: 0 25px;">
+
+      <form #form="ngForm" (ngSubmit)="signUp(form)">
+        <ion-grid>
+          <ion-row>
+            <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12" >
+              <ion-item>
+                <ion-label position="floating">Nombre</ion-label>
+                <ion-input required name="nombre" ngModel #nombre="ngModel" ></ion-input>
+              </ion-item>           
+            </ion-col>
+            <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12" >
+                <ion-item>
+                  <ion-label position="floating">Usuario</ion-label>
+                  <ion-input required name="username" ngModel #username="ngModel" ></ion-input>
+                </ion-item>           
+              </ion-col>
+              <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12" >
+                  <ion-item>
+                    <ion-label position="floating">Contraseña</ion-label>
+                    <ion-input inputmode="password" type="password" required name="pass" ngModel #pass="ngModel"></ion-input>
+                  </ion-item>            
+                </ion-col>
+            <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12" >
+              <ion-item>
+                <ion-label position="floating">Correo</ion-label>
+                <ion-input name="correo" ngModel #correo="ngModel" required></ion-input>
+              </ion-item>              
+            </ion-col>
+            <!-- <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12" >
+              <ion-item>
+                <ion-label position="floating">Teléfono</ion-label>
+                <ion-input type="number" name="telefono" ngModel #telefono="ngModel" pattern="\d{8,10}" required></ion-input>
+              </ion-item>              
+            </ion-col> -->
+          </ion-row>
+          <ion-row>
+            <ion-col size-xs="12" text-center>
+              <ion-button type="submit" shape="round" color="dark" [disabled]="!form.valid">Registrar</ion-button>
+            </ion-col>
+          </ion-row>
+          <!-- <ion-row>
+            <ion-col size-xs="12" text-center>
+              <span class="or"><span class="orInner">Or</span></span>
+            </ion-col>
+          </ion-row> -->
+          
+        </ion-grid>
+      </form>
+    </ion-content>
+  </div>
+</div>

@@ -1,11 +1,11 @@
 <ion-grid>
   <ion-row>
-    <div class="btnAdd showedBtn" (click)="newP()">
+    <div class="btnAdd showedBtn" (click)="newP()" *ngIf="access">
       <div class="btnAdd2">
         <ion-icon style="font-size: 32px;" name="add"></ion-icon>
       </div>
     </div>
-    <ion-col class="showedCard" size-xs="12" size-sm="6" size-md="4" size-lg="4" size-xl="3" >
+    <ion-col class="showedCard" size-xs="12" size-sm="6" size-md="4" size-lg="4" size-xl="3" *ngIf="access">
       <ion-card style="max-height:335px;height:335px;">
         <div style="height: 100%;display: table;width: 100%;" (click)="newP()">
           <div style="display: table-cell;vertical-align: middle;text-align: center;">
@@ -21,7 +21,7 @@
         <ion-card-header>
           <div class="divImgRestaurante">
             <img *ngIf="item.src !=undefined" [src]="item.src" class="imageRestaurant">
-            <div class="btnsRestaurante">
+            <div class="btnsRestaurante" *ngIf="access">
               <ion-button (click)="edit(item.id)"  mode="ios" size="small" color="noColor" class="btnEditRestaurante">
                 <ion-icon slot="icon-only" name="create"></ion-icon>
               </ion-button>

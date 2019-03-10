@@ -10,11 +10,11 @@
       <ion-label>Tienda</ion-label>
     </ion-tab-button>
 
-    <!-- <ion-tab-button tab="history">
+    <ion-tab-button tab="history" *ngIf="access">
       <ion-icon src="../assets/icon/clock.svg"></ion-icon>
       <ion-label>Historial</ion-label>
     </ion-tab-button>
-     -->
+    
     <ion-tab-button tab="settings">
       <ion-icon src="../assets/icon/settings.svg"></ion-icon>
       <ion-label>Configuración</ion-label>

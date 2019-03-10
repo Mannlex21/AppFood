@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngxs/store';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -11,22 +11,29 @@ import { SetIdProveedor, SetShowComponentShop, SetAccion, SetShowForm, SetLogged
 })
 export class ListComponent implements OnInit {
   proveedor = [];
+  user: any;
+  access = false;
 
   constructor(private store: Store, private db: AngularFireDatabase) {
+    this.user = JSON.parse(localStorage.getItem('user'));
   }
 
   ngOnInit() {
     const _this = this;
     // AQUI SE HACE LA CONSULTA A LA BD FIREBASE PARA OBTENER DATOS
-    // let key = this.db.list('myFirebasePath').push({key:val}).key;
     _this.db.list('/proveedor').valueChanges().subscribe(d => {
       _this.proveedor = []; // Resetea el array para poder recibir info
-      console.log(d);
       d.forEach(element => {
         element['src'] = 'https://goo.gl/jhsD4G';
         _this.proveedor.push(element);
       });
-
+    });
+    _this.db.list('/usuario').valueChanges().subscribe(d => {
+      d.forEach((element: any) => {
+        if (element.uid === _this.user.uid) {
+        _this.access = (element.type === 'admin') ? true : false;
+        }
+      });
     });
   }
   viewMenu(id) {
@@ -49,7 +56,6 @@ export class ListComponent implements OnInit {
     ]);
   }
   delete(id) {
-    console.log(id);
     this.db.database.ref('/proveedor').child('/' + id).remove();
   }
   logout() {

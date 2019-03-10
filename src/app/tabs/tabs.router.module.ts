@@ -8,15 +8,6 @@ const routes: Routes = [
     component: TabsPage,
     data: { delay: true },
     children: [
-      // {
-      //   path: 'proveedor',
-      //   children: [
-      //     {
-      //       path: '',
-      //       loadChildren: '../proveedor/proveedor.module#ProveedorPageModule'
-      //     }
-      //   ]
-      // },
       {
         path: 'shop',
         children: [
@@ -35,15 +26,15 @@ const routes: Routes = [
           }
         ]
       },
-      // {
-      //   path: 'history',
-      //   children: [
-      //     {
-      //       path: '',
-      //       loadChildren: '../history/history.module#HistoryPageModule'
-      //     }
-      //   ]
-      // },
+      {
+        path: 'history',
+        children: [
+          {
+            path: '',
+            loadChildren: '../history/history.module#HistoryPageModule'
+          }
+        ]
+      },
       {
         path: 'settings',
         children: [

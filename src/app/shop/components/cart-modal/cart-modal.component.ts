@@ -64,7 +64,7 @@ export class CartModalComponent implements OnInit {
     // Cuando el login finalize, el path quedaria asi /cart/idUsuario/idCart
     this.db.object('/cart/' + id + '/').set({
       id: id,
-      fecha: date.getDate() + '/' + (date.getMonth()+1) + '/' + date.getFullYear(),
+      fecha: date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear(),
       total: total,
       amount: amount,
       detail: _this.cart

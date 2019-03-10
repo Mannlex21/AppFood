@@ -77,9 +77,8 @@ export class FormComponent implements OnInit {
   }
   cancel() {
     this.store.dispatch([
-      new SetDataAlert({show:true,from:'form',to:'shop'}),
+      new SetDataAlert({show: true, from: 'form', to: 'shop'}),
     ]).subscribe(d => {
-      console.log(d);
     });
   }
   clickSaveEdit() {
@@ -176,7 +175,6 @@ export class FormComponent implements OnInit {
       _this.form.estado = r[0]['estado'];
       _this.form.cp = r[0]['cp'];
       _this.form.pagina = r[0]['pagina'];
-      console.log(r);
     });
   }
   // Agrega a la tabla del menu

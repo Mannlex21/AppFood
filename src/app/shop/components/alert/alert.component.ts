@@ -35,17 +35,15 @@ export class AlertComponent implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
-            console.log('Confirm Cancel: blah');
             this.store.dispatch([
-              new SetDataAlert({show:false,from:'form',to:'shop'}),
+              new SetDataAlert({show: false, from: 'form', to: 'shop'}),
             ]);
           }
         }, {
           text: 'Ok',
           handler: () => {
-            console.log('Confirm Okay');
             this.store.dispatch([
-              new SetDataAlert({show:false,from:'form',to:'shop'}),
+              new SetDataAlert({show: false, from: 'form', to: 'shop'}),
               new SetShowComponentShop(_this.dataAlert['to']),
             ]);
           }

@@ -6,12 +6,12 @@ import { Navigate } from '../store/router.state';
 import { SetLogged } from '../store/app.actions';
 import { Route, RouterModule, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { ModalPage } from './modal/modal.page';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 
-import { AuthService } from "../shared/services/auth.service";
+import { AuthService } from '../shared/services/auth.service';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 @Component({
   selector: 'app-login',
@@ -24,18 +24,17 @@ export class LoginPage implements OnInit {
 
   state$: Observable<AppState>;
 
-  constructor(private store: Store, private router: Router, private modalController: ModalController, 
+  constructor(private store: Store, private router: Router, private modalController: ModalController,
     public afAuth: AngularFireAuth, public authService: AuthService, private db: AngularFireDatabase) {
     this.state$ = this.store.select(state => state);
    }
 
   ngOnInit() {
   }
-  forgotPassword(){
+  forgotPassword() {
     this.authService.ForgotPassword(this.email);
   }
   SignIn() {
-    
     const _this = this;
     _this.authService.SignIn(this.email, this.pass);
     // _this.afAuth.auth.signInWithEmailAndPassword(this.email, this.pass).then(function (data) {
@@ -55,33 +54,60 @@ export class LoginPage implements OnInit {
 
   async OpenModal() {
     const modal = await this.modalController.create({
-      component: ModalPage
+      component: SignUpComponent
     });
-    modal.present();
+    await modal.present();
   }
-
-  validate() {
-    console.log('validar');
-  }
-  signUpGoogle(){
+  signUpGoogle() {
     const _this = this;
     this.authService.GoogleAuth().then(function (data) {
-      _this.db.list('/usuario').valueChanges().subscribe(d => { 
-        d.forEach(element => {
-          
-        });
-        var r = d.filter(function (obj: any) {
-          return obj.correo === data.additionalUserInfo.profile.email;
-        })
-        if(r.length === 0){
-          const id = _this.db.database.ref('/usuario').push().key;
-          _this.db.object('/usuario/' + id + '/').set({
-            id: id,
-            nombre: data.additionalUserInfo.profile.name,
-            correo: data.additionalUserInfo.profile.email
-          }).then(function() {});
+      if (data.hasOwnProperty('additionalUserInfo')) {
+        if (data.additionalUserInfo.hasOwnProperty('profile')) {
+          if (data.additionalUserInfo.profile.hasOwnProperty('email')) {
+            const uid = data.user.uid;
+            _this.db.list('/usuario').valueChanges().subscribe(d => {
+              const r = d.filter(function (obj: any) {
+                return obj.uid === uid;
+              });
+              if (r.length === 0) {
+                _this.db.object('/usuario/' + uid + '/').set({
+                  uid: uid,
+                  nombre: data.additionalUserInfo.profile.name,
+                  correo: data.additionalUserInfo.profile.email,
+                  username: data.additionalUserInfo.profile.name,
+                  type: 'cliente'
+                }).then(function() {});
+              }
+            });
+          }
         }
-      });
+      }
+    });
+  }
+  signUpFacebook() {
+    const _this = this;
+    this.authService.FacebookAuth().then(function (data) {
+      if (data.hasOwnProperty('additionalUserInfo')) {
+        if (data.additionalUserInfo.hasOwnProperty('profile')) {
+          if (data.additionalUserInfo.profile.hasOwnProperty('email')) {
+            const uid = data.user.uid;
+            _this.db.list('/usuario').valueChanges().subscribe(d => {
+              const r = d.filter(function (obj: any) {
+                return obj.uid === uid;
+              });
+              if (r.length === 0) {
+                _this.db.object('/usuario/' + uid + '/').set({
+                  uid: uid,
+                  nombre: data.additionalUserInfo.profile.name,
+                  correo: data.additionalUserInfo.profile.email,
+                  username: data.additionalUserInfo.profile.name,
+                  type: 'cliente'
+                }).then(function() {});
+              }
+            });
+          }
+        }
+      }
     });
   }
 }

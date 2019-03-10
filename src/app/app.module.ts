@@ -20,18 +20,17 @@ import { RouterState } from './store/router.state';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
-import { ModalPage } from './login/modal/modal.page';
 import { FormsModule } from '@angular/forms';
 import { AngularFirestore,  FirestoreSettingsToken } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthGuard } from './shared/guard/auth.guard';
 import { AuthService } from './shared/services/auth.service';
-import { VerifyEmailComponent } from './login/verify-email/verify-email.component';
+import { VerifyEmailComponent } from './login/components/verify-email/verify-email.component';
 
 
 @NgModule({
-  declarations: [AppComponent, ModalPage,VerifyEmailComponent ],
-  entryComponents: [ModalPage],
+  declarations: [AppComponent, VerifyEmailComponent ],
+  entryComponents: [],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

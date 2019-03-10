@@ -1,7 +1,11 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Historial</ion-title>
+    <ion-button slot="end" color="noColor" mode="ios" size="small" (click)="authService.SignOut()" >
+      <ion-icon slot="icon-only" name="log-out"></ion-icon>
+    </ion-button>
   </ion-toolbar>
+  
 </ion-header>
 
 <ion-content padding>
