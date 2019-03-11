@@ -1,8 +1,8 @@
 import { Component, OnInit, OnChanges, Input, NgZone } from '@angular/core';
 import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs';
-import { AuthService } from '../shared/services/auth.service';
 import * as $ from 'jquery';
+import { AuthService } from '../shared/services/auth.service';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.page.html',
@@ -15,7 +15,7 @@ export class ChatPage implements OnInit {
   username = 'invitado';
   typing = false;
   userTyping = [];
-  constructor(private db: AngularFireDatabase, private zone: NgZone, private authService: AuthService) {
+  constructor(private db: AngularFireDatabase, private zone: NgZone, public authService: AuthService) {
     // this.items = db.list('/messages', ref => ref.limitToLast(5)).valueChanges();
     this.usuario = JSON.parse(localStorage.getItem('user'));
   }
@@ -38,9 +38,9 @@ export class ChatPage implements OnInit {
     });
     _this.db.list('/messages').valueChanges().subscribe(d => {
       _this.items = [];
+      const dateToday = _this.formaterDate(new Date());
       d.forEach((element: any) => {
         const date = _this.formaterDate(new Date(element.date));
-        const dateToday = _this.formaterDate(new Date());
         const time = _this.formaterTime(new Date(element.date));
         element.date = (dateToday === date) ? 'Hoy, ' + time : date + ', ' + time;
         _this.items.push(element);
