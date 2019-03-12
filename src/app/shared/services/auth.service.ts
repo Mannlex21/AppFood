@@ -25,25 +25,14 @@ export class AuthService {
         JSON.parse(localStorage.getItem('user'));
       }
     });
-    // this.afAuth.auth.onAuthStateChanged(user => {
-    //   this.userData = user;
-    //   if (user) {
-    //     this.userData = user;
-    //     localStorage.setItem('user', JSON.stringify(this.userData));
-    //     JSON.parse(localStorage.getItem('user'));
-    //   } else {
-    //     localStorage.setItem('user', null);
-    //     JSON.parse(localStorage.getItem('user'));
-    //   }
-    // })
   }
   SignUp(email, password) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
-        this.SendVerificationMail();
-        return result;
+        // this.SendVerificationMail();
+        return {status: 'ok', detail: result};
       }).catch((error) => {
-        return error;
+        return {status: 'error', detail: error};
       });
   }
   // Sign in with Google
@@ -82,13 +71,14 @@ export class AuthService {
     });
   }
   SignIn(email, password) {
-    this.afAuth.auth.signInWithEmailAndPassword(email, password)
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password)
     .then((result) => {
-      this.ngZone.run(() => {
-        this.router.navigate(['']);
-      });
+      // this.ngZone.run(() => {
+      //   this.router.navigate(['']);
+      // });
+      return {status: 'ok', detail: result};
     }).catch((error) => {
-      console.log(error);
+      return {status: 'error', detail: error};
     });
   }
   SetUserData(user) {

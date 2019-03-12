@@ -34,24 +34,18 @@
                 <ion-input name="correo" ngModel #correo="ngModel" required></ion-input>
               </ion-item>              
             </ion-col>
-            <!-- <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12" >
+            <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12" >
               <ion-item>
                 <ion-label position="floating">Teléfono</ion-label>
                 <ion-input type="number" name="telefono" ngModel #telefono="ngModel" pattern="\d{8,10}" required></ion-input>
               </ion-item>              
-            </ion-col> -->
+            </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col size-xs="12" text-center>
-              <ion-button type="submit" shape="round" color="dark" [disabled]="!form.valid">Registrar</ion-button>
+            <ion-col style="margin-top:15px;" size-xs="12" text-center>
+              <ion-button type="submit" expand="full" color="primary" [disabled]="!form.valid">Entrar</ion-button>
             </ion-col>
           </ion-row>
-          <!-- <ion-row>
-            <ion-col size-xs="12" text-center>
-              <span class="or"><span class="orInner">Or</span></span>
-            </ion-col>
-          </ion-row> -->
-          
         </ion-grid>
       </form>
     </ion-content>

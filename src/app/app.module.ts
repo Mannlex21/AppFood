@@ -26,6 +26,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthGuard } from './shared/guard/auth.guard';
 import { AuthService } from './shared/services/auth.service';
 import { VerifyEmailComponent } from './login/components/verify-email/verify-email.component';
+import { ToastComponent } from './components/toast/toast.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { VerifyEmailComponent } from './login/components/verify-email/verify-ema
     AngularFireAuth,
     AuthService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: FirestoreSettingsToken, useValue: {} }
+    { provide: FirestoreSettingsToken, useValue: {} },
+    ToastComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,4 @@
-import { Component, OnInit, ComponentRef } from '@angular/core';
+import { Component, OnInit, ComponentRef, NgZone } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { AppState } from '../store/app.state';
@@ -12,6 +12,7 @@ import { auth } from 'firebase/app';
 import { AuthService } from '../shared/services/auth.service';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { ToastComponent } from '../components/toast/toast.component';
 
 @Component({
   selector: 'app-login',
@@ -19,13 +20,14 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  email: string;
-  pass: string;
+  email = '';
+  pass = '';
 
   state$: Observable<AppState>;
 
   constructor(private store: Store, private router: Router, private modalController: ModalController,
-    public afAuth: AngularFireAuth, public authService: AuthService, private db: AngularFireDatabase) {
+    public afAuth: AngularFireAuth, public authService: AuthService, private db: AngularFireDatabase,
+    public toast: ToastComponent, public ngZone: NgZone) {
     this.state$ = this.store.select(state => state);
    }
 
@@ -36,7 +38,28 @@ export class LoginPage implements OnInit {
   }
   SignIn() {
     const _this = this;
-    _this.authService.SignIn(this.email, this.pass);
+    if (this.email === undefined || this.pass === undefined || this.email === '' || this.pass === '') {
+      _this.toast.text('Wrong email and passsword combination.');
+    } else {
+      _this.authService.SignIn(this.email, this.pass).then(function (data) {
+        console.log(data)
+        if (data.status === 'ok') {
+          if (!_this.authService.isLoggedIn) {
+            _this.toast.text('Verify your email address.');
+          } else {
+            _this.ngZone.run(() => {
+              _this.router.navigate(['']);
+            });
+          }
+        } else if (data.status === 'error') {
+          _this.toast.text(data.detail.message);
+        } else {
+          _this.toast.text('Error desconocido');
+        }
+      }).catch(function (error) {
+        _this.toast.text(error.message);
+      });
+    }
     // _this.afAuth.auth.signInWithEmailAndPassword(this.email, this.pass).then(function (data) {
     //   console.log(data)
     //   console.log(_this.afAuth.auth.currentUser)

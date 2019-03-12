@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { LoginPage } from './login.page';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -24,10 +25,10 @@ const routes: Routes = [
   ],
   declarations: [
     LoginPage,
-    SignUpComponent
+    SignUpComponent,
   ],
   entryComponents: [
-    SignUpComponent
+    SignUpComponent,
   ]
 })
 export class LoginPageModule {}
