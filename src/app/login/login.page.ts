@@ -42,7 +42,6 @@ export class LoginPage implements OnInit {
       _this.toast.text('Wrong email and passsword combination.');
     } else {
       _this.authService.SignIn(this.email, this.pass).then(function (data) {
-        console.log(data)
         if (data.status === 'ok') {
           if (!_this.authService.isLoggedIn) {
             _this.toast.text('Verify your email address.');
