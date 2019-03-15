@@ -1,0 +1,9 @@
+.login{
+  text-align: -webkit-center; 
+  margin-top: 50px;
+}
+@media only screen and (max-width: 563px) {
+  .login{
+    margin-top: 0px;
+  }
+}

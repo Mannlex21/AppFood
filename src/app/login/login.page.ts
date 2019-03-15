@@ -82,53 +82,59 @@ export class LoginPage implements OnInit {
   }
   signUpGoogle() {
     const _this = this;
-    this.authService.GoogleAuth().then(function (data) {
-      if (data.hasOwnProperty('additionalUserInfo')) {
-        if (data.additionalUserInfo.hasOwnProperty('profile')) {
-          if (data.additionalUserInfo.profile.hasOwnProperty('email')) {
-            const uid = data.user.uid;
-            _this.db.list('/usuario').valueChanges().subscribe(d => {
-              const r = d.filter(function (obj: any) {
-                return obj.uid === uid;
-              });
-              if (r.length === 0) {
-                _this.db.object('/usuario/' + uid + '/').set({
-                  uid: uid,
-                  nombre: data.additionalUserInfo.profile.name,
-                  correo: data.additionalUserInfo.profile.email,
-                  username: data.additionalUserInfo.profile.name,
-                  type: 'cliente'
-                }).then(function() {});
-              }
-            });
-          }
+    this.authService.GoogleAuth().then(function (data: any) {
+      if(data.status === 'ok'){
+        if(data.detail.code === 'auth/popup-closed-by-user'){
+          _this.toast.text(data.detail.message);
         }
+        if (data.detail.hasOwnProperty('additionalUserInfo') && data.detail.additionalUserInfo.hasOwnProperty('profile')) {
+          const uid = data.detail.user.uid;
+          _this.db.list('/usuario').valueChanges().subscribe(d => {
+            const r = d.filter(function (obj: any) {
+              return obj.uid === uid;
+            });
+            if (r.length === 0) {
+              _this.db.object('/usuario/' + uid + '/').set({
+                uid: uid,
+                nombre: data.detail.additionalUserInfo.profile.name,
+                correo: data.detail.additionalUserInfo.profile.email,
+                username: data.detail.additionalUserInfo.profile.name,
+                type: 'cliente'
+              }).then(function() {});
+            }
+          });
+        }
+      }else{
+        _this.toast.text(data.detail.message);
       }
     });
   }
   signUpFacebook() {
     const _this = this;
-    this.authService.FacebookAuth().then(function (data) {
-      if (data.hasOwnProperty('additionalUserInfo')) {
-        if (data.additionalUserInfo.hasOwnProperty('profile')) {
-          if (data.additionalUserInfo.profile.hasOwnProperty('email')) {
-            const uid = data.user.uid;
-            _this.db.list('/usuario').valueChanges().subscribe(d => {
-              const r = d.filter(function (obj: any) {
-                return obj.uid === uid;
-              });
-              if (r.length === 0) {
-                _this.db.object('/usuario/' + uid + '/').set({
-                  uid: uid,
-                  nombre: data.additionalUserInfo.profile.name,
-                  correo: data.additionalUserInfo.profile.email,
-                  username: data.additionalUserInfo.profile.name,
-                  type: 'cliente'
-                }).then(function() {});
-              }
-            });
-          }
+    this.authService.FacebookAuth().then(function (data: any) {
+      if(data.status === 'ok'){
+        if(data.detail.code === 'auth/popup-closed-by-user'){
+          _this.toast.text(data.detail.message);
         }
+        if (data.detail.hasOwnProperty('additionalUserInfo') && data.detail.additionalUserInfo.hasOwnProperty('profile')) {
+          const uid = data.detail.user.uid;
+          _this.db.list('/usuario').valueChanges().subscribe(d => {
+            const r = d.filter(function (obj: any) {
+              return obj.uid === uid;
+            });
+            if (r.length === 0) {
+              _this.db.object('/usuario/' + uid + '/').set({
+                uid: uid,
+                nombre: data.detail.additionalUserInfo.profile.name,
+                correo: data.detail.additionalUserInfo.profile.email,
+                username: data.detail.additionalUserInfo.profile.name,
+                type: 'cliente'
+              }).then(function() {});
+            }
+          });
+        }
+      } else {
+        _this.toast.text(data.detail.message);
       }
     });
   }

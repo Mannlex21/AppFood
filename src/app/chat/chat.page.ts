@@ -15,6 +15,7 @@ export class ChatPage implements OnInit {
   username = 'invitado';
   typing = false;
   userTyping = [];
+  typingMessage = '';
   constructor(private db: AngularFireDatabase, private zone: NgZone, public authService: AuthService) {
     // this.items = db.list('/messages', ref => ref.limitToLast(5)).valueChanges();
     this.usuario = JSON.parse(localStorage.getItem('user'));
@@ -34,6 +35,11 @@ export class ChatPage implements OnInit {
           _this.userTyping.push(element.username);
         }
       });
+      if(_this.userTyping.length == 1){
+        _this.typingMessage = _this.userTyping[0] + ' esta escribiendo...'
+      }else{
+        _this.typingMessage = 'Estan escribiendo...'
+      }
       // _this.username = (r[0]['username'] !== undefined) ? r[0]['username'] : _this.username;
     });
     _this.db.list('/messages').valueChanges().subscribe(d => {
@@ -51,6 +57,12 @@ export class ChatPage implements OnInit {
     }).find('textarea#message').change();
     const div = document.getElementById('div');
     div.scrollTop = div.scrollHeight;
+    $( "#message" ).focus(function() {
+      _this.typingFunction(true);
+    });
+    $( "#message" ).focusout(function() {
+      _this.typingFunction(false);
+    })
   }
   isMobile() {
     if (navigator.userAgent.match(/Android/i)
@@ -88,9 +100,9 @@ export class ChatPage implements OnInit {
     //   event.preventDefault();
     // }
   }
-  onKeyup(event) {
+  typingFunction(val) {
     const _this = this;
-    if (_this.msgVal !== '') {
+    if (val) {
       const uid = _this.usuario.uid;
       _this.db.object('/usuario/' + uid + '/').update({
         typing: true

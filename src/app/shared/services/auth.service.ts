@@ -37,10 +37,18 @@ export class AuthService {
   }
   // Sign in with Google
   GoogleAuth() {
-    return this.AuthLogin(new auth.GoogleAuthProvider());
+    return this.AuthLogin(new auth.GoogleAuthProvider()).then((result) => {
+      return {status: 'ok', detail: result};
+    }).catch((error) => {
+      return {status: 'error', detail: error};
+    });
   }
   FacebookAuth() {
-    return this.AuthLogin(new auth.FacebookAuthProvider());
+    return this.AuthLogin(new auth.FacebookAuthProvider()).then((result) => {
+      return {status: 'ok', detail: result};
+    }).catch((error) => {
+      return {status: 'error', detail: error};
+    });
   }
   AuthLogin(provider) {
     return this.afAuth.auth.signInWithPopup(provider)

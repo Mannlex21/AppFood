@@ -26,7 +26,7 @@
   <div class="chat-input">
       <div *ngIf="typing">
         <ion-icon src="../../assets/icon/writing.svg"></ion-icon>
-        {{userTyping[0]}} esta escribiendo...
+        {{typingMessage}}
       </div>
       <div class="chat">
         <div class="chat-message clearfix">
@@ -35,7 +35,6 @@
               [(ngModel)]="msgVal"
               (keydown.enter)="preventEnter($event)"
               (keyup.enter)="chatSendEnter($event)"
-              (keyup)="onKeyup($event)"
             ></textarea>
           </div>
           <div class="classBtnSend">

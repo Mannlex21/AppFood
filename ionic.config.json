@@ -1,6 +1,8 @@
 {
   "name": "AppFood",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular",
   "id": "f924b3bf"
 }
